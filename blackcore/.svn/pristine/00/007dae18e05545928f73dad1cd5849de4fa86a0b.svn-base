@@ -1,0 +1,33 @@
+package com.sidc.blackcore.demo.servlet.movie;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.blackcore.api.parser.APIServlet;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.side.sits.logical.movie.MovieListProcess;
+
+@WebServlet("/demo/movielist")
+public class MovieListServlet extends APIServlet {
+	/**
+	 * DEMO 用
+	 */
+	private static final long serialVersionUID = 4817866807669379559L;
+
+	private final static Logger logger = LoggerFactory.getLogger(MovieListServlet.class);
+
+	@Override
+	protected Object execute(String apiRequest, HttpServletRequest req) throws SiDCException, Exception {
+		return new MovieListProcess().execute();
+	}
+
+	@Override
+	protected void initial() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().initial(logger, this.getClass().getCanonicalName());
+	}
+}

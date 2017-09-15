@@ -1,0 +1,64 @@
+package com.sidc.blackcore.sits.test;
+
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.junit.Test;
+
+import com.derex.cm.stb.api.request.APIRequest;
+import com.google.gson.Gson;
+import com.sidc.sits.api.bill.request.BillRequest;
+import com.sidc.sits.api.bill.response.SitsBillResponse;
+import com.sidc.sits.logical.utils.HttpClientUitl;
+
+public class BillTest {
+
+//	@Test
+//	public void test2() {
+//
+//		HttpClient httpclient = HttpClients.createDefault();
+//		HttpPost httppost = new HttpPost("http://127.0.0.1:8088/blackcore/sits/bill");
+//
+//		APIRequest enity = new APIRequest(new BillRequest("608", "d451845fd0454dad9edc35f95fe4d9ea"));
+//
+//		Gson gson = new Gson();
+//		String json = gson.toJson(enity);
+//
+//		try {
+//			StringEntity entity = new StringEntity(json, "UTF-8");
+//			httppost.setEntity(entity);
+//			HttpResponse response = httpclient.execute(httppost);
+//			String result = EntityUtils.toString(response.getEntity());
+//			System.out.println(result);
+//		} catch (ClientProtocolException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	@Test
+//	public void test() {
+//		try {
+//			String str = HttpClientUitl.sendPostWithBill("http://127.0.0.1:8080/sits/front/billDataToJson.htm");
+//			Gson gson = new Gson();
+//
+//			SitsBillResponse enity = (SitsBillResponse) gson.fromJson(str, SitsBillResponse.class);
+//
+//			System.out.println(enity);
+//			// SitsBillResponse
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+
+}

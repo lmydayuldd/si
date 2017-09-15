@@ -1,0 +1,95 @@
+package com.sidc.quartz.behavior;
+
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.sidc.common.framework.abs.AbstractAPIProcess;
+import com.sidc.quartz.api.command.key.QuartzCommand;
+import com.sidc.quartz.api.request.QuartzCommandRequest;
+import com.sidc.quartz.command.DeleteJob;
+import com.sidc.quartz.command.PauseJob;
+import com.sidc.quartz.command.QueryJob;
+import com.sidc.quartz.command.ReScheduleJob;
+import com.sidc.quartz.command.RefreshJob;
+import com.sidc.quartz.command.ResumeJob;
+import com.sidc.quartz.command.Shutdown;
+import com.sidc.quartz.command.Start;
+import com.sidc.quartz.command.StartJob;
+import com.sidc.quartz.command.TriggerJob;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.sidc.utils.status.APIStatus;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class QuartzProcess extends AbstractAPIProcess {
+
+	private QuartzCommandRequest enity;
+
+	public QuartzProcess(QuartzCommandRequest enity) {
+		this.enity = enity;
+	}
+
+	@Override
+	protected void init() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().debug("Request:" + this.enity);
+	}
+
+	@Override
+	protected Object process() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		
+		switch (QuartzCommand.valueOf(this.enity.getCommand())) {
+		case QUERY:
+			return new QueryJob().execute();
+		case PAUSE:
+			new PauseJob(this.enity).execute();
+		case RESUME:
+			new ResumeJob(this.enity).execute();
+		case TRIGGER:
+			new TriggerJob(this.enity).execute();
+		case RESCHEDULE:
+			new ReScheduleJob(this.enity).execute();
+		case REFRESH:
+			new RefreshJob().execute();
+		case DELETE:
+			new DeleteJob(this.enity).execute();
+		case STRATJOB:
+			new StartJob(this.enity).execute();
+		case START:
+			new Start().execute();
+		case SHUTDOWN:
+			new Shutdown().execute();
+		default:
+			break;
+		}
+		
+		return null;
+	}
+
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		if (this.enity == null) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Rquest is illegal");
+		}
+		
+		if (StringUtils.isBlank(this.enity.getCommand())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Quartz command is empty");
+		}
+		
+		if (this.enity.getCommand().equals(QuartzCommand.PAUSE)) {
+			if (StringUtils.isBlank(this.enity.getJobname())) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Job name is empty");
+			}
+			if (StringUtils.isBlank(this.enity.getGroupname())) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Group name is empty");
+			}
+		}
+	}
+
+}

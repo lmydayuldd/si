@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package com.sidc.blackcore.servlet.rcu;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.blackcore.api.parser.APIParser;
+import com.sidc.blackcore.api.parser.APIServlet;
+import com.sidc.blackcore.api.ra.schedule.request.ScheduleCheckOutUpdateRequest;
+import com.sidc.ra.logical.api.schedule.ScheduleCheckOutUpdateProcess;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+
+@WebServlet("/rcu/schedule/checkoutupdate")
+public class RcuScheduleCheckOutUpdateServlet extends APIServlet {
+
+	private static final long serialVersionUID = 1833109806470110967L;
+	private final static Logger logger = LoggerFactory.getLogger(RcuScheduleCheckOutUpdateServlet.class);
+
+	public RcuScheduleCheckOutUpdateServlet() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void initial() throws SiDCException, Exception {
+		LogAction.getInstance().initial(logger, this.getClass().getSimpleName());
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected Object execute(String apiRequest, HttpServletRequest req) throws SiDCException, Exception {
+
+		final ScheduleCheckOutUpdateRequest enity = (ScheduleCheckOutUpdateRequest) APIParser.getInstance()
+				.parse(apiRequest, ScheduleCheckOutUpdateRequest.class);
+
+		return new ScheduleCheckOutUpdateProcess(enity).execute();
+	}
+
+}

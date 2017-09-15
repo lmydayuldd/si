@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<room-module>/rcu-manager/zhongshan/room-module-tester.json</room-module>
+	<servers>
+		<server name="rcu" noticeHostTimer="2"
+			description="Zhongshan UDP Service. The mainport receives RCU data. The target send data to RCU Server">
+			<mainport>11544</mainport>
+			<target>8012</target>
+		</server>
+	</servers>
+</configuration>

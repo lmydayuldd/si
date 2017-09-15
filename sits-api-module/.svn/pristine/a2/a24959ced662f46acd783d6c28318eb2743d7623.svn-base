@@ -1,0 +1,78 @@
+/**
+ * 
+ */
+package com.sidc.raudp.bean;
+
+import java.io.Serializable;
+
+/**
+ * @author Nandin
+ *
+ */
+public class RoomModuleBean implements Serializable {
+
+	private static final long serialVersionUID = -6790250149931199884L;
+
+	private int id;
+	private String name;
+	private BlubBean bulb;
+	private AirconditionBean aircondition;
+	private ServiceBean service;
+	private CardBean card;
+
+	public RoomModuleBean(int id, String name, BlubBean bulb, AirconditionBean aircondition, ServiceBean service,
+			CardBean card) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.bulb = bulb;
+		this.aircondition = aircondition;
+		this.service = service;
+		this.card = card;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public ServiceBean getService() {
+		return service;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public BlubBean getBulb() {
+		return bulb;
+	}
+
+	public AirconditionBean getAircondition() {
+		return aircondition;
+	}
+
+	public CardBean getCard() {
+		return card;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SysRCUBean [\n\tid=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", bulb=");
+		builder.append(bulb);
+		builder.append(", aircondition=");
+		builder.append(aircondition);
+		builder.append(", service=");
+		builder.append(service);
+		builder.append(", card=");
+		builder.append(card);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
+}

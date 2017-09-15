@@ -1,0 +1,36 @@
+package com.sidc.rcu.hmi.modesetting.bean;
+
+import java.io.Serializable;
+
+public class RcuAgentBehaviorBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3152139622107646600L;
+	private int id;
+	private String key;
+
+	public RcuAgentBehaviorBean(String key) {
+		super();
+		this.key = key;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuAgentBehaviorBean [id=");
+		builder.append(id);
+		builder.append(", key=");
+		builder.append(key);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getKey() {
+		return key;
+	}
+}

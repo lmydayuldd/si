@@ -1,0 +1,91 @@
+package com.sidc.blackcore.api.sits.roomservice.request;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityPhotoUploadBean;
+import com.sidc.blackcore.api.sits.roomservice.bean.RoomServiceLangBean;
+
+public class RoomServiceCategoryInsertRequest implements Serializable {
+	private static final long serialVersionUID = -5581200726453157339L;
+	private String token;
+	private int referid;
+	private int status;
+	private String startime;
+	private String endtime;
+	private List<RoomServiceLangBean> list = new ArrayList<RoomServiceLangBean>();
+	private List<ActivityPhotoUploadBean> photolist = new ArrayList<ActivityPhotoUploadBean>();
+
+	public String getToken() {
+		return token;
+	}
+
+	public int getReferid() {
+		return referid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public String getStartime() {
+		return startime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public List<RoomServiceLangBean> getList() {
+		return list;
+	}
+
+	public List<ActivityPhotoUploadBean> getPhotolist() {
+		return photolist;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomServiceCategoryInsertRequest [token=");
+		builder.append(token);
+		builder.append(", referid=");
+		builder.append(referid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", startime=");
+		builder.append(startime);
+		builder.append(", endtime=");
+		builder.append(endtime);
+		builder.append(", list=");
+		builder.append(list);
+		builder.append(", photolist=");
+		builder.append(photolist);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RoomServiceCategoryInsertRequest(String token, int referid, int status, String startime, String endtime,
+			List<RoomServiceLangBean> list) {
+		super();
+		this.token = token;
+		this.referid = referid;
+		this.status = status;
+		this.startime = startime;
+		this.endtime = endtime;
+		this.list = list;
+	}
+
+	public RoomServiceCategoryInsertRequest(String token, int referid, int status, String startime, String endtime,
+			List<RoomServiceLangBean> list, List<ActivityPhotoUploadBean> photolist) {
+		super();
+		this.token = token;
+		this.referid = referid;
+		this.status = status;
+		this.startime = startime;
+		this.endtime = endtime;
+		this.list = list;
+		this.photolist = photolist;
+	}
+}

@@ -1,0 +1,62 @@
+package com.sidc.rcu.hmi.request;
+
+import java.io.Serializable;
+
+public class RcuModeSettingInsertRequest implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4186850404182764160L;
+	public RcuModeSettingInsertRequest(String keyname, int agentId, int groupId, String content, int timer) {
+		super();
+		this.keyname = keyname;
+		this.agentId = agentId;
+		this.groupId = groupId;
+		this.content = content;
+		this.timer = timer;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModeSettingInsertRequest [keyname=");
+		builder.append(keyname);
+		builder.append(", agentId=");
+		builder.append(agentId);
+		builder.append(", groupId=");
+		builder.append(groupId);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", timer=");
+		builder.append(timer);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public String getKeyname() {
+		return keyname;
+	}
+
+	public int getAgentId() {
+		return agentId;
+	}
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public int getTimer() {
+		return timer;
+	}
+
+	private String keyname;
+	private int agentId;
+	private int groupId;
+	private String content;
+	private int timer;
+
+}

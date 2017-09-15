@@ -1,0 +1,29 @@
+package com.sidc.blackcore.api.mobile.activity.request;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class testRequest implements Serializable {
+	private static final long serialVersionUID = -7471201900487002717L;
+
+	private byte[] photo;
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("testRequest [photo=");
+		builder.append(Arrays.toString(photo));
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public testRequest(byte[] photo) {
+		super();
+		this.photo = photo;
+	}
+
+}

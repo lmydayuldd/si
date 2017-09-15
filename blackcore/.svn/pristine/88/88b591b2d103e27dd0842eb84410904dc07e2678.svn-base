@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<rcu>/blackcore/rcu/rcu-config.xml</rcu>
+	<ignite>/blackcore/ignite/ignite.xml</ignite>
+	<proxool>/blackcore/initial/proxool.xml</proxool>
+	
+</configuration>
+

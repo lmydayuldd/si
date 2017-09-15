@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<urls>
+		<link name="sits" url="http://10.60.3.198/sits" />
+		<link name="blackcore" url="http://127.0.0.1:7056/blackcore" />
+		<link name="rcuengine" url="http://127.0.0.1:3235/rcuengine" />
+		<link name="imageUrl" url="http://10.60.1.198" />
+		<link name="shopImage" url="http://10.60.1.198/upload/shop" />
+		<link name="movieImage" url="http://10.60.1.198/upload/movie" />
+		<link name="fcm" url="https://fcm.googleapis.com/fcm/send" />
+		<link name="quartz" url="http://127.0.0.1:3456/quartz" />
+	</urls>
+	
+</configuration>

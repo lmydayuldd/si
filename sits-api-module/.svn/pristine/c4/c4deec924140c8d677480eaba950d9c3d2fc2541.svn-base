@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package com.sidc.sits.api.token.request;
+
+import java.io.Serializable;
+
+/**
+ * @author Joe
+ *
+ */
+public class TokenInsertRequest implements Serializable {
+
+	private static final long serialVersionUID = 4073015664527939512L;
+	private int type;
+	private String sign;
+
+	public int getType() {
+		return type;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TokenInsertRequest [type=");
+		builder.append(type);
+		builder.append(", sign=");
+		builder.append(sign);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public TokenInsertRequest(int type, String sign) {
+		super();
+		this.type = type;
+		this.sign = sign;
+	}
+
+}

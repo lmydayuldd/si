@@ -1,0 +1,51 @@
+package com.sidc.blackcore.api.sits.token.request;
+
+import java.io.Serializable;
+
+import com.sidc.blackcore.api.sits.token.bean.MobileInfoBean;
+import com.sidc.blackcore.api.sits.token.bean.TokenSignBean;
+
+/**
+ * @author Joe
+ *
+ */
+public class MobileTokenInsertRequest implements Serializable {
+
+	private static final long serialVersionUID = 4073015664527939512L;
+	private int type;
+	private TokenSignBean sign;
+	private MobileInfoBean mobileInfo;
+
+	public int getType() {
+		return type;
+	}
+
+	public TokenSignBean getSign() {
+		return sign;
+	}
+
+	public MobileInfoBean getMobileInfo() {
+		return mobileInfo;
+	}
+
+	public MobileTokenInsertRequest(int type, TokenSignBean sign, MobileInfoBean mobileInfo) {
+		super();
+		this.type = type;
+		this.sign = sign;
+		this.mobileInfo = mobileInfo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MobileTokenInsertRequest [type=");
+		builder.append(type);
+		builder.append(", sign=");
+		builder.append(sign);
+		builder.append(", mobileInfo=");
+		builder.append(mobileInfo);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

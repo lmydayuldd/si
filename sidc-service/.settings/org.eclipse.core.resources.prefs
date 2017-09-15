@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+<<<<<<< .mine
+encoding//src/test/java/com/sidc/servic/api/agent/test/CheckInTest.java=UTF-8
+encoding//src/test/java/com/sidc/servic/api/agent/test/MessageTest.java=UTF-8
+encoding//src/test/java/com/sidc/servic/api/agent/test/RoomChangeTest.java=UTF-8
+||||||| .r998
+encoding//src/main/java/com/sidc/service/listener/TestServlet.java=UTF-8
+encoding/<project>=UTF-8
+=======
+encoding//src/main/java/com/sidc/service/listener/TestServlet.java=UTF-8
+>>>>>>> .r1361

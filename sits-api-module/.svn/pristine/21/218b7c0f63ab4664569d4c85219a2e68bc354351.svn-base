@@ -1,0 +1,120 @@
+package com.sidc.blackcore.api.sits.roomservice.request;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityPhotoUploadBean;
+import com.sidc.blackcore.api.sits.roomservice.bean.RoomServiceLangBean;
+import com.sidc.blackcore.api.sits.roomservice.bean.RoomServiceSetBean;
+
+public class RoomServiceItemInsertRequest implements Serializable {
+	private static final long serialVersionUID = -6498745979902177777L;
+	private String token;
+	private int categoryid;
+	private int status;
+	private int sequence;
+	private float price;
+	private String type;
+	private List<RoomServiceLangBean> list = new ArrayList<RoomServiceLangBean>();
+	private List<RoomServiceSetBean> setlist = new ArrayList<RoomServiceSetBean>();
+	private List<ActivityPhotoUploadBean> photolist = new ArrayList<ActivityPhotoUploadBean>();
+
+	public String getToken() {
+		return token;
+	}
+
+	public int getCategoryid() {
+		return categoryid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public List<RoomServiceLangBean> getList() {
+		return list;
+	}
+
+	public List<RoomServiceSetBean> getSetlist() {
+		return setlist;
+	}
+
+	public void setSetlist(List<RoomServiceSetBean> setlist) {
+		this.setlist = setlist;
+	}
+
+	public List<ActivityPhotoUploadBean> getPhotolist() {
+		return photolist;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public void setPhotolist(List<ActivityPhotoUploadBean> photolist) {
+		this.photolist = photolist;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomServiceItemInsertRequest [token=");
+		builder.append(token);
+		builder.append(", categoryid=");
+		builder.append(categoryid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", sequence=");
+		builder.append(sequence);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append(", list=");
+		builder.append(list);
+		builder.append(", setlist=");
+		builder.append(setlist);
+		builder.append(", photolist=");
+		builder.append(photolist);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RoomServiceItemInsertRequest(String token, int categoryid, int status, int sequence, float price,
+			String type, List<RoomServiceLangBean> list, List<RoomServiceSetBean> setlist,
+			List<ActivityPhotoUploadBean> photolist) {
+		super();
+		this.token = token;
+		this.categoryid = categoryid;
+		this.status = status;
+		this.sequence = sequence;
+		this.price = price;
+		this.type = type;
+		this.list = list;
+		this.setlist = setlist;
+		this.photolist = photolist;
+	}
+
+	public RoomServiceItemInsertRequest(String token, int categoryid, int status, int sequence, float price,
+			String type, List<RoomServiceLangBean> list, List<RoomServiceSetBean> setlist) {
+		super();
+		this.token = token;
+		this.categoryid = categoryid;
+		this.status = status;
+		this.sequence = sequence;
+		this.price = price;
+		this.type = type;
+		this.list = list;
+		this.setlist = setlist;
+	}
+
+}

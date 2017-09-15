@@ -1,0 +1,17 @@
+package com.sidc.configuration.conf;
+
+import java.io.File;
+
+public interface Env {
+
+	public final static String SIDC_URL_PATH = "/blackcore/url/sidc-url.xml".replace("/", File.separator);
+	
+	public final static String SYSTEM_DEF_PATH = System.getProperty("sidc.config.path").replace("\\", File.separator)
+			.replace("/", File.separator);
+	
+	public final static String DOMAINCONFIGURATION = "DOMAINCONFIGURATION";	
+	
+	public final static String APP_FCM_KEY_CONFIGUATION_PATH = "/blackcore/fcm/app-key.xml".replace("/", File.separator);
+	
+	public final static String APP_FCM_KEY_CONFIGURATION = "APPFCMKEYCONFIGURATION";	
+}

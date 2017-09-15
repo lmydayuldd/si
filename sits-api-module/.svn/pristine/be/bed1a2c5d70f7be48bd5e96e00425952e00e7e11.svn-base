@@ -1,0 +1,70 @@
+package com.sidc.blackcore.api.sits.shop.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.sits.langs.bean.LangsBean;
+
+public class ShopItemInfoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2833930547786919863L;
+	private int id;
+	private String name;
+	private String price;
+	private String image;
+	private int sequence;
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ShopItemInfoBean [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", image=");
+		builder.append(image);
+		builder.append(", sequence=");
+		builder.append(sequence);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ShopItemInfoBean(int id, String name, String price, String image, int sequence) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.image = image;
+		this.sequence = sequence;
+	}
+
+}

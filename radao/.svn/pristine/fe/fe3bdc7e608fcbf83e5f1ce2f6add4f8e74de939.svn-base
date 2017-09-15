@@ -1,0 +1,111 @@
+/**
+ * 
+ */
+package com.sidc.dao.ra;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class RcuGroupModelDao {
+
+	private static class LazyHolder {
+		public static final RcuGroupModelDao INSTANCE = new RcuGroupModelDao();
+	}
+
+	public static RcuGroupModelDao getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	private final static String SEARCH_BY_MODELID = "SELECT rcu_group_id FROM rcu_group_model WHERE rcu_model_id = ? LIMIT 1;";
+
+	public int searchByMoedlid(final Connection conn, final int modelId) throws SQLException {
+
+		Integer id = 0;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SEARCH_BY_MODELID);
+			int i = 0;
+			psmt.setInt(++i, modelId);
+
+			final ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("rcu_group_id");
+			}
+
+			conn.commit();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return id;
+	}
+
+	private final static String SEARCH_BY_GROUPID = "SELECT rcu_model_id FROM rcu_group_model WHERE rcu_group_id = ? LIMIT 1;";
+
+	public int searchByGroupid(final Connection conn, final int groupId) throws SQLException {
+		Integer id = 0;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SEARCH_BY_GROUPID);
+			int i = 0;
+			psmt.setInt(++i, groupId);
+
+			final ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("rcu_model_id");
+			}
+			conn.commit();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return id;
+	}
+
+	private final static String SEARCH_WITH_RCUGROUP = "SELECT rgm.rcu_mode_id FROM rcu_group_mode rgm LEFT JOIN rcu_mode_agent rma ON rgm.rcu_mode_id = rma.rcu_mode_id WHERE rgm.rcu_group_id = ? AND rma.rcu_agent_behavior_id = ?;";
+
+	/**
+	 * 
+	 * @param conn
+	 * @param groupId
+	 * @param behaviorId
+	 *            模式 EX check in,check out
+	 * @return
+	 * @throws SQLException
+	 */
+	public int searchWithRcuGroup(final Connection conn, final int groupId, final int behaviorId) throws SQLException {
+
+		Integer id = 0;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SEARCH_WITH_RCUGROUP);
+			int i = 0;
+			psmt.setInt(++i, groupId);
+			psmt.setInt(++i, behaviorId);
+			final ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("rcu_mode_id");
+			}
+
+			conn.commit();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return id;
+	}
+}

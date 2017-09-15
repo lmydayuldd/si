@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package com.derex.cm.stb.api.request;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @author Nandin
+ *
+ */
+public class StbMessageRequest implements Serializable {
+
+    private static final long serialVersionUID = -4830309799299996660L;
+    private List<String> stbs;
+    private String message;
+
+    public StbMessageRequest(List<String> stbs, String message) {
+	super();
+	this.stbs = stbs;
+	this.message = message;
+    }
+
+    public List<String> getStbs() {
+	return stbs;
+    }
+
+    public String getMessage() {
+	return message;
+    }
+
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("StbMessageRequest [stbs=\n");
+	builder.append(stbs);
+	builder.append(", message=\n");
+	builder.append(message);
+	builder.append("]");
+	return builder.toString();
+    }
+
+}

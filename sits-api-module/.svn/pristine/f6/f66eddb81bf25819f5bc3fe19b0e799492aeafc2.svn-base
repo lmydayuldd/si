@@ -1,0 +1,30 @@
+package com.sidc.blackcore.api.sits.shop.request;
+
+import java.io.Serializable;
+
+public class ShopListRequest implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6645915873624165092L;
+	private String kind;
+
+	public String getKind() {
+		return kind;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ShopListRequest [kind=");
+		builder.append(kind);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ShopListRequest(String kind) {
+		super();
+		this.kind = kind;
+	}
+
+}

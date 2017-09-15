@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<url>https://api.flightstats.com/flex/flightstatus/rest/v2/json/</url>
+	<applicationid>a90d806a</applicationid>
+	<keys>
+		<property value="37bb13d47c40a5b2b1e2b93372230577" />
+	</keys>
+
+	<methods>
+		<method>airportstatus</method>
+		<apiname>airport/status/</apiname>
+
+		<!-- 出入境 method名稱 -->
+		<arrival>arr</arrival>
+		<departure>dep</departure>
+
+		<!-- 可用的查詢條件 -->
+		<queries>
+			<property name="airport" />
+			<property name="year" />
+			<property name="month" />
+			<property name="day" />
+			<property name="hourOfDay" />
+		</queries>
+	</methods>
+
+</configuration>

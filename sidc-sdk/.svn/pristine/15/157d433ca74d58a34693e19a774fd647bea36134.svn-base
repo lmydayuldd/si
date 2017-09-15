@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package com.sidc.sdk.blackcore.schedule;
+
+import com.sidc.blackcore.api.ra.schedule.bean.ScheduleInfoBean;
+import com.sidc.sdk.abs.AbsHttpClient;
+
+public class ScheduleInfoClient extends AbsHttpClient<ScheduleInfoBean> {
+	private String request;
+
+	public ScheduleInfoClient(final String host, final String request) {
+		super(host, "/quartz/scheduleifno");
+		this.request = request;
+	}
+
+	@Override
+	public String request() throws Exception {
+		return this.request;
+	}
+
+	@Override
+	public String response(String json) throws Exception {
+
+		if (json == null || json.length() == 0) {
+			return null;
+		}
+		return json;
+	}
+
+}

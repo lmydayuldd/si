@@ -1,0 +1,26 @@
+package com.sidc.blackcore.api.sits.token.bean;
+
+import java.io.Serializable;
+
+public class TokenSignBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4324404831801014020L;
+	private String roomno;
+	private String stbIp;
+
+	public TokenSignBean(String roomno, String stbIp) {
+		super();
+		this.roomno = roomno;
+		this.stbIp = stbIp;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	public String getStbIp() {
+		return stbIp;
+	}
+}

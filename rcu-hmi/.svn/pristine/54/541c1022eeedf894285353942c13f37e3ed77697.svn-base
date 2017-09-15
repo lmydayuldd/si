@@ -1,0 +1,60 @@
+package com.sidc.rcu.hmi.bean.modesetting;
+
+import java.io.Serializable;
+
+public class RcuModeCondition implements Serializable {
+	private static final long serialVersionUID = -273915813319958375L;
+
+	private String temperature;
+	private String function;
+	private boolean isPower;
+	private int speed;
+	private int timer;
+
+	public String getTemperature() {
+		return temperature;
+	}
+
+	public String getFunction() {
+		return function;
+	}
+
+	public boolean isPower() {
+		return isPower;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public int getTimer() {
+		return timer;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModeCondition [temperature=");
+		builder.append(temperature);
+		builder.append(", function=");
+		builder.append(function);
+		builder.append(", isPower=");
+		builder.append(isPower);
+		builder.append(", speed=");
+		builder.append(speed);
+		builder.append(", timer=");
+		builder.append(timer);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RcuModeCondition(String temperature, String function, boolean isPower, int speed, int timer) {
+		super();
+		this.temperature = temperature;
+		this.function = function;
+		this.isPower = isPower;
+		this.speed = speed;
+		this.timer = timer;
+	}
+
+}

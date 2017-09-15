@@ -1,0 +1,5 @@
+com\sidc\servic\api\agent\test\PostTest.class
+com\sidc\servic\api\agent\test\CheckInTest.class
+com\sidc\servic\api\agent\test\CheckOutTest.class
+com\sidc\servic\api\agent\test\MessageTest.class
+com\sidc\servic\api\agent\test\RoomChangeTest.class

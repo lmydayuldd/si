@@ -1,0 +1,35 @@
+package com.sidc.blackcore.api.ra.schedule.bean;
+
+import java.io.Serializable;
+
+public class ScheduleInfoBean implements Serializable {
+	private static final long serialVersionUID = -5661868845392297418L;
+	private String executiontime;
+	private String description;
+
+	public String getExecutiontime() {
+		return executiontime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public ScheduleInfoBean(String executiontime, String description) {
+		super();
+		this.executiontime = executiontime;
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ScheduleInfoBean [executiontime=");
+		builder.append(executiontime);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

@@ -1,0 +1,52 @@
+package com.sidc.blackcore.sits.test;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.derex.cm.stb.api.request.APIRequest;
+import com.google.gson.Gson;
+import com.sidc.sits.api.tvchannel.request.TvChannelChangeRequest;
+
+public class TvChannelChangeTest {
+
+	@Test
+	public void test() {
+		
+		HttpClient httpclient = HttpClients.createDefault();
+		HttpPost httppost = new HttpPost("http://127.0.0.1:8088/blackcore/stbcommand/TvChannelChange");
+
+		APIRequest enity = new APIRequest(new TvChannelChangeRequest("608", "9"));
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(enity);
+
+		try {
+			StringEntity entity = new StringEntity(json, "UTF-8");
+			httppost.setEntity(entity);
+			HttpResponse response = httpclient.execute(httppost);
+			String result = EntityUtils.toString(response.getEntity());
+			System.out.println(result);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+

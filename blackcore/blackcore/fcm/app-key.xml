@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<keys>
+		<app name="SIDC" key="AAAAGlxgTc0:APA91bESyqKid8q4XFEMyYfRmmvzrEAG43_4uuOktrsjzfL5RYZd13oWikAHhv6Yi9Gaq5FAICdJ5yrXPtQuzNeI6nm3j8q-ZXomHWjma9b6upULf5y53zNDAdnNq-4fwgg7ZPbhBInl" />
+		<app name="Taipei" key="AAAAGlxgTc0:APA91bESyqKid8q4XFEMyYfRmmvzrEAG43_4uuOktrsjzfL5RYZd13oWikAHhv6Yi9Gaq5FAICdJ5yrXPtQuzNeI6nm3j8q-ZXomHWjma9b6upULf5y53zNDAdnNq-4fwgg7ZPbhBInl" />
+	</keys>
+	
+</configuration>

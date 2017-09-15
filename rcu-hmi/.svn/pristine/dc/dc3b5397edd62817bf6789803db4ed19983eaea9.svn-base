@@ -1,0 +1,69 @@
+package com.sidc.ra.server.logical;
+
+import java.util.HashMap;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.sidc.ra.server.bean.RcuRoomModuleBean;
+import com.sidc.ra.server.common.CommonDataKey;
+import com.sidc.ra.server.common.DataCenter;
+import com.sidc.ra.server.framework.abs.AbstractAPIProcess;
+import com.sidc.ra.server.udp.request.RoomModuleRequest;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+
+public class RoomModuleProcess extends AbstractAPIProcess {
+
+	private RoomModuleRequest entity;
+	private boolean isFilter = false;
+
+	public RoomModuleProcess(RoomModuleRequest entity) {
+		this.entity = entity;
+	}
+
+	@Override
+	protected void init() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().debug("Request:" + entity);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected Object process() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		HashMap<String, RcuRoomModuleBean> map = new HashMap<String, RcuRoomModuleBean>();
+		HashMap<String, RcuRoomModuleBean> roomModuleMap = (HashMap<String, RcuRoomModuleBean>) DataCenter.getInstance()
+				.get(CommonDataKey.RCU_ROOM_MODULE);
+
+		if (isFilter) {
+			for (RcuRoomModuleBean test : roomModuleMap.values()) {
+				if (!StringUtils.isBlank(entity.getName()) && test.getName().equals(entity.getName())) {
+					map.put(String.valueOf(test.getId()), test);
+				}
+			}
+		} else {
+			map = roomModuleMap;
+		}
+
+		return map.values();
+	}
+
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+
+		// =====================Test data ====================
+		HashMap<String, RcuRoomModuleBean> roomModuleMap = new HashMap<String, RcuRoomModuleBean>();
+		roomModuleMap.put("1", new RcuRoomModuleBean(1, "RoomA"));
+		roomModuleMap.put("2", new RcuRoomModuleBean(2, "RoomB"));
+		roomModuleMap.put("3", new RcuRoomModuleBean(3, "RoomC"));
+		roomModuleMap.put("4", new RcuRoomModuleBean(4, "RoomD"));
+		roomModuleMap.put("5", new RcuRoomModuleBean(5, "RoomE"));
+		DataCenter.getInstance().put(CommonDataKey.RCU_ROOM_MODULE, roomModuleMap);
+		// =====================Test data end ====================
+
+		if (entity != null) {
+			isFilter = true;
+		}
+	}
+}

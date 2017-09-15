@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<host>127.0.0.1</host>
+	<port>8080</port>
+	<serviceName>rcu-hmi</serviceName>
+	
+	<systemWebsocket>
+		<service name="index">
+			<path>socketindexinfo</path>
+		</service>
+		<service name="rcucommand">
+			<path>socketrcucommand</path>
+		</service>
+	</systemWebsocket>
+</configuration>

@@ -1,0 +1,48 @@
+package com.sidc.rcu.hmi.request.modesetting;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.ra.rcumodesetting.response.RcuModeSettingModeEntity;
+
+public class ModeSettingInsertRequest implements Serializable {
+
+	private static final long serialVersionUID = -4847700015979605108L;
+	private int modeId;
+	private int groupId;
+	private List<RcuModeSettingModeEntity> list = new ArrayList<RcuModeSettingModeEntity>();
+
+	public int getModeId() {
+		return modeId;
+	}
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public List<RcuModeSettingModeEntity> getList() {
+		return list;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ModeSettingInsertRequest [modeId=");
+		builder.append(modeId);
+		builder.append(", groupId=");
+		builder.append(groupId);
+		builder.append(", list=");
+		builder.append(list);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ModeSettingInsertRequest(int modeId, int groupId, List<RcuModeSettingModeEntity> list) {
+		super();
+		this.modeId = modeId;
+		this.groupId = groupId;
+		this.list = list;
+	}
+
+}

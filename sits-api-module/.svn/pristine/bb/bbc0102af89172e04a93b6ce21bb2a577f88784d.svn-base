@@ -1,0 +1,51 @@
+package com.sidc.blackcore.api.sits.roomservice.bean;
+
+import java.io.Serializable;
+
+public class RoomServiceSetItemBean implements Serializable {
+	private static final long serialVersionUID = -6388067430484263575L;
+	private int itemid;
+	private int status;
+	private String name;
+	private String description;
+
+	public int getItemid() {
+		return itemid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomServiceSetItemBean [itemid=");
+		builder.append(itemid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RoomServiceSetItemBean(int itemid, int status, String name, String description) {
+		super();
+		this.itemid = itemid;
+		this.status = status;
+		this.name = name;
+		this.description = description;
+	}
+
+}

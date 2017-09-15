@@ -1,0 +1,39 @@
+package com.sidc.blackcore.api.mobile.activity.request;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.activity.bean.ActivitySignUpBean;
+
+public class ActivitySignUpRequest implements Serializable {
+	private static final long serialVersionUID = 8506225161738746630L;
+	private int activityid;
+	private List<ActivitySignUpBean> list = new ArrayList<ActivitySignUpBean>();
+
+	public int getActivityid() {
+		return activityid;
+	}
+
+	public List<ActivitySignUpBean> getList() {
+		return list;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivitySignUpRequest [activityid=");
+		builder.append(activityid);
+		builder.append(", list=");
+		builder.append(list);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivitySignUpRequest(int activityid, List<ActivitySignUpBean> list) {
+		super();
+		this.activityid = activityid;
+		this.list = list;
+	}
+
+}

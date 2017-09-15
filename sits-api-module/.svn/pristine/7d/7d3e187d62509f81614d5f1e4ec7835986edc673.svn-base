@@ -1,0 +1,58 @@
+package com.sidc.blackcore.api.sits.tvchannel.request;
+
+import java.io.Serializable;
+
+public class TvChannelListRequest implements Serializable {
+	private static final long serialVersionUID = 2570212020745076785L;
+	private String roomNo;
+	private String token;
+	private String hotelName;
+	private String hotelId;
+	private String language;
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public String getHotelId() {
+		return hotelId;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TvChannelListRequest [roomNo=");
+		builder.append(roomNo);
+		builder.append(", token=");
+		builder.append(token);
+		builder.append(", hotelName=");
+		builder.append(hotelName);
+		builder.append(", hotelId=");
+		builder.append(hotelId);
+		builder.append(", language=");
+		builder.append(language);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public TvChannelListRequest(String roomNo, String token, String hotelName, String hotelId, String language) {
+		super();
+		this.roomNo = roomNo;
+		this.token = token;
+		this.hotelName = hotelName;
+		this.hotelId = hotelId;
+		this.language = language;
+	}
+}

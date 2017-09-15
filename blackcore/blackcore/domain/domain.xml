@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<property>
+		<list name="allowDomainIp">
+			<value>10.60</value>
+			<value>10.80</value>
+			<value>-84.22</value>
+		</list>
+	</property>
+	
+</configuration>

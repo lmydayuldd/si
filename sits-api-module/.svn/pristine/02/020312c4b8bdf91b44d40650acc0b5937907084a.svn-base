@@ -1,0 +1,79 @@
+package com.sidc.blackcore.api.ra.command.request;
+
+import java.io.Serializable;
+
+public class MobileCommanderRequeset implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -349138591445096565L;
+	private String publicKey;
+	private String privateKey;
+	private String uuid;
+	private String ip;
+	private String roomNo;
+	private String keycode;
+	private Object data;
+
+	public String getPublicKey() {
+		return publicKey;
+	}
+
+	public String getPrivateKey() {
+		return privateKey;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public String getKeycode() {
+		return keycode;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MobileCommanderRequeset [publicKey=");
+		builder.append(publicKey);
+		builder.append(", privateKey=");
+		builder.append(privateKey);
+		builder.append(", uuid=");
+		builder.append(uuid);
+		builder.append(", ip=");
+		builder.append(ip);
+		builder.append(", roomNo=");
+		builder.append(roomNo);
+		builder.append(", keycode=");
+		builder.append(keycode);
+		builder.append(", data=");
+		builder.append(data);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public MobileCommanderRequeset(String publicKey, String privateKey, String uuid, String ip, String roomNo,
+			String keycode, Object data) {
+		super();
+		this.publicKey = publicKey;
+		this.privateKey = privateKey;
+		this.uuid = uuid;
+		this.ip = ip;
+		this.roomNo = roomNo;
+		this.keycode = keycode;
+		this.data = data;
+	}
+
+}

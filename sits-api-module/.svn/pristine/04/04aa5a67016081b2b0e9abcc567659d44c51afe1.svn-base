@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package com.sidc.blackcore.api.ra.request;
+
+import java.io.Serializable;
+
+/**
+ * @author Nandin
+ *
+ */
+public class DynamicRoomRequest implements Serializable {
+
+	private static final long serialVersionUID = 5788827806625750941L;
+	private String roomNo;
+	private String ip;
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DynamicRoomRequest [roomNo=");
+		builder.append(roomNo);
+		builder.append(", ip=");
+		builder.append(ip);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public DynamicRoomRequest(String roomNo, String ip) {
+		super();
+		this.roomNo = roomNo;
+		this.ip = ip;
+	}
+
+}

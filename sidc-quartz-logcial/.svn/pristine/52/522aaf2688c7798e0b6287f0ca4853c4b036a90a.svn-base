@@ -1,0 +1,45 @@
+package com.sidc.quartz.logcial.rcu.api;
+
+import java.util.List;
+
+import com.sidc.common.framework.abs.AbstractAPIProcess;
+import com.sidc.configuration.blackcore.SidcUrlsConfiguration;
+import com.sidc.configuration.blackcore.SidcUrlsLink;
+import com.sidc.configuration.conf.SidcUrlName;
+import com.sidc.quartz.sdk.rcu.IdleRoomRCUClient;
+import com.sidc.utils.common.DataCenter;
+import com.sidc.utils.exception.SiDCException;
+
+public class IdleRoomRCUProcess extends AbstractAPIProcess {
+
+	@Override
+	protected void init() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected Object process() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		return new IdleRoomRCUClient(configure(SidcUrlName.BLACKCORE.toString())).execute();
+	}
+
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String configure(final String serverName) throws SiDCException {
+		SidcUrlsConfiguration sidcConfigure = (SidcUrlsConfiguration) DataCenter.getInstance()
+				.get(SidcUrlName.SITS.toString());
+		List<SidcUrlsLink> urlsLinks = sidcConfigure.getUrls();
+		String url = null;
+		for (SidcUrlsLink sidcUrlsLink : urlsLinks) {
+			if (sidcUrlsLink.getName().equalsIgnoreCase(serverName))
+				url = sidcUrlsLink.getUrl();
+		}
+		return url;
+	}
+
+}

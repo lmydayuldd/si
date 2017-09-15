@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+package com.sidc.blackcore.api.sits.account.bean;
+
+import java.io.Serializable;
+
+/**
+ * @author Joe
+ *
+ */
+public class SaffInfoBean implements Serializable {
+	private static final long serialVersionUID = 2893020831937996076L;
+	private String id;
+	private String staffcode;
+	private String name;
+	private String photo;
+
+	public String getId() {
+		return id;
+	}
+
+	public String getStaffcode() {
+		return staffcode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SaffInfoBean [id=");
+		builder.append(id);
+		builder.append(", staffcode=");
+		builder.append(staffcode);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", photo=");
+		builder.append(photo);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public SaffInfoBean(String id, String staffcode, String name, String photo) {
+		super();
+		this.id = id;
+		this.staffcode = staffcode;
+		this.name = name;
+		this.photo = photo;
+	}
+
+}

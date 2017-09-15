@@ -1,0 +1,38 @@
+package com.sidc.blackcore.servlet.sits.bill;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.blackcore.api.parser.APIParser;
+import com.sidc.blackcore.api.parser.APIServlet;
+import com.sidc.sits.api.bill.request.BillRequest;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.side.sits.logical.bill.BillProcess;
+
+@WebServlet("/sits/bill")
+public class BillServlet extends APIServlet {
+	/**
+	 * DEMO 用.....暫時先撈 sits資料 時間來不及了......
+	 */
+	private static final long serialVersionUID = -4152040778696224089L;
+	private final static Logger logger = LoggerFactory.getLogger(BillServlet.class);
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected Object execute(String apiRequest, HttpServletRequest req) throws SiDCException, Exception {
+
+		final BillRequest enity = (BillRequest) APIParser.getInstance().parse(apiRequest, BillRequest.class);
+
+		return new BillProcess(enity).execute();
+	}
+
+	@Override
+	protected void initial() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().initial(logger, this.getClass().getCanonicalName());
+	}
+}

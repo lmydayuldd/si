@@ -1,0 +1,108 @@
+package com.sidc.blackcore.api.mobile.activity.request;
+
+import java.io.Serializable;
+
+public class ActivitySignUpDetailRequest implements Serializable {
+	private static final long serialVersionUID = -3856620748790592743L;
+	private int activityid;
+	private int status;
+	private String name;
+	private int sex;
+	private String identitytype;
+	private String identity;
+	private String passport;
+	private String phone;
+	private String roomno;
+	private String guestno;
+	private int paymentstatus;
+
+	public int getActivityid() {
+		return activityid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public String getIdentitytype() {
+		return identitytype;
+	}
+
+	public String getIdentity() {
+		return identity;
+	}
+
+	public String getPassport() {
+		return passport;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	public String getGuestno() {
+		return guestno;
+	}
+
+	public int getPaymentstatus() {
+		return paymentstatus;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivitySignUpDetailRequest [activityid=");
+		builder.append(activityid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", sex=");
+		builder.append(sex);
+		builder.append(", identitytype=");
+		builder.append(identitytype);
+		builder.append(", identity=");
+		builder.append(identity);
+		builder.append(", passport=");
+		builder.append(passport);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", roomno=");
+		builder.append(roomno);
+		builder.append(", guestno=");
+		builder.append(guestno);
+		builder.append(", paymentstatus=");
+		builder.append(paymentstatus);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivitySignUpDetailRequest(int activityid, int status, String name, int sex, String identitytype,
+			String identity, String passport, String phone, String roomno, String guestno, int paymentstatus) {
+		super();
+		this.activityid = activityid;
+		this.status = status;
+		this.name = name;
+		this.sex = sex;
+		this.identitytype = identitytype;
+		this.identity = identity;
+		this.passport = passport;
+		this.phone = phone;
+		this.roomno = roomno;
+		this.guestno = guestno;
+		this.paymentstatus = paymentstatus;
+	}
+
+}

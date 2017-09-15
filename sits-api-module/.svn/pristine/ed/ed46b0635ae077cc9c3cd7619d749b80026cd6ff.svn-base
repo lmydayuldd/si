@@ -1,0 +1,29 @@
+package com.sidc.blackcore.api.agent.response;
+
+import java.io.Serializable;
+
+public class MessageResponse implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3014671698469895148L;
+	private String status;
+	public MessageResponse(String status) {
+		super();
+		this.status = status;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("MessageResponse [status=\n");
+		builder.append(status);
+		builder.append("]");
+		return builder.toString();
+	}
+}

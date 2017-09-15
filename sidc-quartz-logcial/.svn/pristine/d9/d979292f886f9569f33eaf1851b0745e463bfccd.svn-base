@@ -1,0 +1,63 @@
+package com.sidc.quartz.logical.api;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.sidc.common.framework.abs.AbstractAPIProcess;
+import com.sidc.configuration.blackcore.SidcUrlsConfiguration;
+import com.sidc.configuration.blackcore.SidcUrlsLink;
+import com.sidc.configuration.conf.SidcUrlName;
+import com.sidc.quartz.api.request.QuartzCommandRequest;
+import com.sidc.quartz.sdk.command.QuartzClient;
+import com.sidc.utils.common.DataCenter;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.sidc.utils.status.APIStatus;
+
+public class QuartzIndexProcess extends AbstractAPIProcess {
+	
+	private QuartzCommandRequest enity;
+	
+	public QuartzIndexProcess(QuartzCommandRequest enity) {
+		// TODO Auto-generated constructor stub
+		this.enity = enity;
+	}
+
+	@Override
+	protected void init() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().debug("Request:" + this.enity);
+	}
+
+	@Override
+	protected Object process() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		
+		return new QuartzClient<Object>(configure(SidcUrlName.QUARTZ.toString()), this.enity).execute();
+	}
+
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		if (this.enity == null) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Rquest is illegal");
+		}
+		
+		if (StringUtils.isBlank(this.enity.getCommand())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Quartz Command is empty");
+		}
+	}
+
+	public String configure(final String serverName) throws SiDCException {
+		SidcUrlsConfiguration sidcConfigure = (SidcUrlsConfiguration) DataCenter.getInstance()
+				.get(SidcUrlName.SITS.toString());
+		List<SidcUrlsLink> urlsLinks = sidcConfigure.getUrls();
+		String url = null;
+		for (SidcUrlsLink sidcUrlsLink : urlsLinks) {
+			if (sidcUrlsLink.getName().equalsIgnoreCase(serverName))
+				url = sidcUrlsLink.getUrl();
+		}
+		return url;
+	}
+}

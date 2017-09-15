@@ -1,0 +1,5 @@
+package com.sidc.configuration.conf;
+
+public enum SidcUrlName {
+	SIST, BLACKCORE, RCUENGINE
+}

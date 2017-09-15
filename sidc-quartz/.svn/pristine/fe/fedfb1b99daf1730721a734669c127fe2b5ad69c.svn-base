@@ -1,0 +1,46 @@
+package com.sidc.quartz.api;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.quartz.abs.APIParser;
+import com.sidc.quartz.abs.APIServlet;
+import com.sidc.quartz.api.request.QuartzCommandRequest;
+import com.sidc.quartz.behavior.QuartzProcess;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+@WebServlet("/quartz")
+public class QuartzServlet extends APIServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1213769713424858301L;
+	private final static Logger logger = LoggerFactory.getLogger(QuartzServlet.class);
+
+	@Override
+	protected Object execute(String apiRequest) throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+
+		QuartzCommandRequest request = (QuartzCommandRequest) APIParser.getInstance().parse(apiRequest,
+				QuartzCommandRequest.class);
+
+		return new QuartzProcess(request).execute();
+	}
+
+	@Override
+	protected void initial(HttpServletRequest req) throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().initial(logger, this.getClass().getCanonicalName());
+	}
+
+}

@@ -1,0 +1,82 @@
+package com.sidc.blackcore.api.sits.shop.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.sits.langs.bean.LangsBean;
+
+public class ShopTypeInfoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4674425250594434477L;
+	private int type_id;
+	private int seq;
+	private String kind;
+	private List<LangsBean> langs = new ArrayList<LangsBean>();
+	private List<ShopItemInfoBean> itemInfo = new ArrayList<ShopItemInfoBean>();
+
+	public int getType_id() {
+		return type_id;
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public List<LangsBean> getLangs() {
+		return langs;
+	}
+
+	public List<ShopItemInfoBean> getItemInfo() {
+		return itemInfo;
+	}
+
+	public void setLangs(List<LangsBean> langs) {
+		this.langs = langs;
+	}
+
+	public void setItemInfo(List<ShopItemInfoBean> itemInfo) {
+		this.itemInfo = itemInfo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ShopTypeInfoBean [type_id=");
+		builder.append(type_id);
+		builder.append(", seq=");
+		builder.append(seq);
+		builder.append(", kind=");
+		builder.append(kind);
+		builder.append(", langs=");
+		builder.append(langs);
+		builder.append(", itemInfo=");
+		builder.append(itemInfo);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ShopTypeInfoBean(int type_id, int seq, String kind, List<LangsBean> langs,
+			List<ShopItemInfoBean> itemInfo) {
+		super();
+		this.type_id = type_id;
+		this.seq = seq;
+		this.kind = kind;
+		this.langs = langs;
+		this.itemInfo = itemInfo;
+	}
+
+	public ShopTypeInfoBean(int type_id, int seq, String kind) {
+		super();
+		this.type_id = type_id;
+		this.seq = seq;
+		this.kind = kind;
+	}
+
+}

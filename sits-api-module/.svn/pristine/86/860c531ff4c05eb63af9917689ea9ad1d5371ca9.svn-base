@@ -1,0 +1,157 @@
+package com.sidc.blackcore.api.mobile.activity.response;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityFeeBean;
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityLangBean;
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityPhotoBean;
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityRepeatBean;
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityToFeeBean;
+
+public class ActivityResponse implements Serializable {
+	private static final long serialVersionUID = 1679959114433493898L;
+
+	private int id;
+	private int type;
+	private String repeattype;
+	private int lowerlimit;
+	private int upperlimit;
+	private int target;
+	private String registrationstarttime;
+	private String registrationendtime;
+	private int ischarge;
+	private String memo;
+	private List<ActivityLangBean> list = new ArrayList<ActivityLangBean>();
+	private List<ActivityToFeeBean> feelist = new ArrayList<ActivityToFeeBean>();
+	private List<ActivityRepeatBean> repeatlist = new ArrayList<ActivityRepeatBean>();
+	private List<ActivityPhotoBean> photoList = new ArrayList<ActivityPhotoBean>();
+
+	public int getId() {
+		return id;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public String getRepeattype() {
+		return repeattype;
+	}
+
+	public int getLowerlimit() {
+		return lowerlimit;
+	}
+
+	public int getUpperlimit() {
+		return upperlimit;
+	}
+
+	public int getTarget() {
+		return target;
+	}
+
+	public String getRegistrationstarttime() {
+		return registrationstarttime;
+	}
+
+	public String getRegistrationendtime() {
+		return registrationendtime;
+	}
+
+	public int getIscharge() {
+		return ischarge;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public List<ActivityLangBean> getList() {
+		return list;
+	}
+
+	public List<ActivityToFeeBean> getFeelist() {
+		return feelist;
+	}
+
+	public List<ActivityRepeatBean> getRepeatlist() {
+		return repeatlist;
+	}
+
+	public List<ActivityPhotoBean> getPhotoList() {
+		return photoList;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityResponse [id=");
+		builder.append(id);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append(", repeattype=");
+		builder.append(repeattype);
+		builder.append(", lowerlimit=");
+		builder.append(lowerlimit);
+		builder.append(", upperlimit=");
+		builder.append(upperlimit);
+		builder.append(", target=");
+		builder.append(target);
+		builder.append(", registrationstarttime=");
+		builder.append(registrationstarttime);
+		builder.append(", registrationendtime=");
+		builder.append(registrationendtime);
+		builder.append(", ischarge=");
+		builder.append(ischarge);
+		builder.append(", memo=");
+		builder.append(memo);
+		builder.append(", list=");
+		builder.append(list);
+		builder.append(", feelist=");
+		builder.append(feelist);
+		builder.append(", repeatlist=");
+		builder.append(repeatlist);
+		builder.append(", photoList=");
+		builder.append(photoList);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public void setLowerlimit(int lowerlimit) {
+		this.lowerlimit = lowerlimit;
+	}
+
+	public void setList(List<ActivityLangBean> list) {
+		this.list = list;
+	}
+
+	public void setFeelist(List<ActivityToFeeBean> feelist) {
+		this.feelist = feelist;
+	}
+
+	public void setRepeatlist(List<ActivityRepeatBean> repeatlist) {
+		this.repeatlist = repeatlist;
+	}
+
+	public void setPhotoList(List<ActivityPhotoBean> photoList) {
+		this.photoList = photoList;
+	}
+
+	public ActivityResponse(int id, int type, String repeattype, int lowerlimit, int upperlimit, int target,
+			String registrationstarttime, String registrationendtime, int ischarge, String memo) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.repeattype = repeattype;
+		this.lowerlimit = lowerlimit;
+		this.upperlimit = upperlimit;
+		this.target = target;
+		this.registrationstarttime = registrationstarttime;
+		this.registrationendtime = registrationendtime;
+		this.ischarge = ischarge;
+		this.memo = memo;
+	}
+
+}

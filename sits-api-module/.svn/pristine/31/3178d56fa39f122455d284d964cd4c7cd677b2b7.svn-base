@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.sidc.dao.ra.response;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.ignite.cache.query.annotations.QuerySqlField;
+
+/**
+ * @author Nandin
+ *
+ */
+public class DeviceEnity implements Serializable {
+
+	private static final long serialVersionUID = 5499119584475342502L;
+	@QuerySqlField(index = true)
+	private String keyCode;
+	private Serializable appender;
+	private List<Language> langs;
+	private Serializable status;
+
+	public DeviceEnity(String keyCode, List<Language> langs) {
+		super();
+		this.keyCode = keyCode;
+		this.langs = langs;
+	}
+
+	public DeviceEnity(String keyCode, Serializable appender, List<Language> langs) {
+		super();
+		this.keyCode = keyCode;
+		this.appender = appender;
+		this.langs = langs;
+	}
+
+	public String getKeyCode() {
+		return keyCode;
+	}
+
+	public List<Language> getLangs() {
+		return langs;
+	}
+
+	public Serializable getAppender() {
+		return appender;
+	}
+
+	public void setAppender(Serializable appender) {
+		this.appender = appender;
+	}
+
+	public Serializable getStatus() {
+		return status;
+	}
+
+	public void setStatus(Serializable status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DeviceEnity [\n\tkeyCode=");
+		builder.append(keyCode);
+		builder.append(", appender=");
+		builder.append(appender);
+		builder.append(", langs=");
+		builder.append(langs);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

@@ -1,0 +1,17 @@
+Order Number: #{orderId}
+Room no: #{roomNo}
+Guest name: #{guestName}
+Order Datetime: #{creationTime}
+--------------------------
+ No. | Item Name           
+--------------------------
+ | Price  | Qty | Sub Total
+--------------------------
+#{each} #{index}|#{itemName}|
+#{price}|#{qty}|#{subTotal}
+#{/each}
+--------------------------
+Total :#{total}
+--------------------------
+
+

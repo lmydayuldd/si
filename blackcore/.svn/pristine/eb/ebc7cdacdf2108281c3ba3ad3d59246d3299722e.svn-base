@@ -1,0 +1,18 @@
+[
+  {
+    "functionname": "In room dining",
+    "functioncode": "IN"
+  },
+  {
+    "functionname": "Activity",
+    "functioncode": "ACT"
+  },
+  {
+    "functionname": "Shop",
+    "functioncode": "SHP"
+  },
+  {
+    "functionname": "Laundry",
+    "functioncode": "LD"
+  }
+]

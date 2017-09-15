@@ -1,0 +1,10 @@
+com\sidc\blackcore\sits\test\fcm.class
+com\sidc\blackcore\sits\test\AesEncryptTest.class
+com\sidc\blackcore\sits\test\HvacCommandTest.class
+com\sidc\blackcore\sits\test\ScheduleCheckOutTest.class
+com\sidc\servic\api\agent\test\PostTest.class
+com\sidc\servic\api\agent\test\CheckOutTest.class
+com\sidc\blackcore\sits\test\PhotoUploadTest.class
+com\sidc\servic\api\agent\test\MessageTest.class
+com\sidc\servic\api\agent\test\AirTest.class
+com\sidc\servic\api\agent\test\RoomChangeTest.class

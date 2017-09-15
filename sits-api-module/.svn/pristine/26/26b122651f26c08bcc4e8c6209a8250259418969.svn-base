@@ -1,0 +1,5 @@
+package com.sidc.blackcore.api.sits.photo.key;
+
+public enum PhotoType {
+	ACTIVITY, ROOMSERVICECATEGORY, ROOMSERVICEITEM, STAFF
+}

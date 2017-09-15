@@ -1,0 +1,94 @@
+package com.sidc.blackcore.api.sits.tvchannel.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TvChannelListBean implements Serializable {
+
+	private static final long serialVersionUID = -1195073073483182252L;
+
+	private String channel_id;
+	private String tv_id;
+	private int sequence;
+	private String type_id;
+	private String address;
+	private String port;
+	private List<TvChannelLanguageBean> channelLangs = new ArrayList<TvChannelLanguageBean>();
+	private List<TvChannelLanguageBean> typeLangs = new ArrayList<TvChannelLanguageBean>();
+
+	public String getChannel_id() {
+		return channel_id;
+	}
+
+	public String getTv_id() {
+		return tv_id;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public String getType_id() {
+		return type_id;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public List<TvChannelLanguageBean> getChannelLangs() {
+		return channelLangs;
+	}
+
+	public List<TvChannelLanguageBean> getTypeLangs() {
+		return typeLangs;
+	}
+
+	public void setChannelLangs(List<TvChannelLanguageBean> channelLangs) {
+		this.channelLangs = channelLangs;
+	}
+
+	public void setTypeLangs(List<TvChannelLanguageBean> typeLangs) {
+		this.typeLangs = typeLangs;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TvChannelListBean [channel_id=");
+		builder.append(channel_id);
+		builder.append(", tv_id=");
+		builder.append(tv_id);
+		builder.append(", sequence=");
+		builder.append(sequence);
+		builder.append(", type_id=");
+		builder.append(type_id);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", port=");
+		builder.append(port);
+		builder.append(", channelLangs=");
+		builder.append(channelLangs);
+		builder.append(", typeLangs=");
+		builder.append(typeLangs);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public TvChannelListBean(String channel_id, String tv_id, int sequence, String type_id, String address,
+			String port) {
+		super();
+		this.channel_id = channel_id;
+		this.tv_id = tv_id;
+		this.sequence = sequence;
+		this.type_id = type_id;
+		this.address = address;
+		this.port = port;
+	}
+
+}

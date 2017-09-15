@@ -1,0 +1,12 @@
+{
+	"uuid":"a4e2936e-784a-4658-b2d0-920aaa78867c",
+	"roomNo":"607",
+	"Catalogue":"CARD",
+	"data":[
+		{
+			"status":0,
+			"authorization":1,
+			"cardType":"MEMBERCARD"
+		}
+	]
+}

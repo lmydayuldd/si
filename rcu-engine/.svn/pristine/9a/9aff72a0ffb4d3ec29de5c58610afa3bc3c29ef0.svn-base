@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<systems>
+		<system name="udp-monitor-timer" unit="seconds"
+			description="to monitor the UDP Receiver is stoped." value="30">
+		</system>
+		<system name="rcu-receiver-thread-name" unit="integer" value="100">
+		</system>
+	</systems>
+
+</configuration>

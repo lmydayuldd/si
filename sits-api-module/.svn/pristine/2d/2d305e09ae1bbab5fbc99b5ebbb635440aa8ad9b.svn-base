@@ -1,0 +1,49 @@
+package com.sidc.blackcore.api.mobile.activity.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ActivityToFeeBean implements Serializable {
+
+	private static final long serialVersionUID = -9081887149643494108L;
+	private int feeid;
+	private String price;
+	private List<ActivityFeeLangBean> langlist = new ArrayList<ActivityFeeLangBean>();
+
+	public int getFeeid() {
+		return feeid;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public List<ActivityFeeLangBean> getLanglist() {
+		return langlist;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityToFeeBean [feeid=");
+		builder.append(feeid);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", langlist=");
+		builder.append(langlist);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public void setLanglist(List<ActivityFeeLangBean> langlist) {
+		this.langlist = langlist;
+	}
+
+	public ActivityToFeeBean(int feeid, String price) {
+		super();
+		this.feeid = feeid;
+		this.price = price;
+	}
+
+}

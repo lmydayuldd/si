@@ -1,0 +1,12 @@
+package com.sidc.scheduler.conf;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public interface Config {
+
+	public final static int ONE = 1;
+	public final static int SEVEN = 7;
+}

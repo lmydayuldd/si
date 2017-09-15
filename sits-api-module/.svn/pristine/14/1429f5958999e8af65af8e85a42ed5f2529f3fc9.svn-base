@@ -1,0 +1,43 @@
+package com.sidc.dao.rcu.command.response;
+
+import java.io.Serializable;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class RcuModelDevices implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3745215659089575325L;
+	private String keycode;
+	private Object condition;
+	
+	public RcuModelDevices(String keycode, Serializable condition) {
+		// TODO Auto-generated constructor stub
+		this.keycode = keycode;
+		this.condition = condition;
+	}
+
+	public String getKeycode() {
+		return keycode;
+	}
+
+	public Object getCondition() {
+		return condition;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModelDevices [keycode=\n");
+		builder.append(keycode);
+		builder.append(", condition=\n");
+		builder.append(condition);
+		builder.append("]");
+		return builder.toString();
+	}
+}

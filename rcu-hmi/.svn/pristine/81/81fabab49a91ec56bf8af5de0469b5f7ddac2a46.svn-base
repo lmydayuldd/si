@@ -1,0 +1,42 @@
+package com.sidc.rcu.hmi.logical.modesetting;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.rcu.hmi.bean.modesetting.RcuGroupBean;
+import com.sidc.rcu.hmi.bean.systeminitial.BlackcoreInitialBean;
+import com.sidc.rcu.hmi.common.CommonDataKey;
+import com.sidc.rcu.hmi.common.DataCenter;
+import com.sidc.rcu.hmi.framework.abs.AbstractAPIProcess;
+import com.sidc.sdk.blackcore.rcugroup.RcuGroupListClient;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.sidc.utils.status.APIStatus;
+
+public class RcuGroupProcess extends AbstractAPIProcess {
+	List<RcuGroupBean> entity = new ArrayList<RcuGroupBean>();
+
+	@Override
+	protected void init() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		final BlackcoreInitialBean blackcoreSetting = (BlackcoreInitialBean) DataCenter.getInstance()
+				.get(CommonDataKey.BLACKCORE_SETTING);
+
+		this.entity = new RcuGroupListClient(blackcoreSetting.getUrl()).execute();
+		LogAction.getInstance().debug("entity:" + entity);
+	}
+
+	@Override
+	protected Object process() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		return entity;
+	}
+
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		if (entity.isEmpty()) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "entity is empty.");
+		}
+	}
+}

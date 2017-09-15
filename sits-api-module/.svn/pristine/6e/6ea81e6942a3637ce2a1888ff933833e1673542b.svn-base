@@ -1,0 +1,93 @@
+package com.sidc.blackcore.api.agent.request;
+
+import java.io.Serializable;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class MessageRequest implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6282907075007267528L;
+    private String messageno;
+    private String guestno;
+    private String roomno;
+    private String caller;
+    private String text;
+    private String receiver;
+    private boolean isfrompms;
+
+    public MessageRequest(String roomno, String caller, String text, String receiver, boolean isfrompms) {
+	super();
+	this.roomno = roomno;
+	this.caller = caller;
+	this.text = text;
+	this.receiver = receiver;
+	this.isfrompms = isfrompms;
+    }
+
+    public MessageRequest(String roomno, String guestno, String messageno, String caller, String text, String receiver,
+	    boolean isfrompms) {
+	super();
+	this.roomno = roomno;
+	this.guestno = guestno;
+	this.messageno = messageno;
+	this.caller = caller;
+	this.text = text;
+	this.receiver = receiver;
+	this.isfrompms = isfrompms;
+    }
+
+    public String getRoomno() {
+	return roomno;
+    }
+
+    public String getCaller() {
+	return caller;
+    }
+
+    public String getText() {
+	return text;
+    }
+
+    public String getReceiver() {
+	return receiver;
+    }
+
+    public String getMessageno() {
+	return messageno;
+    }
+
+    public boolean isIsfrompms() {
+	return isfrompms;
+    }
+
+    public String getGuestno() {
+	return guestno;
+    }
+
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("MessageRequest [\n\tmessageno=");
+	builder.append(messageno);
+	builder.append(", guestno=");
+	builder.append(guestno);
+	builder.append(", roomno=");
+	builder.append(roomno);
+	builder.append(", caller=");
+	builder.append(caller);
+	builder.append(", text=");
+	builder.append(text);
+	builder.append(", receiver=");
+	builder.append(receiver);
+	builder.append(", isfrompms=");
+	builder.append(isfrompms);
+	builder.append("]");
+	return builder.toString();
+    }
+}

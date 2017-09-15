@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<rcuSystem description="choose one of RCU system" name="rcuSystem">
+		<rcu name="zhongshan" description="Zhong-shan RCU System" enable="true">
+			<path>/rcu-manager/zhongshan/initial.xml</path>
+		</rcu>
+	</rcuSystem>
+
+	<rmi>/rcu-manager/rmi/rcu-receiver.xml</rmi>
+	<sidc-server>/rcu-manager/initial/blackcore.xml</sidc-server>
+	<ignite>/rcu-manager/ignite/ignite.xml</ignite>
+	<allowServerPrixIp>10.60</allowServerPrixIp>
+
+	<engine>/rcu-manager/engine/system-config.xml</engine>
+
+</configuration>
+

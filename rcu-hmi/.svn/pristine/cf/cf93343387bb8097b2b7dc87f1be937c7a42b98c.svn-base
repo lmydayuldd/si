@@ -1,0 +1,38 @@
+package com.sidc.rcu.hmi.request.modesetting;
+
+import java.io.Serializable;
+
+public class ModeSettingListRequest implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1151414080614403675L;
+	private int modeId;
+	private int groupId;
+
+	public int getModeId() {
+		return modeId;
+	}
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ModeSettingListRequest [modeId=");
+		builder.append(modeId);
+		builder.append(", groupId=");
+		builder.append(groupId);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ModeSettingListRequest(int modeId, int groupId) {
+		super();
+		this.modeId = modeId;
+		this.groupId = groupId;
+	}
+
+}

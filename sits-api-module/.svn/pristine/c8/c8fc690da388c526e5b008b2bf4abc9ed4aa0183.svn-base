@@ -1,0 +1,53 @@
+package com.sidc.blackcore.api.mobile.message.request;
+
+import java.io.Serializable;
+
+import com.sidc.blackcore.api.mobile.message.bean.MessageInfoBean;
+
+public class HotelMessageRequest implements Serializable {
+	private static final long serialVersionUID = 5080313642930968453L;
+	private String token;
+	private String userid;
+	private String type;
+	private MessageInfoBean data;
+
+	public String getToken() {
+		return token;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public MessageInfoBean getData() {
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("HotelMessageRequest [token=");
+		builder.append(token);
+		builder.append(", userid=");
+		builder.append(userid);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append(", data=");
+		builder.append(data);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public HotelMessageRequest(String token, String userid, String type, MessageInfoBean data) {
+		super();
+		this.token = token;
+		this.userid = userid;
+		this.type = type;
+		this.data = data;
+	}
+
+}

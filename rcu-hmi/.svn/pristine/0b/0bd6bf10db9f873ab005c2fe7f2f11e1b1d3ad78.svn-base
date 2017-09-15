@@ -1,0 +1,57 @@
+package com.sidc.rcu.hmi.servlet;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.gson.reflect.TypeToken;
+import com.sidc.rcu.hmi.api.parser.APIParser;
+import com.sidc.rcu.hmi.api.parser.APIServlet;
+import com.sidc.rcu.hmi.api.parser.UDPParser;
+import com.sidc.rcu.hmi.common.CommonURL;
+import com.sidc.rcu.hmi.logical.RoomInfoProcess;
+import com.sidc.rcu.hmi.request.RcuRoomInfoRequest;
+import com.sidc.sdk.blackcore.RoomRCUInfoClient;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+import com.sidc.utils.status.SystemStatus;
+
+@WebServlet("/roominfo")
+public class RoomInfoServlet extends APIServlet {
+
+	private static final long serialVersionUID = 8038656850564059230L;
+	private final static Logger logger = LoggerFactory.getLogger(RoomInfoServlet.class);
+	private List<RcuRoomInfoRequest> list = new ArrayList<RcuRoomInfoRequest>();
+
+	@SuppressWarnings("unchecked")
+	public RoomInfoServlet() throws SiDCException, Exception {
+		final String request = UDPParser.getInstance()
+				.toJson(new RoomRCUInfoClient(CommonURL.BLACK_CORE_URL).execute());
+
+		this.list = APIParser.getInstance().parse(request, new TypeToken<List<RcuRoomInfoRequest>>() {
+		}.getType());
+	}
+
+	@Override
+	protected Object execute(final String apiRequest) throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+
+		return new RoomInfoProcess(list).execute();
+	}
+
+	@Override
+	protected void initial(final HttpServletRequest req) throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().initial(logger, this.getClass().getCanonicalName());
+
+		if (list.isEmpty()) {
+			throw new SiDCException(SystemStatus.HTTP_CONNECTION_FAIL, "request is null.");
+		}
+	}
+
+}

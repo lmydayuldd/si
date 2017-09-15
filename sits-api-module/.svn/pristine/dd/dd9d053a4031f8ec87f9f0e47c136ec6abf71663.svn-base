@@ -1,0 +1,41 @@
+package com.sidc.blackcore.api.sits.token.request;
+
+import java.io.Serializable;
+
+import com.sidc.blackcore.api.sits.token.bean.InfoBean;
+
+public class ChatTokenRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7283014539745925745L;
+	private String staffid;
+	private InfoBean info;
+
+	public String getStaffid() {
+		return staffid;
+	}
+
+	public InfoBean getInfo() {
+		return info;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ChatTokenRequest [staffid=");
+		builder.append(staffid);
+		builder.append(", info=");
+		builder.append(info);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ChatTokenRequest(String staffid, InfoBean info) {
+		super();
+		this.staffid = staffid;
+		this.info = info;
+	}
+
+}

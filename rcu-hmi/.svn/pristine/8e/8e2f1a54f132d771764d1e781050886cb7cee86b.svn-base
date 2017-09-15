@@ -1,0 +1,7 @@
+package com.sidc.ra.server.framework.abs;
+
+import java.util.Date;
+
+public abstract class AbstractRcuBean {
+	public abstract Date getTime();
+}

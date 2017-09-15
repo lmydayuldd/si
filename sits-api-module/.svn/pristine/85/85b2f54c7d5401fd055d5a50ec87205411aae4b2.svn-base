@@ -1,0 +1,53 @@
+package com.sidc.blackcore.api.mobile.message.bean;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class FcmBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1125554872145342306L;
+	private List<String> registration_ids;
+	private String to;
+	private FcmMessageBean data;
+
+	public FcmBean(List<String> registration_ids, FcmMessageBean data) {
+		super();
+		this.registration_ids = registration_ids;
+		this.data = data;
+	}
+
+	public FcmBean(String to) {
+		super();
+		this.to = to;
+	}
+
+	public FcmBean(List<String> registration_ids) {
+		super();
+		this.registration_ids = registration_ids;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("FcmBean [registration_ids=");
+		builder.append(registration_ids);
+		builder.append(", data=");
+		builder.append(data);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public List<String> getRegistration_ids() {
+		return registration_ids;
+	}
+
+	public FcmMessageBean getData() {
+		return data;
+	}
+
+	public String getTo() {
+		return to;
+	}
+}

@@ -1,0 +1,3 @@
+com\sidc\rcu\sdk\engine\RCUCommandClient.class
+com\sidc\rcu\sdk\command\HVACCommandClient.class
+com\sidc\rcu\sdk\abs\AbsHttpClient.class

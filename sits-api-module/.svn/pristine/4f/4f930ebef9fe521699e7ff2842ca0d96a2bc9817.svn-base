@@ -1,0 +1,108 @@
+package com.sidc.blackcore.api.mobile.laundry.request;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.laundry.bean.LaundryOrderItemBean;
+
+public class LaundryOrderCreateRequest implements Serializable {
+	private static final long serialVersionUID = 6205343021544325956L;
+	private String publickey;
+	private String privatekey;
+	private String roomno;
+	private String gusetno;
+	private String gusetname;
+	private String receivetime;
+	private int classid;
+	private String memo;
+	private List<LaundryOrderItemBean> itemlist = new ArrayList<LaundryOrderItemBean>();
+
+	public String getPublickey() {
+		return publickey;
+	}
+
+	public String getPrivatekey() {
+		return privatekey;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	public String getGusetname() {
+		return gusetname;
+	}
+
+	public int getClassid() {
+		return classid;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public List<LaundryOrderItemBean> getItemlist() {
+		return itemlist;
+	}
+
+	public String getGusetno() {
+		return gusetno;
+	}
+
+	public String getReceivetime() {
+		return receivetime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("LaundryOrderCreateRequest [publickey=");
+		builder.append(publickey);
+		builder.append(", privatekey=");
+		builder.append(privatekey);
+		builder.append(", roomno=");
+		builder.append(roomno);
+		builder.append(", gusetno=");
+		builder.append(gusetno);
+		builder.append(", gusetname=");
+		builder.append(gusetname);
+		builder.append(", receivetime=");
+		builder.append(receivetime);
+		builder.append(", classid=");
+		builder.append(classid);
+		builder.append(", memo=");
+		builder.append(memo);
+		builder.append(", itemlist=");
+		builder.append(itemlist);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public LaundryOrderCreateRequest(String publickey, String privatekey, String roomno, String gusetno,
+			String gusetname, String receivetime, int classid, String memo, List<LaundryOrderItemBean> itemlist) {
+		super();
+		this.publickey = publickey;
+		this.privatekey = privatekey;
+		this.roomno = roomno;
+		this.gusetno = gusetno;
+		this.gusetname = gusetname;
+		this.receivetime = receivetime;
+		this.classid = classid;
+		this.memo = memo;
+		this.itemlist = itemlist;
+	}
+
+	public LaundryOrderCreateRequest(String publickey, String privatekey, String roomno, String gusetname, int classid,
+			String memo, List<LaundryOrderItemBean> itemlist) {
+		super();
+		this.publickey = publickey;
+		this.privatekey = privatekey;
+		this.roomno = roomno;
+		this.gusetname = gusetname;
+		this.classid = classid;
+		this.memo = memo;
+		this.itemlist = itemlist;
+	}
+
+}

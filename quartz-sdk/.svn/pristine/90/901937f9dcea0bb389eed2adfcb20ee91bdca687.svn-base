@@ -1,0 +1,40 @@
+package com.sidc.quartz.sdk.command;
+
+import com.derex.cm.stb.api.request.APIRequest;
+import com.sidc.quartz.api.request.QuartzCommandRequest;
+import com.sidc.quartz.api.request.QuartzListRequest;
+import com.sidc.quartz.sdk.abs.AbsHttpClient;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ * @param <T>
+ */
+public class QuartzClient<T> extends AbsHttpClient<T> {
+
+	private QuartzCommandRequest enity;
+	
+	public QuartzClient(String host, QuartzCommandRequest enity) {
+		super(host, "/quartz");
+		this.enity = enity;
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected String request() throws Exception {
+		// TODO Auto-generated method stub
+		APIRequest request = new APIRequest(this.enity);
+		
+		return super.getGson().toJson(request);
+	}
+
+	@Override
+	protected Object response(String json) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
+		return super.getGson().fromJson(json, QuartzListRequest.class);
+	}
+
+}

@@ -1,0 +1,75 @@
+package com.sidc.blackcore.api.agent.request;
+
+import java.io.Serializable;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class GroupMessageRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 503228099330215118L;
+	private String message_title;
+	private String sender;
+	private String receiver;
+	private String text;
+	private String sendrooms;
+	private String createuser;
+
+	public GroupMessageRequest(String message_title, String sender, String receiver, String text, String sendrooms,
+			String createuser) {
+		this.message_title = message_title;
+		this.sender = sender;
+		this.receiver = receiver;
+		this.text = text;
+		this.sendrooms = sendrooms;
+		this.createuser = createuser;
+	}
+
+	public String getMessage_title() {
+		return message_title;
+	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public String getSendrooms() {
+		return sendrooms;
+	}
+
+	public String getCreateuser() {
+		return createuser;
+	}
+
+	public String toString() {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("GroupMessageRequest [message_title=\n");
+		builder.append(message_title);
+		builder.append(", sender=\n");
+		builder.append(sender);
+		builder.append(", receiver=\n");
+		builder.append(receiver);
+		builder.append(", text=\n");
+		builder.append(text);
+		builder.append(", sendrooms=\n");
+		builder.append(sendrooms);
+		builder.append(", createuser=\n");
+		builder.append(createuser);
+		builder.append("]");
+		return builder.toString();
+	}
+}

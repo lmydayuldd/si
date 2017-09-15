@@ -1,0 +1,37 @@
+package com.sidc.blackcore.api.sits.token.request;
+
+import java.io.Serializable;
+
+public class MobilePublicTokenInsertRequest implements Serializable {
+
+	private static final long serialVersionUID = -353729078704004913L;
+
+	private String roomNo;
+	private int type;
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MobilePublicTokenInsertRequest [roomNo=");
+		builder.append(roomNo);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public MobilePublicTokenInsertRequest(String roomNo, int type) {
+		super();
+		this.roomNo = roomNo;
+		this.type = type;
+	}
+
+}

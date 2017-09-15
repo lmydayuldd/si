@@ -1,0 +1,32 @@
+package com.sidc.quartz.api.request;
+
+import java.io.Serializable;
+
+public class RoomRcuScheduleRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4696520715338583080L;
+	private int minute;
+	
+	public RoomRcuScheduleRequest(int minute) {
+		// TODO Auto-generated constructor stub
+		this.minute = minute;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomRcuScheduleRequest [minute=");
+		builder.append(minute);
+		builder.append("]");
+		
+		return builder.toString();
+	}
+}

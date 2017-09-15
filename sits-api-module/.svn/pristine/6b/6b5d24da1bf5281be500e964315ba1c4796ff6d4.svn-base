@@ -1,0 +1,93 @@
+package com.sidc.blackcore.api.sits.tvchannel.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TvChannelListBean implements Serializable {
+
+	private static final long serialVersionUID = -1195073073483182252L;
+
+	private String channelId;
+	private String tvId;
+	private int sequence;
+	private String typeId;
+	private String address;
+	private String port;
+	private List<TvChannelLanguageBean> channelLangs = new ArrayList<TvChannelLanguageBean>();
+	private List<TvChannelLanguageBean> typeLangs = new ArrayList<TvChannelLanguageBean>();
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public String getTvId() {
+		return tvId;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public String getTypeId() {
+		return typeId;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public List<TvChannelLanguageBean> getChannelLangs() {
+		return channelLangs;
+	}
+
+	public List<TvChannelLanguageBean> getTypeLangs() {
+		return typeLangs;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TvChannelListBean [channelId=");
+		builder.append(channelId);
+		builder.append(", tvId=");
+		builder.append(tvId);
+		builder.append(", sequence=");
+		builder.append(sequence);
+		builder.append(", typeId=");
+		builder.append(typeId);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", port=");
+		builder.append(port);
+		builder.append(", channelLangs=");
+		builder.append(channelLangs);
+		builder.append(", typeLangs=");
+		builder.append(typeLangs);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public TvChannelListBean(String channelId, String tvId, int sequence, String typeId, String address, String port) {
+		super();
+		this.channelId = channelId;
+		this.tvId = tvId;
+		this.sequence = sequence;
+		this.typeId = typeId;
+		this.address = address;
+		this.port = port;
+	}
+
+	public void setChannelLangs(List<TvChannelLanguageBean> channelLangs) {
+		this.channelLangs = channelLangs;
+	}
+
+	public void setTypeLangs(List<TvChannelLanguageBean> typeLangs) {
+		this.typeLangs = typeLangs;
+	}
+
+}

@@ -1,0 +1,43 @@
+package com.sidc.blackcore.api.mobile.activity.request;
+
+import java.io.Serializable;
+
+public class ActivityPaymentStatusUpdateRequest implements Serializable {
+	private static final long serialVersionUID = -2001256917582713033L;
+	private String token;
+	private int activityid;
+	private String paymentstatus;
+
+	public String getToken() {
+		return token;
+	}
+
+	public int getActivityid() {
+		return activityid;
+	}
+
+	public String getPaymentstatus() {
+		return paymentstatus;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityPaymentStatusUpdateRequest [token=");
+		builder.append(token);
+		builder.append(", activityid=");
+		builder.append(activityid);
+		builder.append(", paymentstatus=");
+		builder.append(paymentstatus);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivityPaymentStatusUpdateRequest(String token, int activityid, String paymentstatus) {
+		super();
+		this.token = token;
+		this.activityid = activityid;
+		this.paymentstatus = paymentstatus;
+	}
+
+}

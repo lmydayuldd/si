@@ -1,0 +1,76 @@
+package com.sidc.blackcore.api.mobile.activity.request;
+
+import java.io.Serializable;
+
+public class ActivitySignUpDetailRequest implements Serializable {
+	private static final long serialVersionUID = -3856620748790592743L;
+	private String deviceid;
+	private int activityid;
+	private String status;
+	private String paymentstatus;
+	private String starttime;
+	private String endtime;
+	private String langcode;
+
+	public String getDeviceid() {
+		return deviceid;
+	}
+
+	public int getActivityid() {
+		return activityid;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public String getPaymentstatus() {
+		return paymentstatus;
+	}
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public String getLangcode() {
+		return langcode;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivitySignUpDetailRequest [deviceid=");
+		builder.append(deviceid);
+		builder.append(", activityid=");
+		builder.append(activityid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", paymentstatus=");
+		builder.append(paymentstatus);
+		builder.append(", starttime=");
+		builder.append(starttime);
+		builder.append(", endtime=");
+		builder.append(endtime);
+		builder.append(", langcode=");
+		builder.append(langcode);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivitySignUpDetailRequest(String deviceid, int activityid, String status, String paymentstatus,
+			String starttime, String endtime, String langcode) {
+		super();
+		this.deviceid = deviceid;
+		this.activityid = activityid;
+		this.status = status;
+		this.paymentstatus = paymentstatus;
+		this.starttime = starttime;
+		this.endtime = endtime;
+		this.langcode = langcode;
+	}
+
+}

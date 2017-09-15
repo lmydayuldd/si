@@ -1,0 +1,134 @@
+/**
+ * 
+ */
+package com.sidc.dao.ra.manager;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.sidc.blackcore.api.ra.response.RcuGroupEnity;
+import com.sidc.dao.connection.ProxoolConnection;
+import com.sidc.dao.ra.room.RcuGroupDao;
+
+/**
+ * @author Nandin
+ *
+ */
+public class RcuGroupManager {
+
+	private RcuGroupManager() {
+	}
+
+	private static class LazyHolder {
+		public static final RcuGroupManager INSTANCE = new RcuGroupManager();
+	}
+
+	public static RcuGroupManager getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	public void insert(final String roomno, final int rcu_group_id) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RcuGroupDao.getInstance().insert(conn, roomno, rcu_group_id);
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+	}
+
+	public void update(final String roomno, final int rcu_group_id) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RcuGroupDao.getInstance().update(conn, roomno, rcu_group_id);
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+	}
+
+	public void delete(final String roomno) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RcuGroupDao.getInstance().delete(conn, roomno);
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+	}
+
+	public List<RcuGroupEnity> listRoomRCU() throws SQLException {
+		List<RcuGroupEnity> result = null;
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			result = RcuGroupDao.getInstance().listRcuGroup(conn);
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+		return result;
+	}
+
+	public boolean existRCUGroup(final int rcu_group_id) throws SQLException {
+		boolean result = false;
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			result = RcuGroupDao.getInstance().existRCUGroup(conn, rcu_group_id);
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+		return result;
+	}
+}

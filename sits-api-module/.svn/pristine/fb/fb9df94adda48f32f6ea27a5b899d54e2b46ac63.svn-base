@@ -1,0 +1,47 @@
+package com.sidc.blackcore.api.mobile.activity.bean;
+
+import java.io.Serializable;
+
+public class ActivityToFeeBean implements Serializable {
+
+	private static final long serialVersionUID = -9081887149643494108L;
+	private int feeid;
+	private String price;
+	private String feename;
+
+	public int getFeeid() {
+		return feeid;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public String getFeename() {
+		return feename;
+	}
+
+	public void setFeename(String feename) {
+		this.feename = feename;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityToFeeBean [feeid=");
+		builder.append(feeid);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", feename=");
+		builder.append(feename);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivityToFeeBean(int feeid, String price) {
+		super();
+		this.feeid = feeid;
+		this.price = price;
+	}
+
+}

@@ -1,0 +1,77 @@
+package com.sidc.blackcore.api.sits.shop.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.sits.langs.bean.LangsBean;
+
+public class ShopItemInfoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2833930547786919863L;
+	private int shopid;
+	private float price;
+	private String normalImg;
+	private String thumbImg;
+	private int sequence;
+	private List<LangsBean> langs = new ArrayList<LangsBean>();
+
+	public int getShopid() {
+		return shopid;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public String getNormalImg() {
+		return normalImg;
+	}
+
+	public String getThumbImg() {
+		return thumbImg;
+	}
+
+	public int getSequence() {
+		return sequence;
+	}
+
+	public List<LangsBean> getLangs() {
+		return langs;
+	}
+
+	public void setLangs(List<LangsBean> langs) {
+		this.langs = langs;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ShopItemInfoBean [shopid=");
+		builder.append(shopid);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", normalImg=");
+		builder.append(normalImg);
+		builder.append(", thumbImg=");
+		builder.append(thumbImg);
+		builder.append(", sequence=");
+		builder.append(sequence);
+		builder.append(", langs=");
+		builder.append(langs);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ShopItemInfoBean(int shopid, float price, String normalImg, String thumbImg, int sequence) {
+		super();
+		this.shopid = shopid;
+		this.price = price;
+		this.normalImg = normalImg;
+		this.thumbImg = thumbImg;
+		this.sequence = sequence;
+	}
+
+}

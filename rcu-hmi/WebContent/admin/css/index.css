@@ -1,0 +1,17 @@
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 2px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.button-style {
+	position: absolute;
+	margin: 34px 0 0 100px;
+	display: none;
+}

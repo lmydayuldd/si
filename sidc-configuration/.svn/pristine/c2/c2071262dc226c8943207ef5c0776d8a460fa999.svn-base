@@ -1,0 +1,19 @@
+package com.sidc.configuration.common.key;
+
+public interface CommonCatalogueRCUKey {
+
+	public final static String HEARTBEAT = "HEARTBEAT";
+
+	public final static String BULB = "BULB";
+
+	public final static String AIR_CONDITION = "AIR-CONDITION";
+
+	public final static String SERVICE = "SERVICE";
+
+	public final static String CARD = "CARD";
+	
+	public final static String PMS = "PMS";
+	
+	public final static String AIR_CONIDITION = "AIR-CONIDITION";
+	
+}

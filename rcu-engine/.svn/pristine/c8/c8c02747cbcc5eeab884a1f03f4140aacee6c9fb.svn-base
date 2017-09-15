@@ -1,0 +1,200 @@
+[{
+    id: 1,
+    name: "ROOM_A",
+    rcu : 
+    	[
+    		{
+    			catalogue : "BULB",
+		    	command : 194,
+		    	devices: [{
+		            keycode: "FOYER",
+		            position : {
+		            	address: 21,
+		            	circuit: 1
+		            }
+		            
+		        }, {
+		            keycode: "DESK",
+		            position : {
+		            	address: 22,
+		            	circuit: 1
+		            }
+		        }, {
+		            keycode: "WALL",
+		            position : {
+		            	address: 22,
+		            	circuit: 2
+		            }
+		        }, {
+		            keycode: "NIGHT",
+		            position : {
+		            	address: 22,
+		            	circuit: 3
+		            }
+		        }, {
+		            keycode: "BATH",
+		            position : {
+		            	address: 23,
+		            	circuit: 3
+		            }
+		        }]
+    		},
+			{
+				catalogue : "SERVICE",
+		    	command : 195,
+				devices : [
+					{keycode : "DOORSENSOR"},
+					{keycode : "PIR"},
+					{keycode : "SOS"},
+					{keycode : "MUR"},
+					{keycode : "DND"}
+				]
+			},
+			{
+				catalogue : "CARD",
+		    	command : 199,
+				devices : []
+			}
+    	]
+    
+    
+}, {
+    id: 2,
+    name: "ROOM_B",
+	rcu : 
+    	[
+    		{
+    			catalogue : "BULB",
+		    	command : 194,
+		    	devices: [{
+					keycode: "TOILET",
+					position : {
+						address: 21,
+						circuit: 0
+					}
+				}, {
+					keycode: "FOYER",
+					position : {
+						address: 21,
+						circuit: 1
+					}
+				}, {
+					keycode: "DESK",
+					position : {
+						address: 22,
+						circuit: 1
+					}
+				}, {
+					keycode: "WALL",
+					position : {
+						address: 22,
+						circuit: 2
+					}
+				}, {
+					keycode: "NIGHT",
+					position : {
+						address: 22,
+						circuit: 3
+					}
+				}, {
+					keycode: "BATH",
+					position : {
+						address: 23,
+						circuit: 3
+					}
+				}]
+    		},
+			{
+				catalogue : "SERVICE",
+		    	command : 195,
+				devices : [
+					{keycode : "DOORSENSOR"},
+					{keycode : "PIR"},
+					{keycode : "SOS"},
+					{keycode : "MUR"},
+					{keycode : "DND"}
+				]
+			},
+			{
+				catalogue : "CARD",
+		    	command : 199,
+				devices : []
+			}
+    	]
+    
+	
+}, {
+    id: 3,
+    name: "DISABLE_TOILET",
+	rcu : 
+    	[
+			{
+				catalogue : "SERVICE",
+		    	command : 195,
+				devices : [
+					{keycode : "SOS"}
+				]
+			}
+		]
+	
+}, {
+    id: 4,
+    name: "GYMNASIUM",
+	rcu : 
+    	[
+    		{
+    			catalogue : "BULB",
+		    	command : 194,
+		    	devices: [{
+					keycode: "COVE",
+					position : {
+						address: 21,
+						circuit: 0
+					}
+				}, {
+					keycode: "CORIDOR",
+					position : {
+						address: 21,
+						circuit: 1
+					}
+				}, {
+					keycode: "EQUIPMENT",
+					position : {
+						address: 22,
+						circuit: 2
+					}
+				}, {
+					keycode: "WALL",
+					position : {
+						address: 22,
+						circuit: 3
+					}
+				}, {
+					keycode: "OUTDOOR",
+					position : {
+						address: 24,
+						circuit: 3
+					}
+				}]
+    		},
+			{
+				catalogue : "SERVICE",
+		    	command : 195,
+				devices : [
+					{keycode : "SOS"}
+				]
+			},
+			{
+				catalogue : "AIR-CONDITION",
+		    	command: 193,
+				devices : [{
+					keycode: "HAVC",
+					position : {
+						address: 0
+					}
+				}
+				]
+			}
+    	]
+    
+}]

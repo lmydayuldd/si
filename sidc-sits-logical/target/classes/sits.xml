@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<configuration>
+	<sits-info>
+		<site>
+			<ip-addredd>http://127.0.0.1</ip-addredd>
+		</site>
+		<relay>
+			<ip-addredd>http://10.60.1.199:8080/relay/relay</ip-addredd>
+		</relay>
+	</sits-info>
+	<database>
+		<connection>
+			<ip-address>127.0.0.1</ip-address>
+			<port>3306</port>
+		</connection>
+	</database>
+	
+	<!--- 前端WEB 顯示等等 -->
+	<sits-web>
+		<shopping>
+			<enable>Y</enable>
+		</shopping>
+		<order>
+			<enable>Y</enable>
+		</order>
+	</sits-web>
+	
+	<sits-schedule>
+		<flight enable="Y">
+			<schdule-url lang="en">http://www1.taoyuan-airport.com/chi/flightx/eflight_d.aspx</schdule-url>
+			<schdule-url lang="tw">http://www1.taoyuan-airport.com/chi/flightx/flight_d.aspx</schdule-url>
+			<schdule-url lang="jp">http://www1.taoyuan-airport.com/chi/flightx/flight_d.aspx</schdule-url>
+			<schdule-url lang="cn">http://www1.taoyuan-airport.com/chi/flightx/jflight_d.aspx</schdule-url>
+		</flight>
+	</sits-schedule>
+</configuration>

@@ -1,0 +1,35 @@
+package com.derex.cm.stb.api.request;
+
+import java.io.Serializable;
+
+public class StbWelcomePageRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5607373942132971554L;
+	private String stbip;
+	private String status;
+	public StbWelcomePageRequest(String stbip, String status) {
+		// TODO Auto-generated constructor stub
+		this.stbip = stbip;
+		this.status = status;
+	}
+	public String getStbip() {
+		return stbip;
+	}
+	public String getStatus() {
+		return status;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("StbWelcomePageRequest [stbip=\n");
+		builder.append(stbip);
+		builder.append(", status=\n");
+		builder.append(stbip);
+		builder.append("]");
+		return builder.toString();
+	}
+}

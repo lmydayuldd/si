@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+package com.derex.cm.stb.api.request;
+
+import java.io.Serializable;
+
+/**
+ * @author Nandin
+ *
+ */
+public class SystemUserLogin implements Serializable {
+
+	private String user;
+	private String password;
+
+	public SystemUserLogin(String user, String password) {
+		super();
+		this.user = user;
+		this.password = password;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SystemUserLogin [\n\tuser=");
+		builder.append(user);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

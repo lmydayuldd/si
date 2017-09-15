@@ -1,0 +1,10 @@
+package com.sidc.scheduler.api.url;
+
+/**
+ * @author Allen
+ *
+ */
+public interface Env {
+
+	public final static String BLACKCORE_HOST = "http://10.60.1.251:7056/blackcore";
+}

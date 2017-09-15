@@ -1,0 +1,100 @@
+package com.sidc.corejob;
+
+import static org.quartz.JobBuilder.newJob;
+
+import java.util.List;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import org.quartz.Job;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.Trigger;
+import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.corejob.common.ReflectInterface;
+import com.sidc.corejob.common.Tool;
+
+/**
+ * Job核心控制
+ * 
+ * @author Allen Huang
+ *
+ */
+public class Core implements ServletContextListener {
+
+	private Scheduler scheduler;
+	private final static Logger logger = LoggerFactory.getLogger(Core.class);
+
+	@SuppressWarnings("unchecked")
+	public void contextInitialized(ServletContextEvent arg0) {
+		this.initJob();
+	}
+
+	@SuppressWarnings("unchecked")
+	public void initJob() {
+		try {
+			scheduler = StdSchedulerFactory.getDefaultScheduler();
+			ReflectInterface reflectInterface = new ReflectInterface();
+			List<Class<?>> ijobList = reflectInterface.getAllAssignedClass(IJob.class);
+
+			for (Class<?> job : ijobList) {
+				IJob ijob = (IJob) job.newInstance();
+				Class<? extends Job> jobClass = (Class<? extends Job>) job;
+				// 查詢此作業是否正在執行中，如果沒有被執行，或作業的執行完全被終止，則添加，否則跳過
+				boolean isRun = ReflectInterface.ifRunJob(ijob.setJobInfo().getJobName(),
+						ijob.setJobInfo().getJobGroup());
+				if (isRun) {
+					continue;
+				}
+				JobDetail timeJob = newJob(jobClass)
+						.withIdentity(ijob.setJobInfo().getJobName(), ijob.setJobInfo().getJobGroup()).build();
+				Trigger jobTrigger = null;
+				if (ijob.setJobInfo().getTriggerType() == null) {
+					logger.debug(
+							"請確認TriggerType是否為有效值，" + ijob.setJobInfo().getTriggerType() + "，發生Job為：" + job.getName());
+					continue;
+				} else if (ijob.setJobInfo().getTriggerType() == 1) {// 每分鐘一次
+					jobTrigger = Tool.getMinutelyTrigger(ijob.setJobInfo().getStartTime());
+
+				} else if (ijob.setJobInfo().getTriggerType() == 2) {// 每小時一次
+					jobTrigger = Tool.getHourlyTrigger(ijob.setJobInfo().getStartTime());
+
+				} else if (ijob.setJobInfo().getTriggerType() == 3) {// 每天一次
+					jobTrigger = Tool.getDaylyTrigger(ijob.setJobInfo().getStartTime());
+
+				} else if (ijob.setJobInfo().getTriggerType() == 0 && ijob.setJobInfo().getCron() != null) {// corn表達式
+					try {
+						jobTrigger = Tool.getCronTrigger(ijob.setJobInfo().getStartTime(), ijob.setJobInfo().getCron(),
+								ijob.setJobInfo().getCronDescription());
+					} catch (Exception ex) {
+						logger.debug("請確認Cron是否為有效值，" + ijob.setJobInfo().getCron() + "，發生Job為：" + job.getName());
+					}
+				} else {
+					logger.debug(
+							"請確認TriggerType是否為有效值，" + ijob.setJobInfo().getTriggerType() + "，發生Job為：" + job.getName());
+					continue;
+				}
+
+				if (timeJob != null && jobTrigger != null) {
+					scheduler.scheduleJob(timeJob, jobTrigger);
+				}
+
+			}
+
+			scheduler.start();
+
+		} catch (Exception ex) {
+			logger.debug("初始化Job資訊發生錯誤，請查看錯誤詳細資訊");
+			ex.printStackTrace();
+		}
+
+	}
+
+	public void contextDestroyed(ServletContextEvent sce) {
+
+	}
+}

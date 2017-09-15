@@ -1,0 +1,170 @@
+
+package com.sidc.rcu.hmi.udp.connection;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.URISyntaxException;
+import java.util.Arrays;
+
+import javax.websocket.DeploymentException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.rcu.hmi.api.parser.UDPParser;
+import com.sidc.rcu.hmi.bean.receiver.UdpRreceiveBean;
+import com.sidc.rcu.hmi.bean.systeminitial.WebsocketInitialBean;
+import com.sidc.rcu.hmi.bean.systeminitial.WebsocketInitialServiceBean;
+import com.sidc.rcu.hmi.common.CommonDataKey;
+import com.sidc.rcu.hmi.common.DataCenter;
+import com.sidc.rcu.hmi.udp.intf.UDPProtocolIntf;
+import com.sidc.rcu.hmi.udp.receiver.RcuCardReceiver;
+import com.sidc.rcu.hmi.udp.receiver.RcuHeartbeatReceiver;
+import com.sidc.rcu.hmi.udp.receiver.RcuServiceInfoReceiver;
+import com.sidc.rcu.hmi.websocket.WebSocketClient;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.RcuReceiverLog;
+import com.sidc.utils.status.APIStatus;
+
+public class UDPServer extends Thread implements UDPProtocolIntf {
+
+	private final static Logger logger = LoggerFactory.getLogger(UDPServer.class);
+
+	private volatile UDPConnection udp;
+
+	public UDPServer(UDPConnection udp) {
+		this.udp = udp;
+	}
+
+	public void initial() throws SiDCException {
+		udp.initial();
+		execute();
+	}
+
+	@Override
+	public void run() {
+		try {
+			initial();
+		} catch (SiDCException e) {
+			logger.error(e.getMessage(), e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void execute() throws SiDCException {
+		byte[] buffer = null;
+		try {
+			udp.getSocket().setBroadcast(true);
+		} catch (IOException e) {
+			throw new SiDCException(APIStatus.GENERAL_ERROR, e.getMessage(), e);
+		}
+
+		while (!udp.getSocket().isClosed()) {
+			try {
+				buffer = new byte[UdpSetting.UDP_BUFF];
+
+				final DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
+				udp.getSocket().receive(receivePacket);
+
+				final String data = new String(trim(receivePacket.getData()));
+
+				final UdpRreceiveBean entity = (UdpRreceiveBean) UDPParser.getInstance().parse(data,
+						UdpRreceiveBean.class);
+
+				if (!entity.getCatalogue().equals("HEARTBEAT")) {
+					// System.out.println(data);
+					catalogueProcess(entity);
+				} else {
+					new RcuHeartbeatReceiver(entity).execute();
+				}
+				WebSocketClient client = (WebSocketClient) DataCenter.getInstance()
+						.get(CommonDataKey.WEBSOCKET_INDEX_INFO);
+
+				if (client == null) {
+					client = indexWebsocketClient(new WebSocketClient());
+				}
+
+				client.sendMessage("");
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private WebSocketClient indexWebsocketClient(final WebSocketClient client) throws InterruptedException {
+		WebsocketInitialBean webscoketSetting = (WebsocketInitialBean) DataCenter.getInstance()
+				.get(CommonDataKey.WEBSOCKET_SETTING);
+
+		if (webscoketSetting == null) {
+			sleep(5000);
+			throw new NullPointerException("webscoketSetting");
+		}
+
+		String path = null;
+
+		for (WebsocketInitialServiceBean entity : webscoketSetting.getSystemWebsocket()) {
+			if (entity.getName().equals("index")) {
+				path = entity.getPath();
+				break;
+			}
+		}
+
+		if (StringUtils.isBlank(path)) {
+			sleep(5000);
+			throw new NullPointerException("webscoketSetting:path");
+		}
+
+		final String url = "ws://" + webscoketSetting.getHost() + ":" + webscoketSetting.getPort() + "/"
+				+ webscoketSetting.getServiceName() + "/" + path;
+		try {
+			client.connect(url);
+			DataCenter.getInstance().put(CommonDataKey.WEBSOCKET_INDEX_INFO, client);
+		} catch (DeploymentException | IOException | URISyntaxException e) {
+			sleep(500);
+			return indexWebsocketClient(client);
+		}
+		return client;
+	}
+
+	private byte[] trim(final byte[] bytes) {
+		int i = bytes.length - 1;
+		while (i >= 0 && bytes[i] == 0) {
+			--i;
+		}
+		return Arrays.copyOf(bytes, i + 1);
+	}
+
+	public void close() {
+		udp.close();
+	}
+
+	private void catalogueProcess(final UdpRreceiveBean entity) throws SiDCException, Exception {
+		RcuReceiverLog.getInstance().initial(logger, this.getClass().getCanonicalName());
+		RcuReceiverLog.getInstance().setUUID(entity.getUuid());
+		RcuReceiverLog.getInstance().setRoomNo(entity.getRoomNo());
+		RcuReceiverLog.getInstance().setCatalogue(entity.getCatalogue());
+		try {
+			switch (entity.getCatalogue()) {
+			case "BULB":
+
+				break;
+			case "AIR-CONDITION":
+
+				break;
+			case "SERVICE":
+				new RcuServiceInfoReceiver(entity.getRoomNo(), entity.getData()).execute();
+				break;
+			case "CARD":
+				new RcuCardReceiver(entity.getRoomNo(), entity.getData()).execute();
+				break;
+			}
+		} finally {
+			RcuReceiverLog.getInstance().writeRecord();
+		}
+	}
+}

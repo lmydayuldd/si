@@ -1,0 +1,66 @@
+package com.sidc.dao.ra.manager;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.sidc.blackcore.api.ra.schedule.bean.ScheduleInfoBean;
+import com.sidc.blackcore.api.ra.schedule.response.ScheduleStatus;
+import com.sidc.dao.connection.ProxoolConnection;
+import com.sidc.dao.ra.schedule.ScheduleDao;
+
+public class RcuScheduleManager {
+	private static class LazyHolder {
+		public static final RcuScheduleManager INSTANCE = new RcuScheduleManager();
+	}
+
+	public static RcuScheduleManager getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	public void updateCheckOutExecutionTime(final int status, final String executionTime, final String className,
+			final String description) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+			ScheduleDao.getInstance().update(conn, status, executionTime, className, description);
+			conn.commit();
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+	}
+
+	public ScheduleStatus enabled(final String jobName) throws SQLException {
+		Connection conn = null;
+		ScheduleStatus entity = null;
+
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+			entity = ScheduleDao.getInstance().enabled(conn, jobName);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+		return entity;
+	}
+	
+	public ScheduleInfoBean select(final String jobName) throws SQLException {
+		Connection conn = null;
+		ScheduleInfoBean entity = null;
+
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+			entity = ScheduleDao.getInstance().select(conn, jobName);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+		return entity;
+	}
+}

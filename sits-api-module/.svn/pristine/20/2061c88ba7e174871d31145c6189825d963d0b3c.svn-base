@@ -1,0 +1,94 @@
+/**
+ * 
+ */
+package com.sidc.blackcore.api.agent.request;
+
+import java.io.Serializable;
+
+/**
+ * @author Joe
+ *
+ */
+public class CheckInRequest implements Serializable {
+
+	private static final long serialVersionUID = 7830794728149833025L;
+
+	private String roomno;
+	private String checkindate;
+	private String guestno;
+	private String firstname;
+	private String lastname;
+	private String birthd;
+	private String langcode;
+	private String billno;
+
+	public CheckInRequest(String roomno, String checkindate, String guestno, String firstname, String lastname,
+			String birthd, String langcode,String billno) {
+		super();
+		this.roomno = roomno;
+		this.checkindate = checkindate;
+		this.guestno = guestno;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.birthd = birthd;
+		this.langcode = langcode;
+		this.billno = billno;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	public String getCheckindate() {
+		return checkindate;
+	}
+
+	public String getGuestno() {
+		return guestno;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public String getBirthd() {
+		return birthd;
+	}
+
+	public String getLangcode() {
+		return langcode;
+	}
+
+	public String getBillno() {
+		return billno;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CheckInRequest [roomno=\n");
+		builder.append(roomno);
+		builder.append(", checkindate=\n");
+		builder.append(checkindate);
+		builder.append(", guestno=\n");
+		builder.append(guestno);
+		builder.append(", firstname=\n");
+		builder.append(firstname);
+		builder.append(", lastname=\n");
+		builder.append(lastname);
+		builder.append(", birthd=\n");
+		builder.append(birthd);
+		builder.append(", langcode=\n");
+		builder.append(langcode);
+		builder.append(", billno=\n");
+		builder.append(billno);
+		builder.append("]");
+
+		return builder.toString();
+	}
+
+}

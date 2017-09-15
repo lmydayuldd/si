@@ -1,0 +1,68 @@
+package com.sidc.scheduler.job;
+
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+import com.google.gson.Gson;
+import com.sidc.blackcore.api.ra.schedule.bean.ScheduleInfoBean;
+import com.sidc.corejob.IJob;
+import com.sidc.corejob.JobInfo;
+import com.sidc.quartz.api.request.QuartzInitialRequest;
+import com.sidc.quartz.api.request.RoomRcuScheduleRequest;
+import com.sidc.quartz.sdk.rcu.CheckOutRoomRCUClient;
+import com.sidc.quartz.sdk.rcu.ScheduleInfoClient;
+import com.sidc.scheduler.api.url.Env;
+import com.sidc.scheduler.conf.Config;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class CheckOutTimer implements IJob {
+
+	public CheckOutTimer() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public JobInfo setJobInfo() {
+		// TODO Auto-generated method stub
+		QuartzInitialRequest request = new QuartzInitialRequest("CheckOutTimer");
+		Gson gson = new Gson();
+		JobInfo job = new JobInfo();
+		try {
+			Object json = new ScheduleInfoClient(Env.BLACKCORE_HOST, request).execute();
+			ScheduleInfoBean response = gson.fromJson(json.toString(), ScheduleInfoBean.class);
+
+			job.setJobName("CheckOutTimer"); // 設置任務名稱
+			job.setJobGroup(response.getGroupname()); // 設置任務分組
+			job.setTriggerType(0);  // 設定任務執行計劃
+									// 0：使用cron表達式執行，使用此項時cron表達式必填。
+			job.setCron(response.getExecutiontime());
+			job.setCronDescription(response.getDescription());
+		} catch (SiDCException e) {
+			// TODO Auto-generated catch block
+			LogAction.getInstance().debug("Check Out job info SiDCError： " + e.getMessage());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			LogAction.getInstance().debug("Check Out job info Error： " + e.getMessage());
+		}
+		return job;
+	}
+
+	@Override
+	public void execute(JobExecutionContext jobContext) throws JobExecutionException {
+		// TODO Auto-generated method stub
+		try {
+			RoomRcuScheduleRequest enity = new RoomRcuScheduleRequest(Config.ONE);
+			new CheckOutRoomRCUClient(Env.BLACKCORE_HOST, enity).execute();
+			
+			LogAction.getInstance().debug("Check Out RCU Mode schedule success");
+		} catch (Exception e) {
+			LogAction.getInstance().debug("Check Out RCU Mode Error： " + e.getMessage());
+		}
+	}
+}

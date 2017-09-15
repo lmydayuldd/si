@@ -1,0 +1,34 @@
+/**
+ * 
+ */
+package com.sidc.dao.ra.response;
+
+/**
+ * @author Nandin
+ *
+ */
+public class RoomRcuEnity implements java.io.Serializable {
+
+	private static final long serialVersionUID = 5145600682304108289L;
+	
+	private String roomno;
+
+	public RoomRcuEnity(String roomno) {
+		super();
+		this.roomno = roomno;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomRcuEnity [\n\troomno=");
+		builder.append(roomno);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

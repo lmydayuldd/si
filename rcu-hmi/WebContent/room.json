@@ -1,0 +1,270 @@
+{
+    "status": 0, 
+    "message": "success", 
+    "data": {
+        "rooms": [
+            {
+                "roomno": "607", 
+                "roomType": "ROOM_B", 
+                "catalogues": [
+                    {
+                        "catalogue": "AIR-CONDITION", 
+                        "command": 193, 
+                        "devices": [
+                            {
+                                "keycode": "HVAC-0", 
+                                "appender": {
+                                    "address": 0, 
+                                    "circuit": 0
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "中央空調-1", 
+                                        "lang": "zh_TW"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "keycode": "HVAC-1", 
+                                "appender": {
+                                    "address": 1, 
+                                    "circuit": 0
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "中央空調-2", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0, 
+                                    "mode": 0, 
+                                    "temperature": 0, 
+                                    "speed": 0, 
+                                    "actualTemp": 0, 
+                                    "isAirConditioning": 0, 
+                                    "position": 1
+                                }
+                            }
+                        ], 
+                        "langs": [
+                            {
+                                "name": "空調", 
+                                "lang": "zh_TW"
+                            }
+                        ]
+                    }, 
+                    {
+                        "catalogue": "BULB", 
+                        "command": 194, 
+                        "devices": [
+                            {
+                                "keycode": "CELLING", 
+                                "appender": {
+                                    "address": 21, 
+                                    "circuit": 2
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "投射燈", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "COVE", 
+                                "appender": {
+                                    "address": 21, 
+                                    "circuit": 0
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "間接燈", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "NIGHT", 
+                                "appender": {
+                                    "address": 24, 
+                                    "circuit": 0
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "小夜燈", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "PENDANT", 
+                                "appender": {
+                                    "address": 22, 
+                                    "circuit": 0
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "吊燈", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "READING", 
+                                "appender": {
+                                    "address": 21, 
+                                    "circuit": 3
+                                }, 
+                                "langs": [
+                                    {
+                                        "name": "閱讀燈", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }
+                        ], 
+                        "langs": [
+                            {
+                                "name": "燈泡", 
+                                "lang": "zh_TW"
+                            }
+                        ]
+                    }, 
+                    {
+                        "catalogue": "CARD", 
+                        "command": 199, 
+                        "devices": [
+                            {
+                                "keycode": "MEMBERCARD", 
+                                "langs": [
+                                    {
+                                        "name": "會員卡", 
+                                        "lang": "zh_TW"
+                                    }
+                                ]
+                            }, 
+                            {
+                                "keycode": "NOCARD", 
+                                "langs": [
+                                    {
+                                        "name": "無卡片", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0, 
+                                    "authorization": 0, 
+                                    "keycode": "NOCARD"
+                                }
+                            }, 
+                            {
+                                "keycode": "SERVICECARD", 
+                                "langs": [
+                                    {
+                                        "name": "服務卡", 
+                                        "lang": "zh_TW"
+                                    }
+                                ]
+                            }
+                        ], 
+                        "langs": [
+                            {
+                                "name": "卡片", 
+                                "lang": "zh_TW"
+                            }
+                        ]
+                    }, 
+                    {
+                        "catalogue": "SERVICE", 
+                        "command": 195, 
+                        "devices": [
+                            {
+                                "keycode": "DND", 
+                                "langs": [
+                                    {
+                                        "name": "勿擾", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "DOORSENSOR", 
+                                "langs": [
+                                    {
+                                        "name": "門磁簧", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "MUR", 
+                                "langs": [
+                                    {
+                                        "name": "清潔", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "PIR", 
+                                "langs": [
+                                    {
+                                        "name": "PIR", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }, 
+                            {
+                                "keycode": "SOS", 
+                                "langs": [
+                                    {
+                                        "name": "緊急按鈕", 
+                                        "lang": "zh_TW"
+                                    }
+                                ], 
+                                "condition": {
+                                    "status": 0
+                                }
+                            }
+                        ], 
+                        "langs": [
+                            {
+                                "name": "服務", 
+                                "lang": "zh_TW"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }, 
+    "time": 1481095352177
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="rcu-hmi">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="sits-utils-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sits-utils/sits-utils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sidc-sdk-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-sdk/sidc-sdk">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sits-api-module-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sits-api-module/sits-api-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="rcu-hmi-api-module-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rcu-hmi-api-module/rcu-hmi-api-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/rcu-hmi/build/classes"/>
+        <property name="context-root" value="rcu-hmi"/>
+    </wb-module>
+</project-modules>

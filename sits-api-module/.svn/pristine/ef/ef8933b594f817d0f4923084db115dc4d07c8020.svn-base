@@ -1,0 +1,29 @@
+package com.sidc.blackcore.api.mobile.activity.bean;
+
+import java.io.Serializable;
+
+public class ActivityPhotoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1778376441878260196L;
+	private String photo;
+
+	public ActivityPhotoBean(String photo) {
+		super();
+		this.photo = photo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityPhotoBean [photo=");
+		builder.append(photo);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+}

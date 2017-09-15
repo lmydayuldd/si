@@ -1,0 +1,36 @@
+package com.sidc.rcu.hmi.bean.modesetting;
+
+import java.io.Serializable;
+
+public class RcuModeDevicesBean implements Serializable {
+	private static final long serialVersionUID = -2919740657709609773L;
+
+	private String keycode;
+	private RcuModeCondition condition;
+
+	public String getKeycode() {
+		return keycode;
+	}
+
+	public RcuModeCondition getCondition() {
+		return condition;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModelDevicesBean [keycode=");
+		builder.append(keycode);
+		builder.append(", condition=");
+		builder.append(condition);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RcuModeDevicesBean(String keycode, RcuModeCondition condition) {
+		super();
+		this.keycode = keycode;
+		this.condition = condition;
+	}
+
+}

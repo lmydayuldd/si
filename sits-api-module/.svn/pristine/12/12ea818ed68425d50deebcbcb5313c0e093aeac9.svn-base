@@ -1,0 +1,5 @@
+package com.sidc.quartz.api.command.key;
+
+public enum QuartzCommand {
+	QUERY, PAUSE, RESUME, TRIGGER, REFRESH, DELETE, STRATJOB, RESCHEDULE, START, SHUTDOWN
+}

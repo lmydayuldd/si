@@ -1,0 +1,65 @@
+package com.sidc.blackcore.api.mobile.laundry.response;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sidc.blackcore.api.mobile.activity.bean.ActivityPhotoBean;
+import com.sidc.blackcore.api.mobile.laundry.bean.LaundryLangBean;
+
+public class LaundryTypeResponse implements Serializable {
+	private static final long serialVersionUID = -7165767851828493065L;
+	private int typeid;
+	private int status;
+	private List<LaundryLangBean> langs = new ArrayList<LaundryLangBean>();
+	private List<ActivityPhotoBean> photolist = new ArrayList<ActivityPhotoBean>();
+
+	public int getTypeid() {
+		return typeid;
+	}
+
+	public List<LaundryLangBean> getLangs() {
+		return langs;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public List<ActivityPhotoBean> getPhotolist() {
+		return photolist;
+	}
+
+	public void setPhotolist(List<ActivityPhotoBean> photolist) {
+		this.photolist = photolist;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("LaundryTypeResponse [typeid=");
+		builder.append(typeid);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", langs=");
+		builder.append(langs);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public LaundryTypeResponse(int typeid, int status, List<LaundryLangBean> langs, List<ActivityPhotoBean> photolist) {
+		super();
+		this.typeid = typeid;
+		this.status = status;
+		this.langs = langs;
+		this.photolist = photolist;
+	}
+
+	public LaundryTypeResponse(int typeid, int status, List<LaundryLangBean> langs) {
+		super();
+		this.typeid = typeid;
+		this.status = status;
+		this.langs = langs;
+	}
+
+}

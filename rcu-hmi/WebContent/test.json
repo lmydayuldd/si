@@ -1,0 +1,45 @@
+{
+    services: [
+		{
+            catalogue: "AIR-CONDITION",
+            devices: [{
+                keycode: "HVAC-0",
+                condition: {
+                    temperature: 25,
+                    function: "",
+					enable: "1",
+                    address: 0
+                }
+            }]
+        },
+        {
+            catalogue: "BULB",
+            devices: [
+				{
+                    keycode: "DESK",
+                    condition: {
+                        status: 1
+                    }
+                },
+                {
+                    keycode: "BATH",
+                    condition: {
+                        status: 0
+                    }
+                }
+            ]
+        },
+		{
+            catalogue: "SERVICE",
+            devices: [
+				{
+                    keycode: "DND",
+                    condition: {
+                        status: 0
+                    }
+                }
+            ]
+        }
+    ]
+
+}

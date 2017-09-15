@@ -1,0 +1,43 @@
+package com.sidc.dao.rcu.command.response;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class RcuModelCatalogue implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5758058086047668273L;
+	private String catalogue;
+	private List<RcuModelDevice> devices;
+	public RcuModelCatalogue(String catalogue, List<RcuModelDevice> devices) {
+		// TODO Auto-generated constructor stub
+		this.catalogue = catalogue;
+		this.devices = devices;
+	}
+	
+	public String getCatalogue() {
+		return catalogue;
+	}
+	
+	public List<RcuModelDevice> getDevices() {
+		return devices;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModelCatalogue [catalogue=\n");
+		builder.append(catalogue);
+		builder.append(", devices=\n");
+		builder.append(devices);
+		builder.append("]");
+		return builder.toString();
+	}
+}

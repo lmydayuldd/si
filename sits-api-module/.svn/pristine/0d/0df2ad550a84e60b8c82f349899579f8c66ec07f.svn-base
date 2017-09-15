@@ -1,0 +1,36 @@
+package com.sidc.blackcore.api.mobile.activity.bean;
+
+import java.io.Serializable;
+
+public class ActivityRepeatBean implements Serializable {
+	private static final long serialVersionUID = -4437446065473618655L;
+
+	private String starttime;
+	private String endtime;
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ActivityRepeatBean [starttime=");
+		builder.append(starttime);
+		builder.append(", endtime=");
+		builder.append(endtime);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ActivityRepeatBean(String starttime, String endtime) {
+		super();
+		this.starttime = starttime;
+		this.endtime = endtime;
+	}
+
+}

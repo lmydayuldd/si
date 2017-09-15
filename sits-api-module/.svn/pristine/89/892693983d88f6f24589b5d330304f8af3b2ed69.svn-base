@@ -1,0 +1,46 @@
+package com.sidc.blackcore.api.sits.token.bean;
+
+import java.io.Serializable;
+
+public class MobileInfoBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1544987895969330512L;
+	private String device;
+	private int operatingSystem;
+	private String version;
+
+	public String getDevice() {
+		return device;
+	}
+
+	public int getOperatingSystem() {
+		return operatingSystem;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MobileInfoBean [device=");
+		builder.append(device);
+		builder.append(", operatingSystem=");
+		builder.append(operatingSystem);
+		builder.append(", version=");
+		builder.append(version);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public MobileInfoBean(String device, int operatingSystem, String version) {
+		super();
+		this.device = device;
+		this.operatingSystem = operatingSystem;
+		this.version = version;
+	}
+
+}

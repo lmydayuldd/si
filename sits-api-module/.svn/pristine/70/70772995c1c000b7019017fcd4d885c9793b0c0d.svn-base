@@ -1,0 +1,44 @@
+package com.derex.cm.sits.api.request;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class PhotoUploadRequest implements Serializable {
+	private static final long serialVersionUID = -8173937797939377316L;
+	private byte[] photo;
+	private String type;
+	private String link;
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PhotoUploadRequest [photo=");
+		builder.append(Arrays.toString(photo));
+		builder.append(", type=");
+		builder.append(type);
+		builder.append(", link=");
+		builder.append(link);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public PhotoUploadRequest(byte[] photo, String type, String link) {
+		super();
+		this.photo = photo;
+		this.type = type;
+		this.link = link;
+	}
+
+}

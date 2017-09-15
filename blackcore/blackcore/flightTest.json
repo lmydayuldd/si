@@ -1,0 +1,3088 @@
+{
+  "AirportBoardsResult": {
+    "airport": "RCTP",
+    "airport_info": {
+      "airport_code": "RCTP",
+      "name": "臺灣桃園國際機場",
+      "elevation": 107,
+      "city": "台灣臺北",
+      "state": "",
+      "longitude": 121.232822,
+      "latitude": 25.077731,
+      "timezone": ":Asia/Taipei",
+      "country_code": "TW",
+      "wiki_url": "http://en.wikipedia.org/wiki/Taiwan_Taoyuan_International_Airport"
+    },
+    "arrivals": {
+      "num_flights": 10,
+      "next_offset": 10,
+      "flights": [
+        {
+          "ident": "CQH8951",
+          "faFlightID": "CQH8951-1504311000-schedule-0000",
+          "airline": "CQH",
+          "flightnumber": "8951",
+          "tailnumber": "B-1670",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSPD",
+            "city": "上海 上海浦? CN",
+            "alternate_ident": "PVG",
+            "airport_name": "上海浦???机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 6900,
+          "filed_airspeed_kts": 176,
+          "distance_filed": 421,
+          "filed_departure_time": {
+            "epoch": 1504483800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512600
+          },
+          "estimated_departure_time": {
+            "epoch": 1504484880,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:28上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513680
+          },
+          "actual_departure_time": {
+            "epoch": 1504484930,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:28上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513730
+          },
+          "departure_delay": 1080,
+          "filed_arrival_time": {
+            "epoch": 1504490700,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519500
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490700,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519500
+          },
+          "actual_arrival_time": {
+            "epoch": 1504489775,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:49上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518575
+          },
+          "arrival_delay": 300,
+          "status": "已著陸",
+          "progress_percent": 100,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "JNA81",
+          "faFlightID": "JNA81-1504306200-schedule-0000",
+          "airline": "JNA",
+          "flightnumber": "81",
+          "tailnumber": "HL8017",
+          "type": "Form_Airline",
+          "codeshares": "KAL5233",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RKSI",
+            "city": "?? 首?仁川 KR",
+            "alternate_ident": "ICN",
+            "airport_name": "仁川國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 8100,
+          "filed_airspeed_kts": 306,
+          "distance_filed": 910,
+          "filed_departure_time": {
+            "epoch": 1504479000,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "07:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511400
+          },
+          "estimated_departure_time": {
+            "epoch": 1504482311,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514711
+          },
+          "actual_departure_time": {
+            "epoch": 1504482311,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514711
+          },
+          "departure_delay": 3311,
+          "filed_arrival_time": {
+            "epoch": 1504487100,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515900
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490411,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519211
+          },
+          "actual_arrival_time": {
+            "epoch": 1504489453,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:44上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518253
+          },
+          "arrival_delay": 2353,
+          "status": "已著陸",
+          "progress_percent": 100,
+          "aircrafttype": "B738",
+          "full_aircrafttype": "B738",
+          "inbound_faFlightID": "JNA62-1504283400-schedule-0001",
+          "adhoc": false
+        },
+        {
+          "ident": "CPA474",
+          "faFlightID": "CPA474-1504311000-schedule-0000",
+          "airline": "CPA",
+          "flightnumber": "474",
+          "tailnumber": "B-KPM",
+          "type": "Form_Airline",
+          "codeshares": "HDA5474",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "VHHH",
+            "city": "中? 香港 HK",
+            "alternate_ident": "HKG",
+            "airport_name": "香港國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 5700,
+          "filed_airspeed_kts": 238,
+          "distance_filed": 501,
+          "filed_departure_time": {
+            "epoch": 1504483800,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512600
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483740,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:09上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512540
+          },
+          "actual_departure_time": {
+            "epoch": 1504484735,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:25上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513535
+          },
+          "departure_delay": -60,
+          "filed_arrival_time": {
+            "epoch": 1504489500,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518300
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504489264,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:41上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518064
+          },
+          "actual_arrival_time": {
+            "epoch": 1504489264,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:41上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518064
+          },
+          "arrival_delay": -360,
+          "status": "已著陸",
+          "progress_percent": 100,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        },
+        {
+          "ident": "CAL6994",
+          "faFlightID": "CAL6994-1504303200-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "6994",
+          "tailnumber": "B-18706",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSNJ",
+            "city": "江? 南京 CN",
+            "alternate_ident": "NKG",
+            "airport_name": "南京?口??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 6060,
+          "filed_airspeed_kts": 208,
+          "distance_filed": 483,
+          "filed_departure_time": {
+            "epoch": 1504476000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "06:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504504800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483559,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512359
+          },
+          "actual_departure_time": {
+            "epoch": 1504483559,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512359
+          },
+          "departure_delay": 7559,
+          "filed_arrival_time": {
+            "epoch": 1504482060,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "07:41上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504510860
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504489619,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:46上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518419
+          },
+          "actual_arrival_time": {
+            "epoch": 1504489167,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:39上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517967
+          },
+          "arrival_delay": 7107,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "B744",
+          "full_aircrafttype": "B744",
+          "adhoc": false
+        },
+        {
+          "ident": "KAL697",
+          "faFlightID": "KAL697-1504308600-schedule-0004",
+          "airline": "KAL",
+          "flightnumber": "697",
+          "tailnumber": "HL8247",
+          "type": "Form_Airline",
+          "codeshares": "CAL9697",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RKPK",
+            "city": "?? 釜山 KR",
+            "alternate_ident": "PUS",
+            "airport_name": "金海??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 7860,
+          "filed_airspeed_kts": 291,
+          "distance_filed": 836,
+          "filed_departure_time": {
+            "epoch": 1504481400,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504481880,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:38上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514280
+          },
+          "actual_departure_time": {
+            "epoch": 1504481953,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:39上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514353
+          },
+          "departure_delay": -120,
+          "filed_arrival_time": {
+            "epoch": 1504489260,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:41上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518060
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504488960,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:36上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517760
+          },
+          "actual_arrival_time": {
+            "epoch": 1504488960,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:36上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517760
+          },
+          "arrival_delay": -1020,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "B738",
+          "full_aircrafttype": "B738",
+          "inbound_faFlightID": "KAL1403-1504243583-airline-0446",
+          "adhoc": false
+        },
+        {
+          "ident": "HDA486",
+          "faFlightID": "HDA486-1504310700-schedule-0001",
+          "airline": "HDA",
+          "flightnumber": "486",
+          "tailnumber": "B-HSR",
+          "type": "Form_Airline",
+          "codeshares": "CPA5486",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "VHHH",
+            "city": "中? 香港 HK",
+            "alternate_ident": "HKG",
+            "airport_name": "香港國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 5820,
+          "filed_airspeed_kts": 249,
+          "distance_filed": 501,
+          "filed_departure_time": {
+            "epoch": 1504483500,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512300
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483380,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:03上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512180
+          },
+          "actual_departure_time": {
+            "epoch": 1504484280,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:18上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513080
+          },
+          "departure_delay": -120,
+          "filed_arrival_time": {
+            "epoch": 1504489320,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:42上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518120
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504488869,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:34上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517669
+          },
+          "actual_arrival_time": {
+            "epoch": 1504488869,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:34上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517669
+          },
+          "arrival_delay": -600,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "CES2981",
+          "faFlightID": "CES2981-1504309500-schedule-0001",
+          "airline": "CES",
+          "flightnumber": "2981",
+          "tailnumber": "B-6893",
+          "type": "Form_Airline",
+          "codeshares": "MDA5008",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSNJ",
+            "city": "江? 南京 CN",
+            "alternate_ident": "NKG",
+            "airport_name": "南京?口??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 7260,
+          "filed_airspeed_kts": 202,
+          "distance_filed": 483,
+          "filed_departure_time": {
+            "epoch": 1504482300,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "07:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511100
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483020,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "07:57上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511820
+          },
+          "actual_departure_time": {
+            "epoch": 1504483125,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "07:58上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511925
+          },
+          "departure_delay": -360,
+          "filed_arrival_time": {
+            "epoch": 1504489560,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:46上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518360
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504488600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517400
+          },
+          "actual_arrival_time": {
+            "epoch": 1504488600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517400
+          },
+          "arrival_delay": -840,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "ESR881",
+          "faFlightID": "ESR881-1504307100-schedule-0002",
+          "airline": "ESR",
+          "flightnumber": "881",
+          "tailnumber": "HL8029",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RKSI",
+            "city": "?? 首?仁川 KR",
+            "alternate_ident": "ICN",
+            "airport_name": "仁川國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 7500,
+          "filed_airspeed_kts": 328,
+          "distance_filed": 910,
+          "filed_departure_time": {
+            "epoch": 1504479900,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512300
+          },
+          "estimated_departure_time": {
+            "epoch": 1504480980,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:23上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513380
+          },
+          "actual_departure_time": {
+            "epoch": 1504481251,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "08:27上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513651
+          },
+          "departure_delay": 1080,
+          "filed_arrival_time": {
+            "epoch": 1504487400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516200
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504489080,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:38上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517880
+          },
+          "actual_arrival_time": {
+            "epoch": 1504488402,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:26上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517202
+          },
+          "arrival_delay": 1080,
+          "status": "已著陸",
+          "progress_percent": 100,
+          "aircrafttype": "B738",
+          "full_aircrafttype": "B738",
+          "inbound_faFlightID": "ESR594-1504285800-schedule-0001",
+          "adhoc": false
+        },
+        {
+          "ident": "PAL896",
+          "faFlightID": "PAL896-1504308600-schedule-0003",
+          "airline": "PAL",
+          "flightnumber": "896",
+          "tailnumber": "RP-C9917",
+          "type": "Form_Airline",
+          "codeshares": "CAL9802",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RPLL",
+            "city": "菲律? ?尼拉(首都) PH",
+            "alternate_ident": "MNL",
+            "airport_name": "?尼拉尼?伊·阿基???机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 7800,
+          "filed_airspeed_kts": 273,
+          "distance_filed": 731,
+          "filed_departure_time": {
+            "epoch": 1504481400,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "07:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504510200
+          },
+          "estimated_departure_time": {
+            "epoch": 1504480680,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "07:18上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504509480
+          },
+          "actual_departure_time": {
+            "epoch": 1504481646,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "07:34上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504510446
+          },
+          "departure_delay": -720,
+          "filed_arrival_time": {
+            "epoch": 1504489200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518000
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504487708,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516508
+          },
+          "actual_arrival_time": {
+            "epoch": 1504487708,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516508
+          },
+          "arrival_delay": -2100,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA828",
+          "faFlightID": "EVA828-1504308600-schedule-0005",
+          "airline": "EVA",
+          "flightnumber": "828",
+          "tailnumber": "B-16212",
+          "type": "Form_Airline",
+          "codeshares": "CRK1828",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "VHHH",
+            "city": "中? 香港 HK",
+            "alternate_ident": "HKG",
+            "airport_name": "香港國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 4800,
+          "filed_airspeed_kts": 262,
+          "distance_filed": 501,
+          "filed_departure_time": {
+            "epoch": 1504481400,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "07:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504510200
+          },
+          "estimated_departure_time": {
+            "epoch": 1504482540,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "07:49上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511340
+          },
+          "actual_departure_time": {
+            "epoch": 1504482612,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "07:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504511412
+          },
+          "departure_delay": 240,
+          "filed_arrival_time": {
+            "epoch": 1504486200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515000
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504487323,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:08上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516123
+          },
+          "actual_arrival_time": {
+            "epoch": 1504487323,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:08上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516123
+          },
+          "arrival_delay": 420,
+          "status": "已抵達",
+          "progress_percent": 100,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        }
+      ]
+    },
+    "departures": {
+      "num_flights": 10,
+      "next_offset": 10,
+      "flights": [
+        {
+          "ident": "PAL895",
+          "faFlightID": "PAL895-1504316400-schedule-0000",
+          "airline": "PAL",
+          "flightnumber": "895",
+          "tailnumber": "RP-C9912",
+          "type": "Form_Airline",
+          "codeshares": "CAL9801",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "RPLL",
+            "city": "菲律? ?尼拉(首都) PH",
+            "alternate_ident": "MNL",
+            "airport_name": "?尼拉尼?伊·阿基???机?"
+          },
+          "filed_ete": 9600,
+          "filed_airspeed_kts": 224,
+          "distance_filed": 731,
+          "filed_departure_time": {
+            "epoch": 1504489200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518000
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489652,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:47上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518452
+          },
+          "actual_departure_time": {
+            "epoch": 1504489652,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:47上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518452
+          },
+          "departure_delay": -480,
+          "filed_arrival_time": {
+            "epoch": 1504498800,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "12:20下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504527600
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504499252,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "12:27下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528052
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -480,
+          "status": "途中",
+          "progress_percent": 1,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "NCT181",
+          "faFlightID": "NCT181-1504316400-schedule-0001",
+          "airline": "NCT",
+          "flightnumber": "181",
+          "tailnumber": "HS-XBB",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "VTBD",
+            "city": "Bangkok",
+            "alternate_ident": "DMK",
+            "airport_name": "廊曼??机?"
+          },
+          "filed_ete": 11700,
+          "filed_airspeed_kts": 376,
+          "distance_filed": 1548,
+          "filed_departure_time": {
+            "epoch": 1504489200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518000
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489530,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518330
+          },
+          "actual_departure_time": {
+            "epoch": 1504489530,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518330
+          },
+          "departure_delay": 330,
+          "filed_arrival_time": {
+            "epoch": 1504500900,
+            "tz": "+07",
+            "dow": "星期一",
+            "time": "11:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504526100
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504501230,
+            "tz": "+07",
+            "dow": "星期一",
+            "time": "12:00下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504526430
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 330,
+          "status": "途中",
+          "progress_percent": 2,
+          "aircrafttype": "B772",
+          "full_aircrafttype": "B772",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA726",
+          "faFlightID": "EVA726-1504315200-schedule-0001",
+          "airline": "EVA",
+          "flightnumber": "726",
+          "tailnumber": "B-16227",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "ZBYN",
+            "city": "山西 太原 CN",
+            "alternate_ident": "TYN",
+            "airport_name": "太原武宿??机?"
+          },
+          "filed_ete": 10800,
+          "filed_airspeed_kts": 264,
+          "distance_filed": 1012,
+          "filed_departure_time": {
+            "epoch": 1504488000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489320,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:42上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518120
+          },
+          "actual_departure_time": {
+            "epoch": 1504489422,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:43上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518222
+          },
+          "departure_delay": 240,
+          "filed_arrival_time": {
+            "epoch": 1504498800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "12:20下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504527600
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504499280,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "12:28下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528080
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 240,
+          "status": "途中",
+          "progress_percent": 3,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA215",
+          "faFlightID": "EVA215-1504315500-schedule-0000",
+          "airline": "EVA",
+          "flightnumber": "215",
+          "tailnumber": "B-16720",
+          "type": "Form_Airline",
+          "codeshares": "SIA5803,AIC7059",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "WSSS",
+            "city": "新加坡 新加坡/樟宜 SG",
+            "alternate_ident": "SIN",
+            "airport_name": "新加坡樟宜机?"
+          },
+          "filed_ete": 14700,
+          "filed_airspeed_kts": 395,
+          "distance_filed": 2004,
+          "filed_departure_time": {
+            "epoch": 1504488300,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:25上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517100
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489140,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:39上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517940
+          },
+          "actual_departure_time": {
+            "epoch": 1504489207,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518007
+          },
+          "departure_delay": -180,
+          "filed_arrival_time": {
+            "epoch": 1504503000,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:30下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504531800
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504503060,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:31下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504531860
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -180,
+          "status": "途中",
+          "progress_percent": 4,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA271",
+          "faFlightID": "EVA271-1504315200-schedule-0000",
+          "airline": "EVA",
+          "flightnumber": "271",
+          "tailnumber": "B-16710",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "RPLL",
+            "city": "菲律? ?尼拉(首都) PH",
+            "alternate_ident": "MNL",
+            "airport_name": "?尼拉尼?伊·阿基???机?"
+          },
+          "filed_ete": 7200,
+          "filed_airspeed_kts": 273,
+          "distance_filed": 731,
+          "filed_departure_time": {
+            "epoch": 1504488000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489020,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:37上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517820
+          },
+          "actual_departure_time": {
+            "epoch": 1504489076,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:37上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517876
+          },
+          "departure_delay": -180,
+          "filed_arrival_time": {
+            "epoch": 1504495200,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "11:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504524000
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504494960,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "11:16上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504523760
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -180,
+          "status": "途中",
+          "progress_percent": 12,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        },
+        {
+          "ident": "CAL771",
+          "faFlightID": "CAL771-1504314900-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "771",
+          "tailnumber": "B-18001",
+          "type": "Form_Airline",
+          "codeshares": "DAL7726,GIA9983",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "WADD",
+            "city": "丹帕沙 ID",
+            "alternate_ident": "DPS",
+            "airport_name": "伍拉·賴國際機場"
+          },
+          "filed_ete": 18900,
+          "filed_airspeed_kts": 381,
+          "distance_filed": 2375,
+          "filed_departure_time": {
+            "epoch": 1504487700,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516500
+          },
+          "estimated_departure_time": {
+            "epoch": 1504488900,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:35上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517700
+          },
+          "actual_departure_time": {
+            "epoch": 1504488959,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:35上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517759
+          },
+          "departure_delay": 0,
+          "filed_arrival_time": {
+            "epoch": 1504506600,
+            "tz": "WITA",
+            "dow": "星期一",
+            "time": "02:30下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504535400
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504505040,
+            "tz": "WITA",
+            "dow": "星期一",
+            "time": "02:04下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504533840
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1560,
+          "status": "途中",
+          "progress_percent": 5,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        },
+        {
+          "ident": "CAL152",
+          "faFlightID": "CAL152-1504314600-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "152",
+          "tailnumber": "B-18905",
+          "type": "Form_Airline",
+          "codeshares": "JAL5104",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "RJBB",
+            "city": "泉佐野市 JP",
+            "alternate_ident": "KIX",
+            "airport_name": "?西??机?"
+          },
+          "filed_ete": 9000,
+          "filed_airspeed_kts": 345,
+          "distance_filed": 1059,
+          "filed_departure_time": {
+            "epoch": 1504487400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516200
+          },
+          "estimated_departure_time": {
+            "epoch": 1504488780,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:33上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517580
+          },
+          "actual_departure_time": {
+            "epoch": 1504488810,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:33上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517610
+          },
+          "departure_delay": 240,
+          "filed_arrival_time": {
+            "epoch": 1504496400,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "12:40下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528800
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504495620,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "12:27下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528020
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -780,
+          "status": "途中",
+          "progress_percent": 14,
+          "aircrafttype": "A359",
+          "full_aircrafttype": "A359",
+          "adhoc": false
+        },
+        {
+          "ident": "AMU619",
+          "faFlightID": "AMU619-1504315200-schedule-0000",
+          "airline": "AMU",
+          "flightnumber": "619",
+          "tailnumber": "B-MCE",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "VMMC",
+            "city": "中? 澳? MO",
+            "alternate_ident": "MFM",
+            "airport_name": "澳門國際機場"
+          },
+          "filed_ete": 6300,
+          "filed_airspeed_kts": 219,
+          "distance_filed": 525,
+          "filed_departure_time": {
+            "epoch": 1504488000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504488000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516800
+          },
+          "actual_departure_time": {
+            "epoch": 1504488528,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:28上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517328
+          },
+          "departure_delay": 528,
+          "filed_arrival_time": {
+            "epoch": 1504494300,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "11:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504523100
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504493520,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:52上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504522320
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -780,
+          "status": "途中",
+          "progress_percent": 25,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "APJ22",
+          "faFlightID": "APJ22-1504314900-schedule-0000",
+          "airline": "APJ",
+          "flightnumber": "22",
+          "tailnumber": "JA819P",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "RJBB",
+            "city": "泉佐野市 JP",
+            "alternate_ident": "KIX",
+            "airport_name": "?西??机?"
+          },
+          "filed_ete": 8700,
+          "filed_airspeed_kts": 335,
+          "distance_filed": 1059,
+          "filed_departure_time": {
+            "epoch": 1504487700,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516500
+          },
+          "estimated_departure_time": {
+            "epoch": 1504486980,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:03上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515780
+          },
+          "actual_departure_time": {
+            "epoch": 1504488262,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:24上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517062
+          },
+          "departure_delay": -720,
+          "filed_arrival_time": {
+            "epoch": 1504496400,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "12:40下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528800
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504496160,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "12:36下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504528560
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -840,
+          "status": "途中",
+          "progress_percent": 19,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "inbound_faFlightID": "APJ859-1504299300-schedule-0000",
+          "adhoc": false
+        },
+        {
+          "ident": "CAL721",
+          "faFlightID": "CAL721-1504313400-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "721",
+          "tailnumber": "B-18002",
+          "type": "Form_Airline",
+          "codeshares": "DAL7736,MAS5601,HAL2821",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "WMKK",
+            "city": "雪邦 MY",
+            "alternate_ident": "KUL",
+            "airport_name": "吉隆坡??机?"
+          },
+          "filed_ete": 16200,
+          "filed_airspeed_kts": 376,
+          "distance_filed": 2019,
+          "filed_departure_time": {
+            "epoch": 1504486200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515000
+          },
+          "estimated_departure_time": {
+            "epoch": 1504488060,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:21上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516860
+          },
+          "actual_departure_time": {
+            "epoch": 1504488121,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:22上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516921
+          },
+          "departure_delay": 1020,
+          "filed_arrival_time": {
+            "epoch": 1504502400,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:20下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504531200
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504502040,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:14下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504530840
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -360,
+          "status": "途中",
+          "progress_percent": 12,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        }
+      ]
+    },
+    "enroute": {
+      "num_flights": 10,
+      "next_offset": 10,
+      "flights": [
+        {
+          "ident": "CAL678",
+          "faFlightID": "CAL678-1504311600-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "678",
+          "tailnumber": "B-18353",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "VHHH",
+            "city": "中? 香港 HK",
+            "alternate_ident": "HKG",
+            "airport_name": "香港國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 5400,
+          "filed_airspeed_kts": 262,
+          "distance_filed": 501,
+          "filed_departure_time": {
+            "epoch": 1504484400,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513200
+          },
+          "estimated_departure_time": {
+            "epoch": 1504485480,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:38上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514280
+          },
+          "actual_departure_time": {
+            "epoch": 1504485537,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "08:38上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514337
+          },
+          "departure_delay": 0,
+          "filed_arrival_time": {
+            "epoch": 1504489800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518600
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490178,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:56上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518978
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -180,
+          "status": "途中",
+          "progress_percent": 91,
+          "aircrafttype": "A333",
+          "full_aircrafttype": "A333",
+          "adhoc": false
+        },
+        {
+          "ident": "CES2009",
+          "faFlightID": "CES2009-1504312800-schedule-0001",
+          "airline": "CES",
+          "flightnumber": "2009",
+          "tailnumber": "B-6797",
+          "type": "Form_Airline",
+          "codeshares": "MDA5004",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSNB",
+            "city": "浙江 宁波 CN",
+            "alternate_ident": "NGB",
+            "airport_name": "寧波櫟社國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 5700,
+          "filed_airspeed_kts": 172,
+          "distance_filed": 329,
+          "filed_departure_time": {
+            "epoch": 1504485600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514400
+          },
+          "estimated_departure_time": {
+            "epoch": 1504486020,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:47上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514820
+          },
+          "actual_departure_time": {
+            "epoch": 1504486138,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:48上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514938
+          },
+          "departure_delay": -300,
+          "filed_arrival_time": {
+            "epoch": 1504491300,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520100
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490280,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:58上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519080
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -720,
+          "status": "途中",
+          "progress_percent": 88,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "APJ23",
+          "faFlightID": "APJ23-1504308600-schedule-0002",
+          "airline": "APJ",
+          "flightnumber": "23",
+          "tailnumber": "JA808P",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RJBB",
+            "city": "泉佐野市 JP",
+            "alternate_ident": "KIX",
+            "airport_name": "?西??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 9000,
+          "filed_airspeed_kts": 325,
+          "distance_filed": 1059,
+          "filed_departure_time": {
+            "epoch": 1504481400,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "08:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504481040,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "08:24上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504513440
+          },
+          "actual_departure_time": {
+            "epoch": 1504482000,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "08:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514400
+          },
+          "departure_delay": -360,
+          "filed_arrival_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490340,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:59上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519140
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -660,
+          "status": "途中",
+          "progress_percent": 93,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "inbound_faFlightID": "APJ36-1504245600-schedule-0000",
+          "adhoc": false
+        },
+        {
+          "ident": "SDR209",
+          "faFlightID": "SDR209-1504313400-schedule-0001",
+          "airline": "SDR",
+          "flightnumber": "209",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSFZ",
+            "city": "福州市 CN",
+            "alternate_ident": "FOC",
+            "airport_name": "福州????机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 3600,
+          "filed_airspeed_kts": 75,
+          "distance_filed": 115,
+          "filed_departure_time": {
+            "epoch": 1504486200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515000
+          },
+          "estimated_departure_time": {
+            "epoch": 1504486800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515600
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504489800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518600
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "73F",
+          "full_aircrafttype": "73F",
+          "adhoc": false
+        },
+        {
+          "ident": "CXA887",
+          "faFlightID": "CXA887-1504313100-schedule-0000",
+          "airline": "CXA",
+          "flightnumber": "887",
+          "tailnumber": "B-5653",
+          "type": "Form_Airline",
+          "codeshares": "MDA5100",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSAM",
+            "city": "??市 CN",
+            "alternate_ident": "XMN",
+            "airport_name": "??高崎??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 4500,
+          "filed_airspeed_kts": 103,
+          "distance_filed": 198,
+          "filed_departure_time": {
+            "epoch": 1504485900,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514700
+          },
+          "estimated_departure_time": {
+            "epoch": 1504486500,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515300
+          },
+          "actual_departure_time": {
+            "epoch": 1504486556,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515356
+          },
+          "departure_delay": -900,
+          "filed_arrival_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504490820,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:07上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519620
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -480,
+          "status": "途中",
+          "progress_percent": 75,
+          "aircrafttype": "B738",
+          "full_aircrafttype": "B738",
+          "adhoc": false
+        },
+        {
+          "ident": "CES2047",
+          "faFlightID": "CES2047-1504312500-schedule-0000",
+          "airline": "CES",
+          "flightnumber": "2047",
+          "tailnumber": "B-6013",
+          "type": "Form_Airline",
+          "codeshares": "CAL8026",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ZSCN",
+            "city": "南昌市 CN",
+            "alternate_ident": "KHN",
+            "airport_name": "南昌昌北??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 7560,
+          "filed_airspeed_kts": 169,
+          "distance_filed": 420,
+          "filed_departure_time": {
+            "epoch": 1504485300,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:35上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514100
+          },
+          "estimated_departure_time": {
+            "epoch": 1504485840,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:44上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514640
+          },
+          "actual_departure_time": {
+            "epoch": 1504485840,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:44上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504514640
+          },
+          "departure_delay": -360,
+          "filed_arrival_time": {
+            "epoch": 1504492860,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:41上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504521660
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504491180,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:13上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519980
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1320,
+          "status": "途中",
+          "progress_percent": 74,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "CAL113",
+          "faFlightID": "CAL113-1504310400-schedule-0000",
+          "airline": "CAL",
+          "flightnumber": "113",
+          "tailnumber": "B-18660",
+          "type": "Form_Airline",
+          "codeshares": "JAL5119",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RJOA",
+            "city": "三原市 JP",
+            "alternate_ident": "HIJ",
+            "airport_name": "??机?"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 9000,
+          "filed_airspeed_kts": 311,
+          "distance_filed": 953,
+          "filed_departure_time": {
+            "epoch": 1504483260,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "09:01上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515660
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483560,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "09:06上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515960
+          },
+          "actual_departure_time": {
+            "epoch": 1504483681,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "09:08上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516081
+          },
+          "departure_delay": -420,
+          "filed_arrival_time": {
+            "epoch": 1504492260,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:31上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504521060
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504491521,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:18上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520321
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1620,
+          "status": "途中",
+          "progress_percent": 77,
+          "aircrafttype": "B738",
+          "full_aircrafttype": "B738",
+          "adhoc": false
+        },
+        {
+          "ident": "TTW231",
+          "faFlightID": "TTW231-1504314600-schedule-0000",
+          "airline": "TTW",
+          "flightnumber": "231",
+          "tailnumber": "B-50003",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "ROAH",
+            "city": "那霸市 JP",
+            "alternate_ident": "OKA",
+            "airport_name": "那霸機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 4500,
+          "filed_airspeed_kts": 224,
+          "distance_filed": 407,
+          "filed_departure_time": {
+            "epoch": 1504487400,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "10:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504487236,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "10:07上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519636
+          },
+          "actual_departure_time": {
+            "epoch": 1504487236,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "10:07上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519636
+          },
+          "departure_delay": -164,
+          "filed_arrival_time": {
+            "epoch": 1504491900,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:25上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520700
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504491736,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:22上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520536
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -164,
+          "status": "途中",
+          "progress_percent": 56,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "CPA421",
+          "faFlightID": "CPA421-1504311300-schedule-0000",
+          "airline": "CPA",
+          "flightnumber": "421",
+          "tailnumber": "B-LAR",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RKSI",
+            "city": "?? 首?仁川 KR",
+            "alternate_ident": "ICN",
+            "airport_name": "仁川國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 8220,
+          "filed_airspeed_kts": 297,
+          "distance_filed": 910,
+          "filed_departure_time": {
+            "epoch": 1504484100,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516500
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483440,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:04上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515840
+          },
+          "actual_departure_time": {
+            "epoch": 1504484618,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:23上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517018
+          },
+          "departure_delay": -660,
+          "filed_arrival_time": {
+            "epoch": 1504492320,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:32上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504521120
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504491780,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:23上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520580
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1320,
+          "status": "途中",
+          "progress_percent": 72,
+          "aircrafttype": "A333",
+          "full_aircrafttype": "A333",
+          "adhoc": false
+        },
+        {
+          "ident": "JJA2601",
+          "faFlightID": "JJA2601-1504310700-schedule-0000",
+          "airline": "JJA",
+          "flightnumber": "2601",
+          "tailnumber": "HL8297",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RKSI",
+            "city": "?? 首?仁川 KR",
+            "alternate_ident": "ICN",
+            "airport_name": "仁川國際機場"
+          },
+          "destination": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "filed_ete": 8400,
+          "filed_airspeed_kts": 317,
+          "distance_filed": 910,
+          "filed_departure_time": {
+            "epoch": 1504483500,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515900
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483500,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515900
+          },
+          "actual_departure_time": {
+            "epoch": 1504483500,
+            "tz": "KST",
+            "dow": "星期一",
+            "time": "09:05上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515900
+          },
+          "departure_delay": 0,
+          "filed_arrival_time": {
+            "epoch": 1504491900,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:25上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520700
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504491900,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:25上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504520700
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 0,
+          "status": "途中",
+          "progress_percent": 74,
+          "aircrafttype": "737",
+          "full_aircrafttype": "737",
+          "inbound_faFlightID": "JJA2502-1504282800-schedule-0000",
+          "adhoc": false
+        }
+      ]
+    },
+    "scheduled": {
+      "num_flights": 10,
+      "next_offset": 10,
+      "flights": [
+        {
+          "ident": "EVA668",
+          "faFlightID": "EVA668-1504310400-schedule-0005",
+          "airline": "EVA",
+          "flightnumber": "668",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "PANC",
+            "city": "Anchorage, AK",
+            "alternate_ident": "",
+            "airport_name": "泰德·史蒂文斯安克雷奇國際機場"
+          },
+          "filed_ete": 30840,
+          "filed_airspeed_kts": 456,
+          "distance_filed": 4677,
+          "filed_departure_time": {
+            "epoch": 1504483200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512000
+          },
+          "estimated_departure_time": {
+            "epoch": 1504483860,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:11上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512660
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504514040,
+            "tz": "AKDT",
+            "dow": "星期一",
+            "time": "12:34上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504485240
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504514700,
+            "tz": "AKDT",
+            "dow": "星期一",
+            "time": "12:45上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504485900
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 660,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "B744",
+          "full_aircrafttype": "B744",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA193",
+          "faFlightID": "EVA193-1504311300-schedule-0000",
+          "airline": "EVA",
+          "flightnumber": "193",
+          "type": "Form_Airline",
+          "codeshares": "UIA193,CCA5542",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "ZUCK",
+            "city": "重? 重?江北 CN",
+            "alternate_ident": "CKG",
+            "airport_name": "重?江北??机?"
+          },
+          "filed_ete": 10080,
+          "filed_airspeed_kts": 248,
+          "distance_filed": 951,
+          "filed_departure_time": {
+            "epoch": 1504484100,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:15上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512900
+          },
+          "estimated_departure_time": {
+            "epoch": 1504484160,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "08:16上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504512960
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "departure_delay": 60,
+          "filed_arrival_time": {
+            "epoch": 1504494180,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "11:03上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504522980
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504494240,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "11:04上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504523040
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1260,
+          "status": "正在滑行",
+          "progress_percent": -1,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA807",
+          "faFlightID": "EVA807-1504314000-schedule-0003",
+          "airline": "EVA",
+          "flightnumber": "807",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "VMMC",
+            "city": "中? 澳? MO",
+            "alternate_ident": "MFM",
+            "airport_name": "澳門國際機場"
+          },
+          "filed_ete": 5400,
+          "filed_airspeed_kts": 249,
+          "distance_filed": 525,
+          "filed_departure_time": {
+            "epoch": 1504486800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504515600
+          },
+          "estimated_departure_time": {
+            "epoch": 1504487400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:10上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516200
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504492200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504521000
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504492800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504521600
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA391",
+          "faFlightID": "EVA391-1504315200-schedule-0000",
+          "airline": "EVA",
+          "flightnumber": "391",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "VVTS",
+            "city": "越南 胡志明市(首都) VN",
+            "alternate_ident": "SGN",
+            "airport_name": "Tan Son Nhat Int'l"
+          },
+          "filed_ete": 10800,
+          "filed_airspeed_kts": 358,
+          "distance_filed": 1373,
+          "filed_departure_time": {
+            "epoch": 1504488000,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504516800
+          },
+          "estimated_departure_time": {
+            "epoch": 1504488600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517400
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504498800,
+            "tz": "+07",
+            "dow": "星期一",
+            "time": "11:20上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504524000
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504499400,
+            "tz": "+07",
+            "dow": "星期一",
+            "time": "11:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504524600
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA227",
+          "faFlightID": "EVA227-1504315800-schedule-0000",
+          "airline": "EVA",
+          "flightnumber": "227",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "WMKK",
+            "city": "雪邦 MY",
+            "alternate_ident": "KUL",
+            "airport_name": "吉隆坡??机?"
+          },
+          "filed_ete": 15900,
+          "filed_airspeed_kts": 370,
+          "distance_filed": 2019,
+          "filed_departure_time": {
+            "epoch": 1504488600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517400
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518000
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504504500,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:55下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504533300
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504505100,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "02:05下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504533900
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A333",
+          "full_aircrafttype": "A333",
+          "adhoc": false
+        },
+        {
+          "ident": "APJ922",
+          "faFlightID": "APJ922-1504315800-schedule-0001",
+          "airline": "APJ",
+          "flightnumber": "922",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "ROAH",
+            "city": "那霸市 JP",
+            "alternate_ident": "OKA",
+            "airport_name": "那霸機場"
+          },
+          "filed_ete": 5100,
+          "filed_airspeed_kts": 202,
+          "distance_filed": 407,
+          "filed_departure_time": {
+            "epoch": 1504488600,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504517400
+          },
+          "estimated_departure_time": {
+            "epoch": 1504489200,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:40上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518000
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504493700,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "11:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504526100
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504494300,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "12:05下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504526700
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "AXM1511",
+          "faFlightID": "AXM1511-1504317300-schedule-0001",
+          "airline": "AXM",
+          "flightnumber": "1511",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "WBKK",
+            "city": "Kota Kinabalu, Sabah",
+            "alternate_ident": "BKI",
+            "airport_name": "亞庇國際機場"
+          },
+          "filed_ete": 11460,
+          "filed_airspeed_kts": 340,
+          "distance_filed": 1368,
+          "filed_departure_time": {
+            "epoch": 1504490100,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518900
+          },
+          "estimated_departure_time": {
+            "epoch": 1504490100,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:55上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518900
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "departure_delay": 0,
+          "filed_arrival_time": {
+            "epoch": 1504501560,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:06下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504530360
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504501560,
+            "tz": "+08",
+            "dow": "星期一",
+            "time": "01:06下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504530360
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -540,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A320",
+          "full_aircrafttype": "A320",
+          "adhoc": false
+        },
+        {
+          "ident": "EVA138",
+          "faFlightID": "EVA138-1504317000-schedule-0002",
+          "airline": "EVA",
+          "flightnumber": "138",
+          "type": "Form_Airline",
+          "codeshares": "ANA5814",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "RJCH",
+            "city": "函館市 JP",
+            "alternate_ident": "HKD",
+            "airport_name": "函館機場"
+          },
+          "filed_ete": 12000,
+          "filed_airspeed_kts": 382,
+          "distance_filed": 1608,
+          "filed_departure_time": {
+            "epoch": 1504489800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518600
+          },
+          "estimated_departure_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "filed_arrival_time": {
+            "epoch": 1504501800,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "02:10下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504534200
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504502400,
+            "tz": "JST",
+            "dow": "星期一",
+            "time": "02:20下午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504534800
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": 600,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A321",
+          "full_aircrafttype": "A321",
+          "adhoc": false
+        },
+        {
+          "ident": "CPA469",
+          "faFlightID": "CPA469-1504317600-schedule-0000",
+          "airline": "CPA",
+          "flightnumber": "469",
+          "type": "Form_Airline",
+          "codeshares": "HDA5469",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "VHHH",
+            "city": "中? 香港 HK",
+            "alternate_ident": "HKG",
+            "airport_name": "香港國際機場"
+          },
+          "filed_ete": 5400,
+          "filed_airspeed_kts": 218,
+          "distance_filed": 501,
+          "filed_departure_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "estimated_departure_time": {
+            "epoch": 1504490400,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:00上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519200
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "departure_delay": 0,
+          "filed_arrival_time": {
+            "epoch": 1504495800,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "11:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504524600
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504495800,
+            "tz": "HKT",
+            "dow": "星期一",
+            "time": "11:30上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504524600
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1200,
+          "status": "已排班",
+          "progress_percent": -1,
+          "aircrafttype": "A333",
+          "full_aircrafttype": "A333",
+          "adhoc": false
+        },
+        {
+          "ident": "UAL872",
+          "faFlightID": "UAL872-1504317182-airline-0342",
+          "airline": "UAL",
+          "flightnumber": "872",
+          "tailnumber": "N2142U",
+          "type": "Form_Airline",
+          "blocked": false,
+          "diverted": false,
+          "cancelled": false,
+          "origin": {
+            "code": "RCTP",
+            "city": "台灣臺北 TW",
+            "alternate_ident": "TPE",
+            "airport_name": "臺灣桃園國際機場"
+          },
+          "destination": {
+            "code": "KSFO",
+            "city": "San Francisco, CA",
+            "alternate_ident": "",
+            "airport_name": "舊金山國際機場"
+          },
+          "filed_ete": 40020,
+          "route": "3800N/13000W ALLBE PIRAT OSI",
+          "filed_altitude": 290,
+          "display_filed_altitude": "29,000 呎",
+          "filed_airspeed_kts": 482,
+          "distance_filed": 6547,
+          "filed_departure_time": {
+            "epoch": 1504489800,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "09:50上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504518600
+          },
+          "estimated_departure_time": {
+            "epoch": 1504490640,
+            "tz": "CST",
+            "dow": "星期一",
+            "time": "10:04上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504519440
+          },
+          "actual_departure_time": {
+            "epoch": 0
+          },
+          "departure_delay": -600,
+          "filed_arrival_time": {
+            "epoch": 1504529820,
+            "tz": "PDT",
+            "dow": "星期一",
+            "time": "05:57上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504504620
+          },
+          "estimated_arrival_time": {
+            "epoch": 1504530660,
+            "tz": "PDT",
+            "dow": "星期一",
+            "time": "06:11上午",
+            "date": "2017年 09月 04日",
+            "localtime": 1504505460
+          },
+          "actual_arrival_time": {
+            "epoch": 0
+          },
+          "arrival_delay": -1620,
+          "status": "正在滑行",
+          "progress_percent": -1,
+          "aircrafttype": "B77W",
+          "full_aircrafttype": "B77W",
+          "inbound_faFlightID": "UAL871-1504157143-airline-0124",
+          "adhoc": false
+        }
+      ]
+    }
+  }
+}

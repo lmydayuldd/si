@@ -1,0 +1,35 @@
+package com.sidc.sits.api.tvchannel.request;
+
+import java.io.Serializable;
+
+public class TvChannelChangeRequest implements Serializable {
+	private static final long serialVersionUID = -7872811555805771941L;
+	private String roomNo;
+	private String channelNo;
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public String getChannelNo() {
+		return channelNo;
+	}
+
+	public TvChannelChangeRequest(String roomNo, String channelNo) {
+		super();
+		this.roomNo = roomNo;
+		this.channelNo = channelNo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TvChannelChangeRequest [roomNo=");
+		builder.append(roomNo);
+		builder.append(", channelNo=");
+		builder.append(channelNo);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

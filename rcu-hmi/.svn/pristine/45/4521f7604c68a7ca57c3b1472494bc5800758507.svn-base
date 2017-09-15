@@ -1,0 +1,11 @@
+package com.sidc.ra.server.udp.intf;
+
+import com.sidc.utils.exception.SiDCException;
+
+public interface UDPProtocolIntf {
+
+	public void execute() throws SiDCException;
+	
+	public void close() ;
+}
+

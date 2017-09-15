@@ -1,0 +1,111 @@
+package com.derex.cm.stb.api.request;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class StbOpenMovieRequest implements Serializable {
+	private static final long serialVersionUID = -6673600138829213445L;
+
+	private List<String> stbip;
+	private String type;
+	private String ip;
+	private String port;
+	private String filepath;
+	private String langfilepath;
+	private String hashvalue;
+	private boolean isavailable;
+	private int bookmarktime;
+	private String categoryid;
+	private int delayposttime;
+
+	public List<String> getStbip() {
+		return stbip;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public String getLangfilepath() {
+		return langfilepath;
+	}
+
+	public String getHashvalue() {
+		return hashvalue;
+	}
+
+	public boolean isIsavailable() {
+		return isavailable;
+	}
+
+	public int getBookmarktime() {
+		return bookmarktime;
+	}
+
+	public String getCategoryid() {
+		return categoryid;
+	}
+
+	public int getDelayposttime() {
+		return delayposttime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("StbOpenMovieRequest [stbip=");
+		builder.append(stbip);
+		builder.append(", type=");
+		builder.append(type);
+		builder.append(", ip=");
+		builder.append(ip);
+		builder.append(", port=");
+		builder.append(port);
+		builder.append(", filepath=");
+		builder.append(filepath);
+		builder.append(", langfilepath=");
+		builder.append(langfilepath);
+		builder.append(", hashvalue=");
+		builder.append(hashvalue);
+		builder.append(", isavailable=");
+		builder.append(isavailable);
+		builder.append(", bookmarktime=");
+		builder.append(bookmarktime);
+		builder.append(", categoryid=");
+		builder.append(categoryid);
+		builder.append(", delayposttime=");
+		builder.append(delayposttime);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public StbOpenMovieRequest(List<String> stbip, String type, String ip, String port, String filepath,
+			String langfilepath, String hashvalue, boolean isavailable, int bookmarktime, String categoryid,
+			int delayposttime) {
+		super();
+		this.stbip = stbip;
+		this.type = type;
+		this.ip = ip;
+		this.port = port;
+		this.filepath = filepath;
+		this.langfilepath = langfilepath;
+		this.hashvalue = hashvalue;
+		this.isavailable = isavailable;
+		this.bookmarktime = bookmarktime;
+		this.categoryid = categoryid;
+		this.delayposttime = delayposttime;
+	}
+
+}

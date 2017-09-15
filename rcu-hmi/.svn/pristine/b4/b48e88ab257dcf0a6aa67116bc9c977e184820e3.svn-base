@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+<head>    
+  <%@include file="/admin/pages/include/head.jsp" %> 
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <header class="main-header">
+    <%@include file="/admin/pages/include/header.jsp" %> 
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->  
+  <aside class="main-sidebar">
+    <%@include file="/admin/pages/include/left_menu.jsp" %> 
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <!-- Service Requests    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
+        <!-- SOS Info -->
+      </h1>
+      <!-- <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol> -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <!-- SOS 訊息 -->
+      <div class="row" id="list_sos">
+        <!-- 每個大格子 要增加就改這-->
+        
+        <!-- ./col -->
+      </div>
+     
+      <div class="row" >
+        <h3>
+          服務狀態
+        </h3>
+        <!-- dnd -->   
+        <div id="index_dnd">
+          
+        </div>
+        <!-- 房間清潔 -->   
+        <div id="index_make_up">
+          
+        </div>
+          
+        <!-- 客房服務 -->   
+        <div id="index_bulters">
+          
+        </div>
+      </div>
+      <!-- 飯店狀態 -->
+      <div class="row" >
+        <h3>
+          飯店狀態
+        </h3>
+        <!-- 房間總數   -->   
+        <div id="index_room_total_count">
+          
+        </div>
+        <!-- 尚有空房數 -->   
+        <div id="index_vacant_suites">
+          
+        </div>
+       
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <%@include file="/admin/pages/include/footer.jsp" %> 
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- Large modal -->
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal" >
+  <div class="modal-dialog modal-lg" role="document" style="left: 20%;">
+    <div class="modal-content">
+      <div class="col-md-6">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">Bordered Table</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table class="table table-bordered">
+              <tbody><tr>
+                <th style="width: 10px">#</th>
+                <th>Task</th>
+                <th>Progress</th>
+                <th style="width: 40px">Label</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>Update software</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-red">55%</span></td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>Clean database</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-yellow">70%</span></td>
+              </tr>
+            </tbody></table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+              <li><a href="#">«</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">»</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<!-- template start -->
+<!-- SOS 求救信號-->
+<script type="text/template" id="tpl_sos_list">
+  {{#if arr}}
+    <h3>
+      SOS
+    </h3>
+  {{/if}}
+  {{#each arr}}
+    <div class="col-lg-3 col-xs-6 area-sos-{{this}}">
+        <!-- small box -->
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>{{this}}</h3>
+          <!-- <p>SOS</p> -->
+        </div>
+        <div class="icon">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>  
+        <a href="javascript:void(0);" class="small-box-footer resolve-sos" data-index="{{this}}">
+          Resolve <i class="fa fa-check-square-o"></i>
+        </a>
+      </div>
+    </div>
+  {{/each}} 
+</script>
+<!-- dnd-->
+<script type="text/template" id="tpl_dnd">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{dndCount}}</h3>
+        <p>DND</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-bell-slash"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        More info <i class="fa fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+</script>
+<!-- 房間清潔-->
+<script type="text/template" id="tpl_make_up">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{makeUpRoomCount}}</h3>
+        <p>房間清潔</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-lightbulb-o"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        More info <i class="fa fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+</script>
+<!-- 管家服務-->
+<script type="text/template" id="tpl_bulters">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-blue">
+      <div class="inner">
+        <h3>{{bulterCount}}</h3>
+        <p>管家服務</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user-plus"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        More info <i class="fa fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+</script>
+
+<!-- 客房總數-->
+<script type="text/template" id="tpl_room_total_count">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{roomCount}}</h3>
+        <p>客房總數</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        More info <i class="fa fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+</script>
+<!-- 尚有空房數-->
+<script type="text/template" id="tpl_vacant_suites">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-blue">
+      <div class="inner">
+        <h3>{{vacantSuitesCount}}</h3>
+        <p>尚有空房數</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        More info <i class="fa fa-arrow-circle-right"></i>
+      </a>
+    </div>
+  </div>
+</script>
+<!-- template end -->
+<%@include file="/admin/pages/include/initial_script.jsp" %> 
+<script src="<%=request.getContextPath() %>/admin/js/index.js"></script>
+</html>

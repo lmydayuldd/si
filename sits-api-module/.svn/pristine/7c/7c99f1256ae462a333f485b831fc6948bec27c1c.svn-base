@@ -1,0 +1,87 @@
+package com.sidc.blackcore.api.sits.rcu.request;
+
+import java.io.Serializable;
+
+public class HvacCommandRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9181964397980554054L;
+	private String roomno;
+	private String ip;
+	private boolean isPower;
+	private int function;
+	private int speed;
+	private int temperature;
+
+	public HvacCommandRequest(String roomno, String ip, boolean isPower) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.roomno = roomno;
+		this.ip = ip;
+		this.isPower = isPower;
+	}
+
+	public HvacCommandRequest(String roomno, String ip, boolean isPower, int temperature) {
+		super();
+		this.roomno = roomno;
+		this.ip = ip;
+		this.isPower = isPower;
+		this.temperature = temperature;
+	}
+
+	public String getRoomno() {
+		return roomno;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public boolean isPower() {
+		return isPower;
+	}
+
+	public int getFunction() {
+		return function;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public int getTemperature() {
+		return temperature;
+	}
+
+	public String toString() {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("HvacCommandRequest [roomno=\n");
+		builder.append(roomno);
+		builder.append(", ip=\n");
+		builder.append(ip);
+		builder.append(", isPower=\n");
+		builder.append(isPower);
+		builder.append(", function=\n");
+		builder.append(1);
+		builder.append(", speed=\n");
+		builder.append(0);
+		builder.append(", temperature=\n");
+		builder.append(temperature);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public HvacCommandRequest(String roomno, String ip, boolean isPower, int function, int speed, int temperature) {
+		super();
+		this.roomno = roomno;
+		this.ip = ip;
+		this.isPower = isPower;
+		this.function = function;
+		this.speed = speed;
+		this.temperature = temperature;
+	}
+
+}

@@ -1,0 +1,149 @@
+package com.sidc.rcu.sdk.abs;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import com.derex.cm.stb.api.response.Apidocument;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.status.SystemStatus;
+import com.sidc.utils.time.JsonDateDeserializer;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public abstract class AbsHttpClient<T> {
+	private Gson gson = new Gson();
+	private String host;
+	private String url;
+	private String cookies;
+
+	private final static String USER_AGENT = "Mozilla/5.0";
+
+	public AbsHttpClient(String host, String url) {
+		super();
+		this.host = host;
+		this.url = url;
+		gson = new GsonBuilder().registerTypeAdapter(Date.class, new JsonDateDeserializer())
+				.setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+
+	}
+
+	public <T> T execute() throws SiDCException, Exception {
+
+		String request = request();
+
+		String json = send(request);
+
+		if (json == null) {
+			return null;
+		}
+
+		Object object = response(json);
+
+		return (T) object;
+
+	}
+
+	private String send(String request) throws SiDCException, Exception {
+
+		String result = "";
+
+		HttpPost httpPost = new HttpPost(host + url);
+		httpPost.setHeader("User-Agent", USER_AGENT);
+		httpPost.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+
+		httpPost.setHeader("Connection", "keep-alive");
+		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		StringEntity entity = new StringEntity(request, "utf-8");
+		entity.setContentEncoding("UTF-8");
+		entity.setContentType("application/json");
+		httpPost.setEntity(entity);
+
+		HttpResponse response = null;
+		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5 * 1000).build();
+		HttpClient httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
+
+		try {
+			response = httpClient.execute(httpPost);
+		} catch (ClientProtocolException e) {
+			throw new SiDCException(SystemStatus.HTTP_CONNECTION_FAIL, "Fail to connect to SiDC Server.");
+		} catch (IOException e) {
+			throw new SiDCException(SystemStatus.HTTP_CONNECTION_FAIL, "Fail to connect to SiDC Server.");
+		}
+
+		if (response.getStatusLine().getStatusCode() == HttpStatus.SC_NOT_FOUND) {
+			throw new SiDCException(SystemStatus.HTTP_404_FAIL, "Fail to connect to API of SiDC Server.");
+		} else if (response.getStatusLine().getStatusCode() == HttpStatus.SC_METHOD_NOT_ALLOWED) {
+			throw new SiDCException(SystemStatus.HTTP_405_FAIL, "Request is wrong method.");
+		} else if (response.getStatusLine().getStatusCode() == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+			throw new SiDCException(SystemStatus.HTTP_500_FAIL, "SiDC Server is an internal error.");
+		}
+
+		HttpEntity resultEnity = response.getEntity();
+		if (resultEnity == null) {
+			throw new Exception("Request is empty.");
+		}
+
+		InputStream instreams = resultEnity.getContent();
+		result = parseStreamToString(instreams);
+
+		Apidocument message = gson.fromJson(result, Apidocument.class);
+
+		if (message.getStatus() != 0) {
+			throw new SiDCException(message.getStatus(), message.getMessage());
+		}
+
+		String content = (message.getData() == null) ? null : gson.toJson(message.getData());
+
+		return content;
+	}
+
+	protected abstract String request() throws Exception;
+
+	protected abstract Object response(String json) throws Exception;
+
+	protected Gson getGson() {
+		return gson;
+	}
+
+	public static String parseStreamToString(InputStream in) throws Exception {
+
+		ByteArrayOutputStream outStream = null;
+
+		String result = null;
+		try {
+			outStream = new ByteArrayOutputStream();
+			byte[] data = new byte[4096];
+			int count = -1;
+			while ((count = in.read(data, 0, 4096)) != -1)
+				outStream.write(data, 0, count);
+
+			data = null;
+
+			result = new String(outStream.toByteArray(), "UTF-8");
+
+		} finally {
+			outStream.flush();
+			outStream.close();
+		}
+
+		return result;
+	}
+}

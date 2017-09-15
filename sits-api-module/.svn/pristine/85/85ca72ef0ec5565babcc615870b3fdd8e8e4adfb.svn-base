@@ -1,0 +1,74 @@
+package com.sidc.dao.rcu.command.response;
+
+import java.io.Serializable;
+
+/**
+ * 
+ * @author Allen Huang
+ *
+ */
+public class RcuModelHVAC implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2791412987990458576L;
+	private boolean isPower;
+	private int function;
+	private int temperature;
+	private int speed;
+	private int timer;
+	private byte address;
+	public RcuModelHVAC(boolean isPower, int function, int temperature, int speed, int timer, byte address) {
+		// TODO Auto-generated constructor stub
+		this.isPower = isPower;
+		this.function = function;
+		this.temperature = temperature;
+		this.speed = speed;
+		this.timer = timer;
+		this.address = address;
+	}
+	
+	public boolean isPower() {
+		return isPower;
+	}
+	
+	public int getFunction() {
+		return function;
+	}
+	
+	public int getTemperature() {
+		return temperature;
+	}
+	
+	public int getSpeed() {
+		return speed;
+	}
+	
+	public int getTimer() {
+		return timer;
+	}
+	
+	public byte getAddress() {
+		return address;
+	}
+	
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("RcuModelHVAC [isPower=\n");
+		builder.append(isPower);
+		builder.append(", function=\n");
+		builder.append(function);
+		builder.append(", temperature=\n");
+		builder.append(temperature);
+		builder.append(", speed=\n");
+		builder.append(speed);
+		builder.append(", timer");
+		builder.append(timer);
+		builder.append(", address=\n");
+		builder.append(address);
+		builder.append("]");
+		return builder.toString();
+	}
+}

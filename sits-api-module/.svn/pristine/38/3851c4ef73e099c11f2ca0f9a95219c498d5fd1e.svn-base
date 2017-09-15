@@ -1,0 +1,106 @@
+/**
+ * 
+ */
+package com.sidc.blackcore.api.agent.request;
+
+import java.io.Serializable;
+
+
+
+/**
+ * @author Joe
+ *
+ */
+public class CheckInRequest implements Serializable {
+
+	private static final long serialVersionUID = 7830794728149833025L;
+
+	private String roomNo;
+	private String checkInDate;
+	private String estimateCheckOutDate;
+	private String customerName;
+	private String guestNo;
+	private String firstName;
+	private String lastName;
+	private String birthd;
+	private int birthd_month;
+	private int birth_day;
+
+	public CheckInRequest(String roomNo,String checkInDate,String estimateCheckOutDate,String customerName,String guestNo,String firstName,String lastName,String birthd) {
+		super();
+		this.roomNo = roomNo;
+		this.checkInDate = checkInDate;
+		this.estimateCheckOutDate = estimateCheckOutDate;
+		this.customerName = customerName;
+		this.guestNo = guestNo;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthd = birthd;	
+	}
+	
+	public void setBirthd_month(int birthd_month) {
+		this.birthd_month = birthd_month;
+	}
+
+	public void setBirth_day(int birth_day) {
+		this.birth_day = birth_day;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getBirthd() {
+		return birthd;
+	}
+
+	public int getBirthd_month() {
+		return birthd_month;
+	}
+
+	public int getBirth_day() {
+		return birth_day;
+	}
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public String getCheckInDate() {
+		return checkInDate;
+	}
+
+	public String getEstimateCheckOutDate() {
+		return estimateCheckOutDate;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+	
+	public String getGuestNo() {
+		return guestNo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CheckInRequest [roomNo=\n");
+		builder.append(roomNo);
+		builder.append(", checkInDate=\n");
+		builder.append(checkInDate);
+		builder.append(", estimateCheckOutDate=\n");
+		builder.append(estimateCheckOutDate);
+		builder.append(", customerName=\n");
+		builder.append(customerName);
+		builder.append(", guestNo=\n");
+		builder.append(guestNo);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+}

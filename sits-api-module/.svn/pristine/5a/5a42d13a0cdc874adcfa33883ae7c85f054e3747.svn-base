@@ -1,0 +1,48 @@
+package com.sidc.blackcore.api.sits.tvchannel.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TvListBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7969990656813218743L;
+	private String catalogue;
+	private String catalogueId;
+	private List<TvChannelListBean> channelList = new ArrayList<TvChannelListBean>();
+
+	public String getCatalogue() {
+		return catalogue;
+	}
+
+	public String getCatalogueId() {
+		return catalogueId;
+	}
+
+	public List<TvChannelListBean> getChannelList() {
+		return channelList;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TvListBean [catalogue=");
+		builder.append(catalogue);
+		builder.append(", catalogueId=");
+		builder.append(catalogueId);
+		builder.append(", channelList=");
+		builder.append(channelList);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public TvListBean(String catalogue, String catalogueId, List<TvChannelListBean> channelList) {
+		super();
+		this.catalogue = catalogue;
+		this.catalogueId = catalogueId;
+		this.channelList = channelList;
+	}
+
+}

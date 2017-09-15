@@ -1,0 +1,42 @@
+package com.sidc.rcu.hmi.websocket;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import javax.websocket.ClientEndpoint;
+import javax.websocket.ContainerProvider;
+import javax.websocket.DeploymentException;
+import javax.websocket.OnClose;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.WebSocketContainer;
+
+@ClientEndpoint
+public class WebSocketClient {
+
+	private Session session;
+
+	public void connect(final String uri) throws DeploymentException, IOException, URISyntaxException {
+		WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+		container.connectToServer(this, new URI(uri));
+	}
+
+	@OnOpen
+	public void onOpen(final Session session) {
+		this.session = session;
+	}
+
+	public void onClose() throws IOException {
+		if (session != null && session.isOpen()) {
+			this.session.close();
+		}
+	}
+
+	public void sendMessage(final String message) throws IOException {
+		if (!session.isOpen()) {
+			return;
+		}
+		session.getBasicRemote().sendText(message);
+	}
+}

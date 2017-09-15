@@ -1,0 +1,34 @@
+package com.sidc.ra.server.response;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.sidc.ra.server.udp.request.RoomModuleRequest;
+
+public class RoomModuleResponse implements Serializable {
+
+	private static final long serialVersionUID = -8140697779886375621L;
+	private List<RoomModuleRequest> roomModuleList;
+
+	public List<RoomModuleRequest> getRoomModuleList() {
+		return roomModuleList;
+	}
+
+	public void setRoomModuleList(List<RoomModuleRequest> roomModuleList) {
+		this.roomModuleList = roomModuleList;
+	}
+
+	public RoomModuleResponse(List<RoomModuleRequest> roomModuleList) {
+		super();
+		this.roomModuleList = roomModuleList;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomModuleResponse [roomModuleList=");
+		builder.append(roomModuleList);
+		builder.append("]");
+		return builder.toString();
+	}
+}

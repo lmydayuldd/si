@@ -1,0 +1,118 @@
+[{
+    id: 1,
+    name: "ROOM_A",
+    bulb: {
+        command: 194,
+        devices: [{
+            name: "FOYER",
+            position: 21,
+            circuit: 2
+        }, {
+            name: "DESK",
+            position: 22,
+            circuit: 2
+        }, {
+            name: "WALL",
+            position: 22,
+            circuit: 3
+        }, {
+            name: "NIGHT",
+            position: 22,
+            circuit: 4
+        }, {
+            name: "BATH",
+            position: 23,
+            circuit: 4
+        }]
+
+    },
+    service: {
+        command: 195,
+        behavior: ["DOORSENSOR", "PIR", "SOS", "MUR", "DND"]
+    },
+    card: {
+        command: 199
+    }
+}, {
+    id: 2,
+    name: "ROOM_B",
+    bulb: {
+        command: 194,
+        devices: [{
+            name: "TOILET",
+            position: 21,
+            circuit: 1
+        }, {
+            name: "FOYER",
+            position: 21,
+            circuit: 2
+        }, {
+            name: "DESK",
+            position: 22,
+            circuit: 2
+        }, {
+            name: "WALL",
+            position: 22,
+            circuit: 3
+        }, {
+            name: "NIGHT",
+            position: 22,
+            circuit: 4
+        }, {
+            name: "BATH",
+            position: 23,
+            circuit: 4
+        }]
+
+    },
+    service: {
+        command: 195,
+        behavior: ["DOORSENSOR", "PIR", "SOS", "MUR", "DND"]
+    },
+    card: {
+        command: 199
+    }
+}, {
+    id: 3,
+    name: "DISABLE_TOILET",
+    service: {
+        command: 195,
+        behavior: ["SOS"]
+    }
+}, {
+    id: 4,
+    name: "GYMNASIUM",
+    bulb: {
+        command: 194,
+        devices: [{
+            name: "COVE",
+            position: 21,
+            circuit: 1
+        }, {
+            name: "CORIDOR",
+            position: 21,
+            circuit: 2
+        }, {
+            name: "EQUIPMENT",
+            position: 22,
+            circuit: 3
+        }, {
+            name: "WALL",
+            position: 22,
+            circuit: 4
+        }, {
+            name: "OUTDOOR",
+            position: 24,
+            circuit: 4
+        }]
+
+    },
+    service: {
+        command: 195,
+        behavior: ["SOS"]
+    },
+    aircondition: {
+        command: 193,
+        machines: [0]
+    }
+}]

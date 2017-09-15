@@ -1,0 +1,38 @@
+package com.sidc.blackcore.servlet.token;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.sidc.blackcore.api.parser.APIParser;
+import com.sidc.blackcore.api.parser.APIServlet;
+import com.sidc.blackcore.api.sits.token.request.MobilePublicTokenInsertRequest;
+import com.sidc.sits.logical.token.MobilePublicTokenInsertProcess;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.log.LogAction;
+
+@WebServlet("/mobile/token/publicinsert")
+public class MobilePublicTokenInsertServlet extends APIServlet {
+
+	private static final long serialVersionUID = -796683675441698557L;
+	private final static Logger logger = LoggerFactory.getLogger(MobilePublicTokenInsertServlet.class);
+
+	@Override
+	protected Object execute(String apiRequest, HttpServletRequest req) throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+
+		final MobilePublicTokenInsertRequest enity = (MobilePublicTokenInsertRequest) APIParser.getInstance()
+				.parse(apiRequest, MobilePublicTokenInsertRequest.class);
+
+		return new MobilePublicTokenInsertProcess(enity).execute();
+	}
+
+	@Override
+	protected void initial() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		LogAction.getInstance().initial(logger, this.getClass().getCanonicalName());
+	}
+
+}

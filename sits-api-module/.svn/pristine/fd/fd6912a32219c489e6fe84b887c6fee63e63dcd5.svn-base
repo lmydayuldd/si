@@ -1,0 +1,27 @@
+package com.sidc.blackcore.api.ra.schedule.request;
+
+import java.io.Serializable;
+
+public class ScheduleRequest implements Serializable {
+	private static final long serialVersionUID = -3358922480496220972L;
+	private String jobname;
+
+	public String getJobname() {
+		return jobname;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ScheduleRequest [jobname=");
+		builder.append(jobname);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public ScheduleRequest(String jobname) {
+		super();
+		this.jobname = jobname;
+	}
+
+}

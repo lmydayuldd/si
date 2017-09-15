@@ -1,0 +1,44 @@
+package com.sidc.blackcore.api.sits.rcu.request;
+
+import java.io.Serializable;
+
+public class HvacCommandRequest implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9181964397980554054L;
+	private String roomNo;
+	private boolean isPower;
+	private int temperature;
+	public HvacCommandRequest(String roomNo, boolean isPower) {
+		// TODO Auto-generated constructor stub
+		this.roomNo = roomNo;
+		this.isPower = isPower;
+	}
+	public HvacCommandRequest(String roomNo, int temperature) {
+		this.roomNo = roomNo;
+		this.temperature = temperature;
+	}
+	public String getRoomNo() {
+		return roomNo;
+	}
+	public boolean isPower() {
+		return isPower;
+	}
+	public int getTemperature() {
+		return temperature;
+	}
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("HvacCommandRequest [roomNo=\n");
+		builder.append(roomNo);
+		builder.append(", isPower=\n");
+		builder.append(isPower);
+		builder.append(", temperature=\n");
+		builder.append(temperature);
+		builder.append("]");
+		return builder.toString();
+	}
+}

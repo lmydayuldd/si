@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="sidc-service">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
+        <dependent-module archiveName="raudp-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/raudp/raudp">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sits-utils-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sits-utils/sits-utils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="rcuconnector-udp-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rcuconnector-udp/rcuconnector-udp">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sidc-ra-logical-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-ra-logical/sidc-ra-logical">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="common-framework-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-framework/common-framework">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="radao-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/radao/radao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sidc-sits-logical-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-sits-logical/sidc-sits-logical">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sits-api-module-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sits-api-module/sits-api-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sitsdao-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sitsdao/sitsdao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sidc-authorization-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-authorization/sidc-authorization">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zhongshan-rcu-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zhongshan-rcu/zhongshan-rcu">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sidc-sdk-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-sdk/sidc-sdk">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="sidc-service"/>
+        <property name="java-output-path" value="/sidc-service/target/classes"/>
+    </wb-module>
+</project-modules>

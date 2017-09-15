@@ -1,0 +1,81 @@
+package com.sidc.blackcore.api.sits.roomservice.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RoomServiceOrderHeaderInfoBean implements Serializable {
+	private static final long serialVersionUID = 3802220564193954787L;
+	private int id;
+	private String status;
+	private float amount;
+	private int qty;
+	private String expectedtime;
+	private String createtime;
+	private List<RoomServiceOrderLineInfoBean> itemlist = new ArrayList<RoomServiceOrderLineInfoBean>();
+
+	public int getId() {
+		return id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public float getAmount() {
+		return amount;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public String getCreatetime() {
+		return createtime;
+	}
+
+	public List<RoomServiceOrderLineInfoBean> getItemlist() {
+		return itemlist;
+	}
+
+	public void setItemlist(List<RoomServiceOrderLineInfoBean> itemlist) {
+		this.itemlist = itemlist;
+	}
+
+	public String getExpectedtime() {
+		return expectedtime;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomServiceOrderHeaderInfoBean [id=");
+		builder.append(id);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", amount=");
+		builder.append(amount);
+		builder.append(", qty=");
+		builder.append(qty);
+		builder.append(", expectedtime=");
+		builder.append(expectedtime);
+		builder.append(", createtime=");
+		builder.append(createtime);
+		builder.append(", itemlist=");
+		builder.append(itemlist);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RoomServiceOrderHeaderInfoBean(int id, String status, float amount, int qty, String expectedtime,
+			String createtime) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.amount = amount;
+		this.qty = qty;
+		this.expectedtime = expectedtime;
+		this.createtime = createtime;
+	}
+
+}

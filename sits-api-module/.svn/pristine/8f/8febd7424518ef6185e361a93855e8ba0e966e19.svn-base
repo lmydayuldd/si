@@ -1,0 +1,43 @@
+package com.sidc.blackcore.api.sits.roomservice.request;
+
+import java.io.Serializable;
+
+public class RoomServiceRequest implements Serializable {
+	private static final long serialVersionUID = 7313896503057207623L;
+	private String hotelid;
+	private String langcode;
+	private int categoryid;
+
+	public String getHotelid() {
+		return hotelid;
+	}
+
+	public String getLangcode() {
+		return langcode;
+	}
+
+	public int getCategoryid() {
+		return categoryid;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RoomServiceRequest [hotelid=");
+		builder.append(hotelid);
+		builder.append(", langcode=");
+		builder.append(langcode);
+		builder.append(", categoryid=");
+		builder.append(categoryid);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public RoomServiceRequest(String hotelid, String langcode, int categoryid) {
+		super();
+		this.hotelid = hotelid;
+		this.langcode = langcode;
+		this.categoryid = categoryid;
+	}
+
+}
