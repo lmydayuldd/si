@@ -26,23 +26,24 @@ public class ModeInsertTest {
 	public void test() throws SiDCException, Exception {
 		List<DeviceBean> devices = new ArrayList<DeviceBean>();
 
-		DeviceSettingBean setting = new DeviceSettingBean("0", null, null, null, null, null);
+		DeviceSettingBean setting = new DeviceSettingBean("0", null, null, null, null, null, null);
 		DeviceBean devcieBean = new DeviceBean("BATH", setting);
 		devices.add(devcieBean);
 
-		setting = new DeviceSettingBean(null, "true", "1", "26", "0", "0");
+		setting = new DeviceSettingBean(null, "true", "1", "26", "0", "0", null);
 		devcieBean = new DeviceBean("HVAC-ALL", setting);
 		devices.add(devcieBean);
 
 		ModeInsertRequest request = new ModeInsertRequest(1, 2, devices);
 
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:8080/rcu-hmi/mode/insert");
+		HttpPost httppost = new HttpPost("http://10.60.1.39:8080/rcu-hmi/mode/insert2");
 
 		// APIRequest enity = new APIRequest(request);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(request);
+		System.out.println(json);
 		try {
 			StringEntity entity = new StringEntity(json, "UTF-8");
 			httppost.setEntity(entity);

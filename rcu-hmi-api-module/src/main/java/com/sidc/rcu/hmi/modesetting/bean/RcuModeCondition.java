@@ -8,7 +8,7 @@ public class RcuModeCondition implements Serializable {
 	private String status;
 	private String temperature;
 	private String function;
-	private boolean isPower;
+	private boolean power;
 	private String speed;
 	private String timer;
 
@@ -25,7 +25,7 @@ public class RcuModeCondition implements Serializable {
 	}
 
 	public boolean isPower() {
-		return isPower;
+		return power;
 	}
 
 	public String getSpeed() {
@@ -45,8 +45,8 @@ public class RcuModeCondition implements Serializable {
 		builder.append(temperature);
 		builder.append(", function=");
 		builder.append(function);
-		builder.append(", isPower=");
-		builder.append(isPower);
+		builder.append(", power=");
+		builder.append(power);
 		builder.append(", speed=");
 		builder.append(speed);
 		builder.append(", timer=");
@@ -55,13 +55,13 @@ public class RcuModeCondition implements Serializable {
 		return builder.toString();
 	}
 
-	public RcuModeCondition(String status, String temperature, String function, boolean isPower, String speed,
+	public RcuModeCondition(String status, String temperature, String function, boolean power, String speed,
 			String timer) {
 		super();
 		this.status = status;
 		this.temperature = temperature;
 		this.function = function;
-		this.isPower = isPower;
+		this.power = power;
 		this.speed = speed;
 		this.timer = timer;
 	}

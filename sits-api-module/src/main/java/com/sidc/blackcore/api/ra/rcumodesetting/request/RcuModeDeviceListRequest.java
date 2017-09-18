@@ -5,24 +5,24 @@ public class RcuModeDeviceListRequest implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5231309578434820123L;
-	private int modeId;
+	private int modeid;
 
-	public RcuModeDeviceListRequest(int modeId) {
+	public RcuModeDeviceListRequest(int modeid) {
 		super();
-		this.modeId = modeId;
+		this.modeid = modeid;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RcuModeDeviceRequest [modeId=");
-		builder.append(modeId);
+		builder.append("RcuModeDeviceRequest [modeid=");
+		builder.append(modeid);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	public int getModeId() {
-		return modeId;
+	public int getModeid() {
+		return modeid;
 	}
 
 }

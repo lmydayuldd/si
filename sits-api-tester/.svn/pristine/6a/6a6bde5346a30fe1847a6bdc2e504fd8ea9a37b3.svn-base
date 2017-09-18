@@ -1,0 +1,66 @@
+package com.sidc.tester.api.scenario;
+
+import static org.junit.Assert.*;
+
+import java.util.UUID;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.google.gson.Gson;
+import com.sidc.dao.rcu.command.response.RcuModelCondition;
+import com.sidc.dao.rcu.command.response.RcuRoomMode;
+import com.sidc.rcu.connector.bean.command.AirConditionCommander;
+import com.sidc.rcu.connector.bean.command.BulbCommander;
+import com.sidc.rcu.connector.bean.command.RCUCommander;
+import com.sidc.rcu.connector.bean.command.ServiceCommander;
+import com.sidc.sdk.blackcore.rcu.command.AskCommandClient;
+import com.sidc.sdk.blackcore.rcu.command.BulbCommandClient;
+import com.sidc.sdk.blackcore.rcu.command.HvacCommandClient;
+import com.sidc.sdk.blackcore.rcu.mode.RcuModeClient;
+import com.sidc.tester.api.url.Env;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.net.UDPConnection;
+
+public class RcuBlackcoreRequestAPITester {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		try {
+//			AirConditionCommander common = new AirConditionCommander((byte) 8);
+//			common.setPower(true);
+//			common.setFunction(1);
+//			common.setTemperature(25);
+//			common.setSpeed(0);
+//			common.setTimer(10);
+			
+//			BulbCommander common = new BulbCommander(1);
+			
+//			ServiceCommander service = new ServiceCommander(1);
+			
+			RCUCommander commander = new RCUCommander(UUID.randomUUID().toString(), "601", "ASK");
+			new AskCommandClient<Object>(Env.BLACKCORE_HOST, commander).execute();
+		} catch (SiDCException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void test1() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{temperature: 25, function: \"\", enable: \"1\", address: 0 }");
+
+		Gson gson = new Gson();
+		RcuModelCondition devices = gson.fromJson(builder.toString(), RcuModelCondition.class);
+		
+		System.out.println(devices);
+	}
+}

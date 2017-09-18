@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="Apache Tomcat v8.0"/>
+  <secondary-runtime name="jdk1.7.0_79"/>
+  <secondary-runtime name="jre7"/>
+  <installed facet="java" version="1.4"/>
+</faceted-project>

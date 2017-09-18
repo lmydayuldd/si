@@ -30,8 +30,8 @@ public class RcuModeDeviceProcess extends AbstractAPIProcess {
 
 		final APIContentRequest request = new APIContentRequest(entity);
 
-		this.list = new RcuModeDeviceListClient("http://10.60.1.39:7056/blackcore",
-				APIParser.getInstance().toJson(request)).execute();
+		this.list = new RcuModeDeviceListClient(blackcoreSetting.getUrl(), APIParser.getInstance().toJson(request))
+				.execute();
 	}
 
 	@Override

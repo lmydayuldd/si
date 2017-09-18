@@ -8,9 +8,14 @@ import com.sidc.rcu.hmi.modesetting.bean.DeviceBean;
 
 public class ModeInsertRequest implements Serializable {
 	private static final long serialVersionUID = 3345457989025598378L;
+	private String modename;
 	private int modeid;
 	private int groupid;
 	private List<DeviceBean> devices = new ArrayList<DeviceBean>();
+
+	public String getModename() {
+		return modename;
+	}
 
 	public int getModeid() {
 		return modeid;
@@ -27,7 +32,9 @@ public class ModeInsertRequest implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ModeInsertRequest [modeid=");
+		builder.append("ModeInsertRequest [modename=");
+		builder.append(modename);
+		builder.append(", modeid=");
 		builder.append(modeid);
 		builder.append(", groupid=");
 		builder.append(groupid);
@@ -37,8 +44,9 @@ public class ModeInsertRequest implements Serializable {
 		return builder.toString();
 	}
 
-	public ModeInsertRequest(int modeid, int groupid, List<DeviceBean> devices) {
+	public ModeInsertRequest(String modename, int modeid, int groupid, List<DeviceBean> devices) {
 		super();
+		this.modename = modename;
 		this.modeid = modeid;
 		this.groupid = groupid;
 		this.devices = devices;

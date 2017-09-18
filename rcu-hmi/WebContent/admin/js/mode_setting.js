@@ -11,6 +11,8 @@ function showMainContent(){
 	
 	showDataList();
 	setBindMain();
+
+	// console.log($('#main-content').css('min-height'));
 }
 function showDataList(){	
 	var obj = {
@@ -19,19 +21,58 @@ function showDataList(){
 
 	buildTemplate('tpl_mode_list',obj,'table_list');
 }
-function showModify(_id){
+function showAdd(){
 	var roomModuleArr = getRoomModuleData();
-	//var modeArr = getModeDate();
 	
 	var obj = {
 		'roomModuleArr' : roomModuleArr
-		//'modeArr' : modeArr
 	}
 
 	$('#main-content').empty();
 
 	buildTemplate('tpl_page_add',obj,'main-content');
 	buildTemplate('tpl_mode_add',obj,'mode_group');
+	buildTemplate('tpl_hvac',obj,'body-model');
+
+	if(roomModuleArr.length){
+		changeEvent(0,roomModuleArr[0].id);
+	}
+
+	$('.slider').slider();
+	$('.input-curtain').bootstrapSwitch();
+	$('.input-light').bootstrapSwitch();
+	$('.input-aircon').bootstrapSwitch();
+	$('.clockpicker').clockpicker();
+
+	setBindAdd();
+
+	$("#myForm").validate();
+
+}
+function showModify(_id){
+	var roomModuleArr = getRoomModuleData();
+	var modeArr = getModeDate();
+
+	var modeName = '';
+
+	for(var i=0;i<modeArr.length;i++){
+		if(modeArr[i].id == _id){
+			modeName = modeArr[i].keyname;
+			break;
+		}
+	}
+	
+	var obj = {
+		'roomModuleArr' : roomModuleArr,
+		'modeId' : _id,
+		'modeName' : modeName
+		//'modeArr' : modeArr
+	}
+
+	$('#main-content').empty();
+
+	buildTemplate('tpl_page_add',obj,'main-content');
+	// buildTemplate('tpl_mode_add',obj,'mode_group');
 	buildTemplate('tpl_hvac',obj,'body-model');
 
 
@@ -70,18 +111,12 @@ function setBindAdd(){
     	$("#display-time").text(event.value);
     });
 
-	//Type change
-	$("#main-content").unbind("click.type-mode");
-	$("#main-content").on("click.type-mode", ".type-mode", function(event){ 
-    	$('#mode').text($(this).text());
-    	changeEvent($(this).attr('data-code'),1);
-    });
-
     //module change
 	$("#main-content").unbind("click.room-module");
 	$("#main-content").on("click.room-module", ".room-module", function(event){ 
     	$('#module').text($(this).text());
-    	changeEvent(3,$(this).attr('data-code'));
+    	$('#module').attr('data-code',$(this).attr('data-code'));
+    	changeEvent($('#mode_id').val(),$(this).attr('data-code'));
     });
 
     //submit
@@ -94,7 +129,7 @@ function setBindAdd(){
 }
 function setRouter(){
 	var routes = {
-		'add': showModify,
+		'add': showAdd,
 		'add/:_id': showModify,
 		'':showMainContent()
 	};
@@ -124,19 +159,17 @@ function changeEvent(_modeId,_groupId){
 	var data = getModeSettingData(_groupId);
 
 	if(_.isUndefined(data)){
-		alert('This group does not hava device info.');
-		window.history.replaceState(null,null,'#');
-		showMainContent();
+		alert('This mode does not hava device info.');
+		// window.history.replaceState(null,null,'#');
+		// showMainContent();
+		var obj = {};
+		buildTemplateMultipleHtml('',obj,'body-model');
 		return false;
 	}
 
 	//已經設定過的資料
 	var settingData = getGruopModeSettingData(_modeId,_groupId);
-
-	if(_.isUndefined(settingData)){
-		settingData = [];
-	}
-
+	
 	var tpl_code = '';
 
 	var hvacArr = [];
@@ -147,23 +180,51 @@ function changeEvent(_modeId,_groupId){
 		var catalogue = data[i].catalogue;
 		switch(catalogue){
 			case 'AIR-CONDITION':
+				var deviceData = [];
+
+				if(!_.isUndefined(settingData)){
+					deviceData = $.grep(settingData.mode, function(obj) {
+					    return obj.catalogue === "AIR-CONDITION";
+					});
+
+					deviceData = deviceData[0].devices;
+				}
+
+				for(var u=0;u<data[i].devices.length;u++){
+					for(var j=0;j<deviceData.length;j++){
+						if(deviceData[j].keycode == data[i].devices[u].device){
+							data[i].devices[0].condition = deviceData[j].condition;
+						}
+					}
+				}
+
+				
 				//function 1冷,2熱,3風
 				//temperature 16~30
 				//speed 0自動 1高 2中 3低
 				//timer 分鐘
+				if(_.isUndefined(data[i].devices[0].condition)){
+					data[i].devices[0].condition = {
+						function : 1,
+						temperature : 25,
+						power : 0,
+						speed : 0
+					}
+				}
 				hvacArr.push(data[i].devices[0].condition);
 				tpl_code += $('#tpl_hvac').html();
 			break;
 			case 'BULB':
 				var deviceData = [];
-				if(settingData.length>0){
+
+				if(!_.isUndefined(settingData)){
 					deviceData = $.grep(settingData.mode, function(obj) {
 					    return obj.catalogue === "BULB";
 					});
 
 					deviceData = deviceData[0].devices;
 				}
-				
+
 				for(var x=0;x<data[i].devices.length;x++){
 					
 					var bublData = data[i].devices[x];
@@ -190,6 +251,7 @@ function changeEvent(_modeId,_groupId){
 				
 				tpl_code += $('#tpl_bulb').html();
 			break;
+			/*
 			case 'SERVICE':
 				var deviceData = [];
 				if(settingData.length>0){
@@ -227,6 +289,7 @@ function changeEvent(_modeId,_groupId){
 				
 				tpl_code += $('#tpl_curtain').html();
 			break;
+			*/
 		}
 	}
 
@@ -310,22 +373,22 @@ function bulbDataProcess(){
 
 	return arr;
 }
-function curtainDataProcess(){
-	var arr = [];
+// function curtainDataProcess(){
+// 	var arr = [];
 
-	var obj = {
-		'curtainName' : '窗簾A'
-	}
+// 	var obj = {
+// 		'curtainName' : '窗簾A'
+// 	}
 
-	arr.push(obj);
+// 	arr.push(obj);
 
-	obj = {
-		'curtainName' : '落地窗'
-	}
-	arr.push(obj);
+// 	obj = {
+// 		'curtainName' : '落地窗'
+// 	}
+// 	arr.push(obj);
 
-	return arr;
-}
+// 	return arr;
+// }
 //取得房型資料
 function getRoomModuleData(){
 	var data = null;
@@ -423,16 +486,16 @@ function getGruopModeSettingData(_modeId,_groupId){
 	return data;
 }
 function submitProcess(){
-
-	var modeId = $('#mode').attr('data-code');
+	var modeId = $('#mode_id').val();
+	// var modeId = $('#mode').attr('data-code');
 	var groupId = $('#module').attr('data-code');
 	var arr = [];
 
 	if($('#hvac-body').length>=1)
-		arr.push(getHvacObjProcess());
+		arr = getHvacObjProcess(arr);
 
 	if($('#bulb-body').length>=1)
-		arr.push(getBlubObjProcess());
+		arr = getBlubObjProcess(arr);
 
 	if(arr.length<=0){
 		alert('DATA ILLEGAL!!');
@@ -440,15 +503,15 @@ function submitProcess(){
 	}
 
 	var obj = {
-		// "modeId": modeId,
-		"modeName": $('#mode_name').val(),
-		"groupId": groupId,
-		"mode": arr
+		"modeid": modeId,
+		// "modeName": $('#mode_name').val(),
+		"groupid": groupId,
+		"devices": arr
     }
 
     doSubmit(obj);
 }
-function getHvacObjProcess(){
+function getHvacObjProcess(arr){
 	var power = $('#hvac-body #hvac_power').bootstrapSwitch('state')
 
 	var _function = $('#hvac-body .function .active').children('input[name="function"]').val();
@@ -456,34 +519,35 @@ function getHvacObjProcess(){
 
 	var temperature = $("#display-temperature").text();
 	// var _time = $("#display-time").text();
-
-	var obj = {
-		catalogue:"AIR-CONDITION",
-		devices:[{
+	
+	arr.push(
+		{
 			"keycode":"HVAC-ALL",
-			"condition":{
-				"isPower": power,
+			"data":{
+				"power": power,
 				"function": _function,
 				"temperature": temperature,
+				"address" : 8,
 				"speed": speed
 				// "timer": _time
 			}
-		}]
-	}
-	return obj;
+		}
+	);
+	
+	return arr;
 }	
-function getBlubObjProcess(){
+function getBlubObjProcess(arr){
 	var deviceArr = [];
 
 	$('.BULB').each(function(index) {
 		var bulbObj = {
 			keycode : $(this).attr('keycode'),
-			condition : {
+			data : {
 				status : $(this).bootstrapSwitch('state')?'1':'0'
 			}
 		};
 
-  		deviceArr.push(bulbObj);
+  		arr.push(bulbObj);
 	});
 
 	var obj = {
@@ -491,13 +555,13 @@ function getBlubObjProcess(){
 		devices : deviceArr
 	};
 
-	return obj;
+	return arr;
 }
 function doSubmit(data){
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: $.serverurl + '/insertmodesetting',
+		url: $.serverurl + '/mode/update',
 		data: JSON.stringify(data),
 		success: function(obj){
 			if(obj.status!=0){

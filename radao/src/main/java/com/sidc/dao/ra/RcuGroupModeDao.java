@@ -107,4 +107,29 @@ public class RcuGroupModeDao {
 			}
 		}
 	}
+
+	private final static String UPDATE = "UPDATE rcu_group_mode SET content = ? "
+			+ "WHERE rcu_group_id = ? AND rcu_mode_id = ?;";
+
+	public void update(final Connection conn, final int groupId, final int modeId, final String content)
+			throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(UPDATE);
+
+			int i = 0;
+			psmt.setString(++i, content);
+			psmt.setInt(++i, groupId);
+			psmt.setInt(++i, modeId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
 }

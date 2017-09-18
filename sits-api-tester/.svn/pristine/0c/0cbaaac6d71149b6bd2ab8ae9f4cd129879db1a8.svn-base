@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.sidc.tester.api.url;
+
+/**
+ * @author Nandin
+ *
+ */
+public interface Env {
+
+	public final static String HOST = "http://10.60.1.40/sits";
+
+	public final static String BLACKCORE_HOST = "http://127.0.0.1:7056/blackcore";
+	
+	public final static String RCU_ENGINE = "http://127.0.0.1:3235/rcuengine";
+}

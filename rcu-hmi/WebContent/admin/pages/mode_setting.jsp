@@ -68,10 +68,14 @@
       <form class="form-horizontal" id="myForm">
         <div class="box box-info">
           <div class="box-header with-border">
+            <input type="hidden" id="mode_id" value="{{modeId}}" />
+            <strong>{{modeName}}</strong>
           </div>
           <div class="box-body">
             <!-- Mode -->
             <div class="form-group" id="mode_group">
+
+              <!--
               <label class="col-sm-2 control-label">Mode</label>
               <div class="col-sm-4">
                 <div class="btn-group">
@@ -88,6 +92,7 @@
                   </ul>
                 </div>
               </div>
+              -->
             </div> 
             <!-- 房型 -->
             <div class="form-group">
@@ -183,7 +188,7 @@
         <div class="form-group">
           <label class="col-sm-2 text-center">Power</label>
           <div class="col-sm-10">
-            <input class="form-control btn-switch" id="hvac_power" type="checkbox" keycode="{{keycode}}" {{#ifCond isPower 1}}checked="checked" {{/ifCond}} >
+            <input class="form-control btn-switch" id="hvac_power" type="checkbox" keycode="{{keycode}}" {{#ifCond power 1}}checked="checked" {{/ifCond}} >
           </div>
         </div>
 
@@ -325,7 +330,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>房型</th>
+        
         <th></th>
       </tr>
     </thead>
@@ -333,7 +338,7 @@
       {{#each arr}}
         <tr>
           <td>{{keyname}}</td>
-          <td></td>
+          
           <td>
             <a href="#add/{{id}}">
               <i class="fa fa-fw fa-gear"></i>

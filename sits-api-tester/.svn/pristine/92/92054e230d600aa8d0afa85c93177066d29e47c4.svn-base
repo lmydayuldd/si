@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sidc.tester.api.url;
+
+/**
+ * @author Nandin
+ *
+ */
+public interface Env {
+
+	public final static String HOST = "http://10.60.1.40/sits";
+
+	public final static String BLACKCORE_HOST = "http://10.60.1.93:8080/sidc-service";
+}

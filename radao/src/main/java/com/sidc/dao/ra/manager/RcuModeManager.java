@@ -156,4 +156,22 @@ public class RcuModeManager {
 		}
 	}
 
+	public void updateGroupMode(final int groupId, final int modeId, final String content) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RcuGroupModeDao.getInstance().update(conn, groupId, modeId, content);
+
+			conn.commit();
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+	}
+
 }

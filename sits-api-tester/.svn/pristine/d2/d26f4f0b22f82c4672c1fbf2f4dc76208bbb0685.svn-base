@@ -1,0 +1,46 @@
+package com.sidc.tester.api.scenario;
+
+import static org.junit.Assert.*;
+
+import java.util.UUID;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.google.gson.Gson;
+import com.sidc.dao.rcu.command.response.RcuModelCondition;
+import com.sidc.dao.rcu.command.response.RcuRoomMode;
+import com.sidc.sdk.blackcore.rcu.mode.RcuModeClient;
+import com.sidc.tester.api.url.Env;
+import com.sidc.utils.exception.SiDCException;
+
+public class RcuBlackcoreRequestAPITester {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		try {		
+			new RcuModeClient<Object>(Env.BLACKCORE_HOST, new RcuRoomMode("608", "checkin")).execute();
+		} catch (SiDCException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void test1() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{temperature: 25, function: \"\", enable: \"1\", address: 0 }");
+
+		Gson gson = new Gson();
+		RcuModelCondition devices = gson.fromJson(builder.toString(), RcuModelCondition.class);
+		
+		System.out.println(devices);
+	}
+}

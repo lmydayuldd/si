@@ -49,6 +49,9 @@ public class RcuModeInsertProcess extends AbstractAPIProcess {
 		if (entity == null) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request.");
 		}
+		if (StringUtils.isBlank(entity.getModename())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(mode name).");
+		}
 		if (entity.getGroupid() <= 0) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(group id).");
 		}
