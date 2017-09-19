@@ -47,15 +47,15 @@
         <i class="fa fa-gear"></i> <span>Mode Setting</span>
       </a>
     </li>
-    <li>
+   <!--  <li>
       <a href="<%=request.getContextPath() %>/admin/pages/mode_device_setting.jsp">
         <i class="fa fa-gear"></i> <span>Mode Device Setting</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a href="<%=request.getContextPath() %>/admin/pages/roommodule_device_setting.jsp">
         <!-- <i class="fa fa-gear"></i> <span>Room Module Device</span> -->
-        <i class="fa fa-gear"></i> <span>房型 RCU設定</span>
+        <i class="fa fa-gear"></i> <span>房型設定</span>
       </a>
     </li>
     <li>

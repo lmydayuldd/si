@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,9 +123,9 @@ public class RcuModeDao {
 			final ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RcuDefaultModeResponse(rs.getInt("id"), rs.getString("keyname"), rs.getString("content"),rs.getInt("timer")));
+				list.add(new RcuDefaultModeResponse(rs.getInt("id"), rs.getString("keyname"), rs.getString("content"),
+						rs.getInt("timer")));
 			}
-			conn.commit();
 		} finally {
 			if (psmt != null && !psmt.isClosed()) {
 				psmt.close();
@@ -132,5 +133,60 @@ public class RcuModeDao {
 		}
 
 		return list;
+	}
+
+	private final static String SEARCH_ALL_MODE = "SELECT id, keyname, content, timer FROM rcu_mode ORDER BY id ASC;";
+
+	public List<RcuDefaultModeResponse> searchAllMode(final Connection conn) throws SQLException {
+
+		List<RcuDefaultModeResponse> list = new ArrayList<RcuDefaultModeResponse>();
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SEARCH_ALL_MODE);
+
+			final ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(new RcuDefaultModeResponse(rs.getInt("id"), rs.getString("keyname"), rs.getString("content"),
+						rs.getInt("timer")));
+			}
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return list;
+	}
+
+	private final static String INSERT = "INSERT INTO rcu_mode(keyname,content,createdtime,modifiedtime)VALUES(?,?,NOW(),NOW());";
+
+	public int insert(final Connection conn, final String keyName, final String content) throws SQLException {
+
+		PreparedStatement psmt = null;
+		int id = -1;
+		try {
+			psmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			int i = 0;
+			psmt.setString(++i, keyName);
+			psmt.setString(++i, content);
+
+			psmt.executeUpdate();
+
+			ResultSet rs = psmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				id = rs.getInt(1);
+			} else {
+				throw new SQLException("rcu_mode insert fail.");
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return id;
 	}
 }

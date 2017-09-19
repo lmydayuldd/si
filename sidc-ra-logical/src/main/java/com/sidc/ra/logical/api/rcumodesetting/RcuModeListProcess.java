@@ -25,7 +25,7 @@ public class RcuModeListProcess extends AbstractAPIProcess {
 
 		List<RcuDefaultModeResponse> list = new ArrayList<RcuDefaultModeResponse>();
 
-		list = RcuModeManager.getInstance().selectDefaultMode();
+		list = RcuModeManager.getInstance().selectAllMode();
 
 		for (RcuDefaultModeResponse entity : list) {
 			entity.setContent(formatStringProcess(entity.getContent()));

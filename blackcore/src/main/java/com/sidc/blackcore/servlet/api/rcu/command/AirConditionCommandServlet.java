@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.sidc.blackcore.api.parser.APIParser;
 import com.sidc.blackcore.api.parser.APIServlet;
 import com.sidc.blackcore.api.sits.rcu.request.HvacCommandRequest;
-import com.sidc.blackcore.servlet.api.rcu.mode.RcuModeServlet;
 import com.sidc.ra.logical.api.rcu.command.RCUAirConditionCommandProcess;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;

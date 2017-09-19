@@ -6,24 +6,24 @@ public class RcuModeDeviceRequest implements Serializable {
 
 	private static final long serialVersionUID = -3561649424412918161L;
 
-	private int modeId;
+	private int modeid;
 
-	public int getModeId() {
-		return modeId;
+	public int getModeid() {
+		return modeid;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RcuModeDeviceRequest [modeId=");
-		builder.append(modeId);
+		builder.append("RcuModeDeviceRequest [modeid=");
+		builder.append(modeid);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	public RcuModeDeviceRequest(int modeId) {
+	public RcuModeDeviceRequest(int modeid) {
 		super();
-		this.modeId = modeId;
+		this.modeid = modeid;
 	}
 
 }

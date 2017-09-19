@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sidc.rcu.hmi.api.parser.APIServlet;
-import com.sidc.rcu.hmi.logical.modesetting.RcuGroupProcess;
+import com.sidc.rcu.hmi.logical.mode.RcuGroupProcess;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 

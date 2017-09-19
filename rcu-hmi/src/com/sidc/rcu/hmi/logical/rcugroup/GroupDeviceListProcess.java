@@ -19,7 +19,7 @@ import com.sidc.rcu.hmi.groupdevice.bean.GroupDeviceResultBean;
 import com.sidc.rcu.hmi.groupdevice.bean.RcuGroupDeviceBean;
 import com.sidc.rcu.hmi.groupdevice.request.GroupDeviceRequest;
 import com.sidc.rcu.hmi.groupdevice.response.GroupDeviceResponse;
-import com.sidc.rcu.hmi.logical.modesetting.RcuGroupDeviceListProcess;
+import com.sidc.rcu.hmi.logical.mode.RcuGroupDeviceListProcess;
 import com.sidc.rcu.hmi.systeminitial.bean.BlackcoreInitialBean;
 import com.sidc.sdk.blackcore.rcugroup.RcuGroupDeviceClient;
 import com.sidc.sdk.blackcore.rcugroup.RcuGroupListClient;

@@ -9,6 +9,7 @@ import com.sidc.blackcore.api.ra.rcumodesetting.response.RcuDefaultModeResponse;
 import com.sidc.dao.connection.ProxoolConnection;
 import com.sidc.dao.ra.RcuGroupModeDao;
 import com.sidc.dao.ra.RcuModeDao;
+import com.sidc.dao.ra.RcuModeDeviceDao;
 
 /**
  * 
@@ -106,7 +107,26 @@ public class RcuModeManager {
 
 			list = RcuModeDao.getInstance().searchDefaultMode(conn);
 
-			conn.commit();
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+		return list;
+	}
+
+	public List<RcuDefaultModeResponse> selectAllMode() throws SQLException {
+		List<RcuDefaultModeResponse> list = new ArrayList<RcuDefaultModeResponse>();
+
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			list = RcuModeDao.getInstance().searchAllMode(conn);
 
 		} catch (Exception ex) {
 			throw new SQLException(ex);
@@ -154,6 +174,48 @@ public class RcuModeManager {
 				conn.close();
 			}
 		}
+	}
+
+	public void updateGroupMode(final int groupId, final int modeId, final String content) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RcuGroupModeDao.getInstance().update(conn, groupId, modeId, content);
+
+			conn.commit();
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+	}
+
+	public int insertMode(final String keyName, final String content, final List<Integer> devices) throws SQLException {
+		Connection conn = null;
+		int id = -9999;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			id = RcuModeDao.getInstance().insert(conn, keyName, content);
+
+			for (final int device : devices) {
+				RcuModeDeviceDao.getInstance().insert(conn, id, device);
+			}
+
+			conn.commit();
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+		return id;
 	}
 
 }
