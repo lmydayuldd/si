@@ -112,7 +112,7 @@ function getDeviceData(_id){
 		type: "POST",
 		async: false,
 		url: $.serverurl + '/listmodedevicesetting',
-		data: JSON.stringify({"modeId":_id}),
+		data: JSON.stringify({"modeid":_id}),
 		success: function(obj){
 			data = obj.data;
 		},

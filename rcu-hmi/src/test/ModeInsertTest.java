@@ -17,7 +17,7 @@ import com.derex.cm.stb.api.request.APIRequest;
 import com.google.gson.Gson;
 import com.sidc.rcu.hmi.modesetting.bean.DeviceBean;
 import com.sidc.rcu.hmi.modesetting.bean.DeviceSettingBean;
-import com.sidc.rcu.hmi.modesetting.request.ModeInsertRequest;
+import com.sidc.rcu.hmi.modesetting.request.GroupModeInsertRequest;
 import com.sidc.utils.exception.SiDCException;
 
 public class ModeInsertTest {
@@ -34,7 +34,7 @@ public class ModeInsertTest {
 		devcieBean = new DeviceBean("HVAC-ALL", setting);
 		devices.add(devcieBean);
 
-		ModeInsertRequest request = new ModeInsertRequest(1, 2, devices);
+		GroupModeInsertRequest request = new GroupModeInsertRequest(null, 1, 2, devices);
 
 		HttpClient httpclient = HttpClients.createDefault();
 		HttpPost httppost = new HttpPost("http://10.60.1.39:8080/rcu-hmi/mode/insert2");

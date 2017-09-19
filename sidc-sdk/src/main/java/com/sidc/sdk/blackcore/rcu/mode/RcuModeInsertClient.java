@@ -2,11 +2,11 @@ package com.sidc.sdk.blackcore.rcu.mode;
 
 import com.sidc.sdk.abs.AbsHttpClient;
 
-public class RcuGroupModeInsertClient<T> extends AbsHttpClient<T> {
+public class RcuModeInsertClient<T> extends AbsHttpClient<T> {
 	private String request;
 
-	public RcuGroupModeInsertClient(final String host, final String request) {
-		super(host, "/rcu/group/mode/insert");
+	public RcuModeInsertClient(final String host, final String request) {
+		super(host, "/rcu/mode/insert");
 		this.request = request;
 	}
 

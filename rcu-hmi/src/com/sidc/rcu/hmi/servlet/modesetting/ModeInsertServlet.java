@@ -8,25 +8,25 @@ import org.slf4j.LoggerFactory;
 
 import com.sidc.rcu.hmi.api.parser.APIParser;
 import com.sidc.rcu.hmi.api.parser.APIServlet;
-import com.sidc.rcu.hmi.logical.modesetting.RcuModeUpdateProcess;
-import com.sidc.rcu.hmi.modesetting.request.GroupModeUpdateRequest;
+import com.sidc.rcu.hmi.logical.modesetting.ModeInsertProcess;
+import com.sidc.rcu.hmi.modesetting.request.ModeInsertRequest;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 
-@WebServlet("/mode/update")
-public class RcuModeUpdateServlet extends APIServlet {
-	private static final long serialVersionUID = -6183936244003867453L;
-	private final static Logger logger = LoggerFactory.getLogger(RcuModeUpdateServlet.class);
+@WebServlet("/rcu/mode/insert")
+public class ModeInsertServlet extends APIServlet {
+	private static final long serialVersionUID = -1502485688893017479L;
+	private final static Logger logger = LoggerFactory.getLogger(ModeInsertServlet.class);
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Object execute(String apiRequest) throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 
-		final GroupModeUpdateRequest entity = (GroupModeUpdateRequest) APIParser.getInstance().parses(apiRequest,
-				GroupModeUpdateRequest.class);
+		final ModeInsertRequest entity = (ModeInsertRequest) APIParser.getInstance().parses(apiRequest,
+				ModeInsertRequest.class);
 
-		return new RcuModeUpdateProcess(entity).execute();
+		return new ModeInsertProcess(entity).execute();
 	}
 
 	@Override

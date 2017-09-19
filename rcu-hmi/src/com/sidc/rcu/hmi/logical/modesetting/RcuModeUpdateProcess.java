@@ -8,7 +8,7 @@ import com.sidc.rcu.hmi.common.CommonDataKey;
 import com.sidc.rcu.hmi.common.DataCenter;
 import com.sidc.rcu.hmi.framework.abs.AbstractAPIProcess;
 import com.sidc.rcu.hmi.modesetting.bean.DeviceBean;
-import com.sidc.rcu.hmi.modesetting.request.ModeUpdateRequest;
+import com.sidc.rcu.hmi.modesetting.request.GroupModeUpdateRequest;
 import com.sidc.rcu.hmi.systeminitial.bean.BlackcoreInitialBean;
 import com.sidc.sdk.blackcore.rcu.mode.RcuGroupModeUpdateClient;
 import com.sidc.utils.exception.SiDCException;
@@ -16,9 +16,9 @@ import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;
 
 public class RcuModeUpdateProcess extends AbstractAPIProcess {
-	private final ModeUpdateRequest entity;
+	private final GroupModeUpdateRequest entity;
 
-	public RcuModeUpdateProcess(final ModeUpdateRequest entity) {
+	public RcuModeUpdateProcess(final GroupModeUpdateRequest entity) {
 		this.entity = entity;
 	}
 

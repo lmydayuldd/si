@@ -7,27 +7,27 @@ import com.sidc.rcu.hmi.api.request.APIContentRequest;
 import com.sidc.rcu.hmi.common.CommonDataKey;
 import com.sidc.rcu.hmi.common.DataCenter;
 import com.sidc.rcu.hmi.framework.abs.AbstractAPIProcess;
-import com.sidc.rcu.hmi.modesetting.bean.DeviceBean;
-import com.sidc.rcu.hmi.modesetting.request.GroupModeInsertRequest;
+import com.sidc.rcu.hmi.modesetting.request.ModeInsertRequest;
 import com.sidc.rcu.hmi.systeminitial.bean.BlackcoreInitialBean;
-import com.sidc.sdk.blackcore.rcu.mode.RcuGroupModeInsertClient;
+import com.sidc.sdk.blackcore.rcu.mode.RcuModeInsertClient;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;
 
-public class RcuModeInsertProcess extends AbstractAPIProcess {
-	private final GroupModeInsertRequest entity;
+public class ModeInsertProcess extends AbstractAPIProcess {
 
-	public RcuModeInsertProcess(final GroupModeInsertRequest entity) {
+	private final ModeInsertRequest entity;
+
+	public ModeInsertProcess(final ModeInsertRequest entity) {
 		this.entity = entity;
 	}
 
 	@Override
 	protected void init() throws SiDCException, Exception {
-		LogAction.getInstance().debug("Request:" + entity);
+		// TODO Auto-generated method stub
+		LogAction.getInstance().debug("entity:" + entity);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
@@ -38,7 +38,7 @@ public class RcuModeInsertProcess extends AbstractAPIProcess {
 
 		final String json = APIParser.getInstance().toJson(request);
 
-		new RcuGroupModeInsertClient(blackcoreSetting.getUrl(), json).execute();
+		new RcuModeInsertClient<Object>(blackcoreSetting.getUrl(), json).execute();
 
 		return null;
 	}
@@ -52,23 +52,8 @@ public class RcuModeInsertProcess extends AbstractAPIProcess {
 		if (StringUtils.isBlank(entity.getModename())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(mode name).");
 		}
-		if (entity.getGroupid() <= 0) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(group id).");
-		}
-		if (entity.getModeid() <= 0) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(mode id).");
-		}
 		if (entity.getDevices() == null || entity.getDevices().isEmpty()) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(devices).");
 		}
-		for (final DeviceBean deviceEntity : entity.getDevices()) {
-			if (StringUtils.isBlank(deviceEntity.getKeycode())) {
-				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(key code).");
-			}
-			if (deviceEntity.getData() == null) {
-				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(data).");
-			}
-		}
 	}
-
 }

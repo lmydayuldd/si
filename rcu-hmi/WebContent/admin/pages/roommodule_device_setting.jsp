@@ -17,7 +17,7 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        房型 RCU 設定
+        房型設定
       </h1>
       
     </section>

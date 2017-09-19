@@ -4,26 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sidc.rcu.hmi.modesetting.bean.DeviceBean;
-
 public class ModeUpdateRequest implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 329811132127896751L;
+	private static final long serialVersionUID = -9009369494945670347L;
 	private int modeid;
-	private int groupid;
-	private List<DeviceBean> devices = new ArrayList<DeviceBean>();
+	private String modename;
+	private List<Integer> devices = new ArrayList<Integer>();
 
 	public int getModeid() {
 		return modeid;
 	}
 
-	public int getGroupid() {
-		return groupid;
+	public String getModename() {
+		return modename;
 	}
 
-	public List<DeviceBean> getDevices() {
+	public List<Integer> getDevices() {
 		return devices;
 	}
 
@@ -32,12 +27,19 @@ public class ModeUpdateRequest implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ModeUpdateRequest [modeid=");
 		builder.append(modeid);
-		builder.append(", groupid=");
-		builder.append(groupid);
+		builder.append(", modename=");
+		builder.append(modename);
 		builder.append(", devices=");
 		builder.append(devices);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public ModeUpdateRequest(int modeid, String modename, List<Integer> devices) {
+		super();
+		this.modeid = modeid;
+		this.modename = modename;
+		this.devices = devices;
 	}
 
 }

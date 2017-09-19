@@ -326,7 +326,7 @@
 </script>
 <!-- 首頁list -->
 <script type="text/template" id="tpl_mode_list">
-  <table class="table table-bordered table-hover">
+  <table id="data-table" class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -340,7 +340,10 @@
           <td>{{keyname}}</td>
           
           <td>
-            <a href="#add/{{id}}">
+            <a href="#modify/{{id}}">
+              <i class="fa fa-fw fa-gear"></i>
+            </a>
+            <a href="#modify-device/{{id}}">
               <i class="fa fa-fw fa-gear"></i>
             </a>
           </td>
@@ -349,7 +352,54 @@
     </tbody>
   </table>
 </script>
+<!-- 新增device頁面 -->
+<script type="text/template" id="tpl_device_add">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-horizontal" id="myForm">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <input type="hidden" id="operation-type" value="{{operationType}}"/>
+            <strong>{{modeName}}</strong>
+          </div>
+          <div class="box-body">
+            <div class="form-group" id="div-mode-name">
+              <label class="col-sm-2 control-label" style="text-align:center">Mode Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="mode_name" placeholder="Mode Name" required/>
+              </div>
+            </div>
+            <!--  -->
+            <div class="form-group">
+              <div class="col-sm-5" id="multiple-select">
+                
+              </div>
+            </div> 
+            <div class="box-footer">
+              <button type="button" class="btn btn-info pull-left" id="submit-add">Submit</button>
+            </div> 
+          </div>
+          <div class="box-footer">
 
+          </div>
+        </div>
+        <div id="body-model">
+
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+<!-- 左右拉表單 -->
+<script type="text/template" id="tpl_multiple_select">
+  <select multiple="multiple" size="5" id="multiple_select" data-id="{{modeId}}">
+    {{#each selectArr}}
+      <option value="{{rcuDeviceId}}" {{#ifCond selected 'Y'}}selected="selected"{{/ifCond}}>
+        ({{gouprName}})&nbsp;{{device}}
+      </option>
+    {{/each}}
+  </select>
+</script>
 <%@include file="/admin/pages/include/initial_script.jsp" %> 
 <script src="<%=request.getContextPath() %>/admin/plugins/jquery-validate/jquery.validate.min.js"></script>
 <script src="<%=request.getContextPath() %>/admin/js/mode_setting.js"></script>

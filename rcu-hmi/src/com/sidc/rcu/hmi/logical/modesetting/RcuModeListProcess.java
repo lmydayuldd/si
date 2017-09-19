@@ -21,7 +21,7 @@ public class RcuModeListProcess extends AbstractAPIProcess {
 		final BlackcoreInitialBean blackcoreSetting = (BlackcoreInitialBean) DataCenter.getInstance()
 				.get(CommonDataKey.BLACKCORE_SETTING);
 
-		this.entity = new RcuModeListClient("http://10.60.1.39:7056/blackcore").execute();
+		this.entity = new RcuModeListClient(blackcoreSetting.getUrl()).execute();
 		LogAction.getInstance().debug("entity:" + entity);
 	}
 
