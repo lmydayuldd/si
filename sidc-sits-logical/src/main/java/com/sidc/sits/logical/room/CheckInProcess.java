@@ -29,6 +29,7 @@ import com.sidc.rcu.connector.bean.receiver.PMSReceiver;
 import com.sidc.rcu.connector.bean.receiver.RCUReceiverInfo;
 import com.sidc.sits.logical.parameter.PageList;
 import com.sidc.sits.logical.parameter.SiTSPropertiesInfo;
+import com.sidc.sits.logical.rcu.mode.RoomModeProcess;
 import com.sidc.sits.logical.utils.DateTimeUtils;
 import com.sidc.sits.logical.utils.HttpClientUtils;
 import com.sidc.sits.logical.utils.UrlUtils;
@@ -37,7 +38,6 @@ import com.sidc.utils.log.LogAction;
 import com.sidc.utils.net.UDPClientBroadcast;
 import com.sidc.utils.net.UDPConnection;
 import com.sidc.utils.status.APIStatus;
-import com.sidcsits.logical.rcu.mode.RoomModeProcess;
 
 public class CheckInProcess extends AbstractAPIProcess {
 	private final CheckInRequest enity;
@@ -180,7 +180,7 @@ public class CheckInProcess extends AbstractAPIProcess {
 					birday = guestEnity.getBirthd();
 				}
 				guestEnity = new GuestRequest(guestEnity.getGuestno(), guestEnity.getFirstname(),
-						guestEnity.getLastname(), birday, guestEnity.getDepdate(), guestEnity.getGender());
+						guestEnity.getLastname(), birday, guestEnity.getDepdate(), guestEnity.getSalutation());
 			}
 
 			if (StringUtils.isBlank(guestEnity.getFirstname())) {

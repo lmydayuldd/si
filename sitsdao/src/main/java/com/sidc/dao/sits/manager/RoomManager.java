@@ -16,6 +16,7 @@ import com.sidc.blackcore.api.sits.room.response.RoomCheckInInfoResponse;
 import com.sidc.dao.connection.ProxoolConnection;
 import com.sidc.dao.sits.bill.BillDao;
 import com.sidc.dao.sits.guest.GuestDao;
+import com.sidc.dao.sits.room.Room;
 import com.sidc.dao.sits.room.RoomDao;
 import com.sidc.dao.sits.roomallocation.RoomAllocationDao;
 import com.sidc.dao.sits.tokenheader.TokenHeaderDao;
@@ -156,7 +157,7 @@ public class RoomManager {
 			RoomAllocationDao.getInstance().delete(conn, deviceId, type);
 
 			for (final String roomNo : roomList) {
-				if (!RoomDao.getInstance().findRoomNoByRoomNo(conn, roomNo)) {
+				if (!RoomDao.getInstance().isExist(conn, roomNo)) {
 					throw new SiDCException(APIStatus.DATA_DOES_NOT_EXIST, "not find room no. " + roomNo);
 				}
 				RoomAllocationDao.getInstance().insert(conn, roomNo, deviceId, type);
@@ -401,5 +402,52 @@ public class RoomManager {
 			}
 		}
 		return entity;
+	}
+
+	public boolean isExist(final String roomNo, final String billNo) throws SQLException {
+
+		boolean isExist = false;
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			isExist = RoomDao.getInstance().isExist(conn, roomNo, billNo);
+
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+		return isExist;
+	}
+
+	public void updateTvright(final String roomNo, final String tvRight) throws SQLException {
+
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			String adultWarning = Room.UNWARN;
+			Short payService = Room.PAY_ON;
+			if (tvRight.equals(Room.TVRIGHT_TM)) {
+				adultWarning = Room.WARNED;
+				payService = Room.PAY_OFF;
+			}
+			if (tvRight.equals(Room.TVRIGHT_TX)) {
+				adultWarning = Room.WARNED;
+			}
+
+			RoomDao.getInstance().updateTvright(conn, payService, adultWarning, roomNo);
+
+			conn.commit();
+
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
 	}
 }

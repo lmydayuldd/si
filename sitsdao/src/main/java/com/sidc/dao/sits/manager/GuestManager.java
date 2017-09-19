@@ -2,9 +2,14 @@ package com.sidc.dao.sits.manager;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.sidc.blackcore.api.agent.request.GuestRequest;
 import com.sidc.blackcore.api.mobile.guest.bean.GuestInfoBean;
@@ -107,9 +112,8 @@ public class GuestManager {
 
 	}
 
-	
 	public List<GuestRequest> findGuestInfo(final String roomNo) throws SQLException {
-		
+
 		Connection conn = null;
 		List<GuestRequest> list = new ArrayList<GuestRequest>();
 		try {
@@ -126,5 +130,81 @@ public class GuestManager {
 			}
 		}
 		return list;
+	}
+
+	public void updateGuest(final String roomNo, final List<GuestRequest> guests) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			String guestNo = "";
+			if (guests.size() == 1)
+				guestNo = GuestDao.getInstance().selectByIdGuestNo(conn, roomNo);
+
+			for (GuestRequest guest : guests) {
+				boolean isExist = false;
+				if (StringUtils.isBlank(guestNo))
+					guestNo = guest.getGuestno();
+
+				isExist = GuestDao.getInstance().selectByIdGuestNo(conn, roomNo, guestNo);
+				if (isExist)
+					UpdateGuestInfo(conn, guest, guestNo);
+			}
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new SQLException(e);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+
+	}
+
+	public void UpdateGuestInfo(final Connection conn, final GuestRequest guest, final String guestNo)
+			throws SQLException {
+
+		try {
+			String UPDATE_INFO = "";
+			if (!StringUtils.isBlank(guest.getFirstname())) {
+				if (!StringUtils.isBlank(UPDATE_INFO))
+					UPDATE_INFO += ", ";
+				UPDATE_INFO += "en_first_name = '" + guest.getFirstname() + "'";
+			}
+			if (!StringUtils.isBlank(guest.getLastname())) {
+				if (!StringUtils.isBlank(UPDATE_INFO))
+					UPDATE_INFO += ", ";
+				UPDATE_INFO += "en_last_name = '" + guest.getLastname() + "'";
+			}
+			if (!StringUtils.isBlank(guest.getDepdate())) {
+				if (!StringUtils.isBlank(UPDATE_INFO))
+					UPDATE_INFO += ", ";
+				UPDATE_INFO += "departure_date = '" + guest.getDepdate() + "'";
+			}
+			if (!StringUtils.isBlank(guest.getBirthd())) {
+				if (!StringUtils.isBlank(UPDATE_INFO))
+					UPDATE_INFO += ", ";
+				// DB 吃的是日期是數字格式...0代表沒帶入
+				final DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+				final Date birthday = formatter.parse(guest.getBirthd());
+				final int month = birthday.getMonth() + 1;
+				final int day = birthday.getDate();
+				UPDATE_INFO += "birth_month = '" + month + "', birth_day = '" + day + "'";
+			}
+			if (!StringUtils.isBlank(guest.getSalutation())) {
+				if (!StringUtils.isBlank(UPDATE_INFO))
+					UPDATE_INFO += ", ";
+				UPDATE_INFO += "salutation = '" + guest.getSalutation() + "'";
+			}
+
+			if (!UPDATE_INFO.equals(""))
+				GuestDao.getInstance().updateGuestInfo(conn, UPDATE_INFO, guestNo);
+
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
 	}
 }

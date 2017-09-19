@@ -25,4 +25,9 @@ public interface Room {
 	
 	/** 親子鎖密碼：FOR 開房使用作<B>ADULT WARNING</B>使用*/
 	public static final String PASSWORD_ADULT_WARNING = "";
+	
+	/** 電影權限 */
+	public static final String TVRIGHT_TU = "TU";	//全部可看
+	public static final String TVRIGHT_TX = "TX";	//全部不可看
+	public static final String TVRIGHT_TM = "TM";	//限制級不可看
 }

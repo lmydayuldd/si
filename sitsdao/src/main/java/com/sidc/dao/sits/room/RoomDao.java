@@ -214,32 +214,6 @@ public class RoomDao {
 		return entity;
 	}
 
-	private final static String FIND_ROOMNO_BY_ROOMNO = "SELECT no FROM room WHERE no = ? ";
-
-	public boolean findRoomNoByRoomNo(final Connection conn, final String roomNo) throws SQLException {
-		boolean isPass = false;
-
-		PreparedStatement psmt = null;
-		try {
-			psmt = conn.prepareStatement(FIND_ROOMNO_BY_ROOMNO);
-
-			int i = 0;
-			psmt.setString(++i, roomNo);
-
-			ResultSet rs = psmt.executeQuery();
-			if (rs.next()) {
-				isPass = true;
-			}
-
-		} finally {
-			// TODO: handle finally clause
-			if (psmt != null && !psmt.isClosed()) {
-				psmt.close();
-			}
-		}
-		return isPass;
-	}
-
 	private final static String FIND_WITH_CHECKOUT_STATUS = "SELECT chko_time FROM bill  WHERE room_no = ? "
 			+ "ORDER BY chki_time DESC LIMIT 1";
 
@@ -437,6 +411,32 @@ public class RoomDao {
 		return isExist;
 	}
 
+	private final static String SELECT_ROOMNO_BILLNO = "SELECT no FROM room WHERE no = ? AND bill_no = ?";
+
+	public boolean isExist(final Connection conn, final String roomNo, final String billNo) throws SQLException {
+
+		boolean isExist = false;
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SELECT_ROOMNO_BILLNO);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+			psmt.setString(++i, billNo);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return isExist;
+	}
+
 	private final static String SELECT_BY_FLOOR = "SELECT no FROM room WHERE floor = ?;";
 
 	public List<String> selecrRoomNoByFloor(final Connection conn, final String floor) throws SQLException {
@@ -515,4 +515,25 @@ public class RoomDao {
 		return entity;
 	}
 
+	private final static String UPDATE_TVRIGHT = "UPDATE room SET pay_service = ?, adult_warning = ? WHERE no = ?";
+
+	public void updateTvright(final Connection conn, final Short payService, final String adultWarning,
+			final String roomNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(UPDATE_TVRIGHT);
+
+			int i = 0;
+			psmt.setShort(++i, payService);
+			psmt.setString(++i, adultWarning);
+			psmt.setString(++i, roomNo);
+
+			psmt.executeUpdate();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
 }

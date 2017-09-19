@@ -104,16 +104,12 @@ public class CheckInManager {
 			// 電影觀看權限
 			String adultWarning = Room.UNWARN;
 			Short payService = Room.PAY_ON;
-			if (StringUtils.isNotBlank(enity.getTvright())) {
-				// 全部不可看
-				if (enity.getTvright().equals("TM")) {
-					adultWarning = Room.WARNED;
-					payService = Room.PAY_OFF;
-				}
-				// 限制級不可看
-				if (enity.getTvright().equals("TX")) {
-					adultWarning = Room.WARNED;
-				}
+			if (enity.getTvright().equals(Room.TVRIGHT_TM)) {
+				adultWarning = Room.WARNED;
+				payService = Room.PAY_OFF;
+			}
+			if (enity.getTvright().equals(Room.TVRIGHT_TX)) {
+				adultWarning = Room.WARNED;
 			}
 
 			RoomDao.getInstance().updateWithCheckIn(conn, enity.getRoomno(), billNo, adultWarning, payService);
@@ -137,12 +133,12 @@ public class CheckInManager {
 					GuestDao.getInstance().insertWithCheckIn(conn, enity.getRoomno(), billNo, guestEntity.getGuestno(),
 							guestEntity.getFirstname(), guestEntity.getLastname(), month, day,
 							guestEntity.getDepdate(), enity.getLangcode(),
-							guestEntity.getGender());
+							guestEntity.getSalutation());
 				} else {
 					for (String guestID : guestList) {
 						GuestDao.getInstance().updateWithCheckIn(conn, billNo, guestID, enity.getRoomno(),
 								guestEntity.getFirstname(), guestEntity.getLastname(), month, day, enity.getLangcode(),
-								guestEntity.getGender(), guestEntity.getDepdate());
+								guestEntity.getSalutation(), guestEntity.getDepdate());
 					}
 				}
 			}
@@ -205,7 +201,7 @@ public class CheckInManager {
 		try {
 			conn = ProxoolConnection.getInstance().connectSiTS();
 			conn.setAutoCommit(false);
-			isPass = RoomDao.getInstance().findRoomNoByRoomNo(conn, roomNo);
+			isPass = RoomDao.getInstance().isExist(conn, roomNo);
 
 		} finally {
 			if (conn != null && !conn.isClosed()) {

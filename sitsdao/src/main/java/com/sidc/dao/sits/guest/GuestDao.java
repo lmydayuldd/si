@@ -225,8 +225,8 @@ public class GuestDao {
 		return list;
 	}
 
-	private final static String SELECT_GUESTINFO = "SELECT guest_no,en_first_name,en_last_name,"
-			+ "group_id,national,salutation FROM guest WHERE room_no = ?";
+	private final static String SELECT_GUESTINFO = "SELECT guest_no, en_first_name, en_last_name, group_id, national, salutation "
+			+ "FROM guest WHERE room_no = ?";
 
 	public List<GuestInfoBean> selectGuestInfo(final Connection conn, final String roomNo) throws SQLException {
 
@@ -307,6 +307,31 @@ public class GuestDao {
 			}
 		}
 		return isExist;
+	}
+
+	private final static String SELECT_BY_GUESTNO = "SELECT guest_no FROM guest WHERE room_no = ?";
+
+	public String selectByIdGuestNo(final Connection conn, final String roomNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		String guestNo = "";
+		try {
+			psmt = conn.prepareStatement(SELECT_BY_GUESTNO);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				guestNo = rs.getString("guest_no");
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return guestNo;
 	}
 
 	private final static String IS_OVER_DEPARTUREDATE = "SELECT CASE WHEN departure_date IS NULL THEN 0 WHEN DATE_FORMAT(?,"
@@ -390,5 +415,25 @@ public class GuestDao {
 			}
 		}
 		return result;
+	}
+
+	private final static String UPDATE_GUEST_INFO = "UPDATE guest SET setInfo, last_modify = now() WHERE guest_no = ?";
+
+	public void updateGuestInfo(final Connection conn, final String setInfo, final String guestNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			final String UPDATE_GUEST = UPDATE_GUEST_INFO.replaceFirst("setInfo", setInfo);
+			psmt = conn.prepareStatement(UPDATE_GUEST);
+
+			int i = 0;
+			psmt.setString(++i, guestNo);
+
+			psmt.executeBatch();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
 	}
 }

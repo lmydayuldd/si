@@ -42,8 +42,8 @@ public class MessageInsertProcess extends AbstractAPIProcess {
 		LogAction.getInstance().setUserId(this.enity.getRoomno());
 		MessageManager.getInstance().insertMessage(enity);
 		String msg = SystemPropertiesManager.getInstance().findPropertiesMessage(SiTSPropertiesInfo.MESSAGE);
-		// relay
-		HttpClientUtils.sendMsgToSTB(PageList.MSG_LIST_PAGE, enity.getRoomno(), msg + enity.getText());
+		
+		HttpClientUtils.sendMsgToSTB(PageList.MSG_LIST_PAGE, enity.getRoomno(), msg);
 
 		LogAction.getInstance().debug("step message to STB success");
 		return null;

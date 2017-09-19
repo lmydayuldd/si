@@ -1,5 +1,7 @@
 package com.sidc.sits.logical.room;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -17,16 +19,19 @@ import com.sidc.dao.sits.manager.BillManager;
 import com.sidc.dao.sits.manager.CheckInManager;
 import com.sidc.dao.sits.manager.GuestManager;
 import com.sidc.dao.sits.manager.RoomChangeManager;
+import com.sidc.dao.sits.manager.RoomManager;
 import com.sidc.dao.sits.manager.StbListManager;
 import com.sidc.dao.sits.manager.SystemPropertiesManager;
+import com.sidc.dao.sits.room.RoomDao;
 import com.sidc.sits.logical.parameter.PageList;
 import com.sidc.sits.logical.parameter.SiTSPropertiesInfo;
+import com.sidc.sits.logical.rcu.mode.RoomModeProcess;
+import com.sidc.sits.logical.utils.DateTimeUtils;
 import com.sidc.sits.logical.utils.HttpClientUtils;
 import com.sidc.sits.logical.utils.UrlUtils;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;
-import com.sidcsits.logical.rcu.mode.RoomModeProcess;
 
 public class RoomChangeProcess extends AbstractAPIProcess {
 
@@ -52,7 +57,95 @@ public class RoomChangeProcess extends AbstractAPIProcess {
 		LogAction.getInstance().setUserId(this.enity.getOldRoomNumber());
 
 		CheckInRequest checkInRequest = null;
+		
+		if (!StringUtils.isBlank(enity.getNewRoomNumber())) {
+			roomChange(checkInRequest);
+		} else {
+			checkInRequest = enity.getCheckInEntity();
+			LogAction.getInstance().debug("Step 1/" + STEP + " check in request=" + enity + ".");
+			
+			boolean isExist = RoomManager.getInstance().isExist(enity.getOldRoomNumber(), checkInRequest.getBillno());
+			LogAction.getInstance().debug("Step 2/" + STEP + " whether the room no. and the bill no. exist. " + isExist);
+			if (!isExist) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "bill no. does not exist.");
+			}
+			if (!StringUtils.isBlank(checkInRequest.getTvright())) {
+				RoomManager.getInstance().updateTvright(enity.getOldRoomNumber(), checkInRequest.getTvright());
+				LogAction.getInstance().debug("Step 3/" + STEP + " change TVRight success.");
+			}
+			List<GuestRequest> guests = checkInRequest.getGuests();
+			GuestManager.getInstance().updateGuest(enity.getOldRoomNumber(), guests);	
+			LogAction.getInstance().debug("Step 4/" + STEP + " change guests info success.");
+		}
+		return null;
+	}
 
+	@Override
+	protected void check() throws SiDCException, Exception {
+		// TODO Auto-generated method stub
+		if (enity == null) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request.");
+		}
+
+		if (StringUtils.isBlank(enity.getOldRoomNumber())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of old room No.");
+		}
+
+		if (!CheckInManager.getInstance().findRoom(enity.getOldRoomNumber())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find new room no.");
+		}
+
+		if (StringUtils.isBlank(enity.getNewRoomNumber())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of new room No.");
+		}
+
+		if (!CheckInManager.getInstance().findRoom(enity.getNewRoomNumber())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find new room no.");
+		}
+
+		if (StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(enity.getNewRoomNumber()))) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "new room no is not check out.");
+		}
+		final DateTimeUtils dateUtils = new DateTimeUtils(new SimpleDateFormat("yyyy/MM/dd"));
+		
+		List<GuestRequest> guestList = new ArrayList<GuestRequest>();
+		for (GuestRequest guestEnity : enity.getCheckInEntity().getGuests()) {
+			if (!StringUtils.isBlank(guestEnity.getBirthd())) {
+				// 檢查是不是時間格式，因不是必填資訊，防呆，所以給空
+				String birday = null;
+				if (dateUtils.isDate(guestEnity.getBirthd())) {
+					birday = guestEnity.getBirthd();
+				}
+				guestEnity = new GuestRequest(guestEnity.getGuestno(), guestEnity.getFirstname(),
+						guestEnity.getLastname(), birday, guestEnity.getDepdate(), guestEnity.getSalutation());
+			}
+			guestList.add(guestEnity);
+		}
+		enity.getCheckInEntity().setGuests(guestList);
+	}
+
+	private String getRandomString() {
+		String pinCode = "";
+
+		Random rand = new Random();
+
+		for (int i = 0; i < 6; i++) {
+			pinCode += String.valueOf(rand.nextInt((max - min) + 1) + min);
+		}
+
+		return pinCode;
+	}
+	
+	private Object roomChange(CheckInRequest checkInRequest) throws SiDCException, Exception {
+		
+		if (!CheckInManager.getInstance().findRoom(enity.getNewRoomNumber())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find new room no.");
+		}
+
+		if (StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(enity.getNewRoomNumber()))) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "new room no is not check out.");
+		}
+		
 		// 可以自己帶入 checkin 資料 2017/01/04
 		if (enity.getCheckInEntity() == null) {
 			// 抓舊的房間相關資料 要塞到 新的房號裡面
@@ -67,7 +160,7 @@ public class RoomChangeProcess extends AbstractAPIProcess {
 				GuestRequest guest = null;
 				for (GuestRequest guestRequest : guestlist) {
 					guest = new GuestRequest(guestRequest.getGuestno(), enity.getCheckInEntity().getGuests().get(0).getFirstname(), guestRequest.getLastname(),
-							guestRequest.getBirthd(), guestRequest.getDepdate(), guestRequest.getGender());
+							guestRequest.getBirthd(), guestRequest.getDepdate(), guestRequest.getSalutation());
 				}
 				String chki_time = BillManager.getInstance().findBillCheckinDate(enity.getCheckInEntity().getBillno(),
 						enity.getOldRoomNumber());
@@ -79,7 +172,7 @@ public class RoomChangeProcess extends AbstractAPIProcess {
 			// new CheckInProcess(checkInRequest).check();
 		}
 		LogAction.getInstance().debug("Step 1/" + STEP + " check in request=" + enity + ".");
-
+		
 		/**
 		 * 還沒成案之前 先關閉 2017/06/29 // 2017/05/25 新增 pin code需求 String pincode =
 		 * getRandomString();
@@ -91,6 +184,7 @@ public class RoomChangeProcess extends AbstractAPIProcess {
 		 * LogAction.getInstance().debug("Step 2/" + STEP +
 		 * " get pin code success.");
 		 **/
+		
 		CheckOutRequest checkOutRequet = new CheckOutRequest(enity.getOldRoomNumber());
 		LogAction.getInstance().debug("Step 3/" + STEP + " get CheckOutRequest success." + checkOutRequet);
 
@@ -160,47 +254,7 @@ public class RoomChangeProcess extends AbstractAPIProcess {
 		}
 
 		LogAction.getInstance().debug("step STB reboot and check out success");
+		
 		return null;
-	}
-
-	@Override
-	protected void check() throws SiDCException, Exception {
-		// TODO Auto-generated method stub
-		if (enity == null) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request.");
-		}
-
-		if (StringUtils.isBlank(enity.getOldRoomNumber())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of old room No.");
-		}
-
-		if (!CheckInManager.getInstance().findRoom(enity.getOldRoomNumber())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find new room no.");
-		}
-
-		if (StringUtils.isBlank(enity.getNewRoomNumber())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of new room No.");
-		}
-
-		if (!CheckInManager.getInstance().findRoom(enity.getNewRoomNumber())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find new room no.");
-		}
-
-		if (StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(enity.getNewRoomNumber()))) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "new room no is not check out.");
-		}
-
-	}
-
-	private String getRandomString() {
-		String pinCode = "";
-
-		Random rand = new Random();
-
-		for (int i = 0; i < 6; i++) {
-			pinCode += String.valueOf(rand.nextInt((max - min) + 1) + min);
-		}
-
-		return pinCode;
 	}
 }
