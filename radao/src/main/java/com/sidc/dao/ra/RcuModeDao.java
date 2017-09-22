@@ -124,7 +124,7 @@ public class RcuModeDao {
 
 			while (rs.next()) {
 				list.add(new RcuDefaultModeResponse(rs.getInt("id"), rs.getString("keyname"), rs.getString("content"),
-						rs.getInt("timer")));
+						rs.getInt("timer"), rs.getInt("status")));
 			}
 		} finally {
 			if (psmt != null && !psmt.isClosed()) {
@@ -135,7 +135,7 @@ public class RcuModeDao {
 		return list;
 	}
 
-	private final static String SEARCH_ALL_MODE = "SELECT id, keyname, content, timer FROM rcu_mode ORDER BY id ASC;";
+	private final static String SEARCH_ALL_MODE = "SELECT id, keyname, content, timer,status FROM rcu_mode ORDER BY id ASC;";
 
 	public List<RcuDefaultModeResponse> searchAllMode(final Connection conn) throws SQLException {
 
@@ -149,7 +149,7 @@ public class RcuModeDao {
 
 			while (rs.next()) {
 				list.add(new RcuDefaultModeResponse(rs.getInt("id"), rs.getString("keyname"), rs.getString("content"),
-						rs.getInt("timer")));
+						rs.getInt("timer"), rs.getInt("status")));
 			}
 		} finally {
 			if (psmt != null && !psmt.isClosed()) {
@@ -188,5 +188,53 @@ public class RcuModeDao {
 			}
 		}
 		return id;
+	}
+
+	private final static String DELETE = "DELETE FROM rcu_mode WHERE id = ?;";
+
+	public void delete(final Connection conn, final int modeId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE);
+
+			int i = 0;
+			psmt.setInt(++i, modeId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String IS_DEFAULT = "SELECT status FROM rcu_mode WHERE id = ? AND status = 1;";
+
+	public boolean isDefault(final Connection conn, final int modeId) throws SQLException {
+
+		boolean isDefault = false;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(IS_DEFAULT);
+
+			int i = 0;
+			psmt.setInt(++i, modeId);
+
+			final ResultSet rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				isDefault = true;
+			}
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return isDefault;
 	}
 }

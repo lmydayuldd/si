@@ -11,7 +11,7 @@ import com.sidc.rcu.hmi.framework.abs.AbstractAPIProcess;
 import com.sidc.rcu.hmi.modesetting.bean.RcuModeDeviceListBean;
 import com.sidc.rcu.hmi.moduledevicesetting.request.RcuModeDeviceRequest;
 import com.sidc.rcu.hmi.systeminitial.bean.BlackcoreInitialBean;
-import com.sidc.sdk.blackcore.rcumodesetting.RcuModeDeviceListClient;
+import com.sidc.sdk.blackcore.rcu.mode.RcuModeDeviceListClient;
 import com.sidc.utils.exception.SiDCException;
 
 public class RcuModeDeviceProcess extends AbstractAPIProcess {

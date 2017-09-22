@@ -18,6 +18,7 @@ import com.sidc.rcu.hmi.bean.RcuRoomStatusBean;
 import com.sidc.rcu.hmi.bean.RcuServiceInfoBean;
 import com.sidc.rcu.hmi.common.CommonDataKey;
 import com.sidc.rcu.hmi.common.DataCenter;
+import com.sidc.rcu.hmi.conf.PmsCommonKey;
 import com.sidc.rcu.hmi.websocket.bean.IndexServiceWebsoketBean;
 import com.sidc.rcu.hmi.websocket.configurator.WebSocketEndPointConfigurator;
 import com.sidc.utils.exception.SiDCException;
@@ -47,6 +48,7 @@ public class WebIndexServiceInfoWebsocket {
 		synchronized (userSessions) {
 			userSessions.remove(userSession);
 		}
+
 		// userSession.setMaxIdleTimeout(-1);
 	}
 
@@ -55,14 +57,52 @@ public class WebIndexServiceInfoWebsocket {
 
 		final List<IndexServiceWebsoketBean> list = getBroadcastMessage();
 
+		list.addAll(roomInfoProcess(PmsCommonKey.CHECKIN));
+		list.addAll(roomInfoProcess(PmsCommonKey.CHECKOUT));
+
 		broadcast(UDPParser.getInstance().toJson(list));
+
+		if (message.equals("logopen")) {
+			/*
+			 * String result = ""; int index = 0; try { BufferedReader br = new
+			 * BufferedReader(new FileReader(Env.SYSTEM_DEF_PATH +
+			 * "hmi_websocket_test")); String line; while ((line =
+			 * br.readLine()) != null) { ++index; result += line +
+			 * System.getProperty("line.separator"); } } catch (Exception e) {
+			 * 
+			 * }
+			 * 
+			 * if (index > 5000) { FileUtils.writeStringToFile(new
+			 * File(Env.SYSTEM_DEF_PATH + "hmi_websocket_test"),
+			 * UDPParser.getInstance().toJson(list)); } else {
+			 * FileUtils.writeStringToFile(new File(Env.SYSTEM_DEF_PATH +
+			 * "hmi_websocket_test"), result +
+			 * UDPParser.getInstance().toJson(list)); }
+			 */
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<IndexServiceWebsoketBean> roomInfoProcess(final String key) {
+		final List<String> rooms = (List<String>) DataCenter.getInstance().get(key);
+
+		if (rooms == null || rooms.isEmpty()) {
+			return new ArrayList<IndexServiceWebsoketBean>();
+		}
+
+		List<IndexServiceWebsoketBean> list = new ArrayList<IndexServiceWebsoketBean>();
+
+		list.add(new IndexServiceWebsoketBean(key, String.valueOf(rooms.size())));
+
+		return list;
 	}
 
 	@SuppressWarnings("unchecked")
 	private List<IndexServiceWebsoketBean> getBroadcastMessage() {
-		final String[] keycode = { "SOS", "MUR", "DND" };
+		final String[] keycode = { "SOS", "MUR", "DND", "PIR" };
 
-		final long Intervals = 60000 * 1;// 訊息 遺失時間
+		final long intervals = 60000 * 1;// 訊息 遺失時間
 
 		final HashMap<String, List<RcuServiceInfoBean>> map = (HashMap<String, List<RcuServiceInfoBean>>) DataCenter
 				.getInstance().get(CommonDataKey.RCU_SERVICE_INFO);
@@ -88,7 +128,7 @@ public class WebIndexServiceInfoWebsocket {
 							final RcuRoomStatusBean heartbeatEntity = roomMap.get(entity.getRoomNo());
 
 							final long minusTime = (heartbeatEntity.getTime().getTime() - entity.getTime().getTime())
-									/ Intervals;
+									/ intervals;
 
 							list.add(new IndexServiceWebsoketBean(entity.getRoomNo(), entity.getKeycode(),
 									entity.getStatus(), entity.getLangs(), (int) minusTime, entity.getTime()));
@@ -98,6 +138,7 @@ public class WebIndexServiceInfoWebsocket {
 				}
 			}
 		}
+
 		return list;
 	}
 

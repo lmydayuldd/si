@@ -2,8 +2,6 @@
 	initial();
 });
 
-var data = null;
-
 function initial(){
 	setRouter();
 }
@@ -16,9 +14,8 @@ function showMainContent(){
 	//清空
 	$('#main-content').empty();
 	$('#main-content').html(html);
-
-	//讀資料
-	getData(showDataList);
+	showDataList();
+	
 }
 function showDataList(){	
 	var arr = dataProcess();
@@ -28,7 +25,9 @@ function showDataList(){
 	}
 	
 	buildTemplate('tpl_room_list',obj,'table_list');
-	
+
+	$("[data-toggle='tooltip']").tooltip();
+
 	$('#data-table').DataTable({
 		"paging": true,
 		"lengthChange": false,
@@ -82,16 +81,19 @@ function sortBy(str,array){
 	    });
 	}
 }
-function getData(cb){
+function getData(){
+	var data = null;
 	$.ajax({
 		type: "POST",
+		async: false,
 		url: $.serverurl + '/roominfo',
 		// data: data,
 		success: function(obj){
-			data = $.parseJSON(obj.data);
-			if(_.isFunction(cb)){
-				cb();
+			if(obj.status!=0){
+				alert(obj.message);
+				return false;
 			}
+			data = $.parseJSON(obj.data);
 		},
 		failure: function(errMsg) {
 			data = null;
@@ -100,15 +102,20 @@ function getData(cb){
 		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	});
+	return data;
 }
 function dataProcess(){
+	var data = getData();
 	var arr = [];
 	if(!_.isNull(data)){
 		for(var i=0;i<data.length;i++){
 			var sos = 'N';
+			var dnd = 'N';
+			var mur = 'N';
 			var card = 'N';
 			var hvac = 'N';
 			var rcu = 'N';
+			var rcuTime = null;
 			var person = 'N';//暫無這個功能(房間內是否有人)
 
 			// process about Service info
@@ -117,6 +124,14 @@ function dataProcess(){
 					var tempStr = data[i]['service'][x]['keycode'];
 					if(tempStr=='SOS'){
 						sos = 'Y';
+						break;
+					}
+					if(tempStr=='MUR'){
+						mur = 'Y';
+						break;
+					}
+					if(tempStr=='DND'){
+						dnd = 'Y';
 						break;
 					}
 				}
@@ -138,6 +153,7 @@ function dataProcess(){
 			
 			if(!_.isNull(data[i]['rcu']) && !_.isUndefined(data[i]['rcu'])){
 				rcu = 'Y';
+				rcuTime = dateTimeProcess(data[i]['rcu'].time)  + ' minute ago';
 			}
 
 			var roomModuleObj = {
@@ -146,7 +162,7 @@ function dataProcess(){
 			var roomModuleArr = [];
 
 			roomModuleArr.push(roomModuleObj);
-			roomModuleArr.push(roomModuleObj);
+			// roomModuleArr.push(roomModuleObj);
 
 			var roomObj = {
 				'roomNo' : data[i]["roomNo"],
@@ -156,12 +172,36 @@ function dataProcess(){
 				'hvacStatus' : hvac,
 				'rcuStatus': rcu,
 				'personStatus' : person,
-				'roomModuleArr' : roomModuleArr
+				'roomModuleArr' : roomModuleArr,
+				'rcuTime':rcuTime,
+				'dndStatus': dnd,
+				'murStatus':mur
 			}
 			arr.push(roomObj)
 		}
 	}
 	return arr;
+}
+function dateTimeProcess(_starTime){
+
+	Date.prototype.dateDiff = function(interval,objDate){
+	    var dateEnd = new Date(objDate);
+	    if(isNaN(dateEnd)) return undefined;
+	    switch (interval) {
+	        case "s":return parseInt((dateEnd - this) / 1000);
+	        case "n":return parseInt((dateEnd - this) / 60000);
+	        case "h":return parseInt((dateEnd - this) / 3600000);
+	        case "d":return parseInt((dateEnd - this) / 86400000);
+	        case "w":return parseInt((dateEnd - this) / (86400000 * 7));
+	        case "m":return (dateEnd.getMonth()+1)+((dateEnd.getFullYear()-this.getFullYear())*12) - (this.getMonth()+1);
+	        case "y":return dateEnd.getFullYear() - this.getFullYear();
+	    }
+	}
+
+	var starTime = new Date(_starTime);
+	var endTime = new Date();
+
+	return starTime.dateDiff("n",endTime);
 }
 function buildTemplate(templateId,_obj,pageId){
 	var tpl_code = $('#' + templateId).html();

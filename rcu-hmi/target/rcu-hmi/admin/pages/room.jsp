@@ -72,6 +72,8 @@
         <th class="text-center">Check in Status</th>
         <!-- <th class="text-center">Room Module</th> -->
         <th class="text-center">Other Status</th>
+        <th class="text-center">Last connection</th>
+        
         <!-- <th></th> -->
       </tr>
     </thead>
@@ -105,19 +107,33 @@
           {{/if}} -->
           <td>
             {{#ifCond sosStatus 'Y'}}
-               <i class="fa fa-exclamation-circle"></i>
+               <i class="fa fa-exclamation-circle" data-toggle="tooltip" title="SOS"></i>
             {{/ifCond}}
+            {{#ifCond dndStatus 'Y'}}
+               <i class="fa fa-bell-slash" data-toggle="tooltip" title="DND"></i>
+            {{/ifCond}}
+            {{#ifCond murStatus 'Y'}}
+               <i class="fa fa-lightbulb-o" data-toggle="tooltip" title="murStatus"></i>
+            {{/ifCond}}            
             {{#ifCond cardStatus 'Y'}}
-               <i class="fa fa-fw fa-key"></i>
+               <i class="fa fa-fw fa-key" data-toggle="tooltip" title="card"></i>
             {{/ifCond}}
             {{#ifCond hvacStatus 'Y'}}
-                <i class="glyphicon glyphicon-asterisk"></i>
+                <i class="glyphicon glyphicon-asterisk" data-toggle="tooltip" title="hvac"></i>
             {{/ifCond}}
             {{#ifCond rcuStatus 'Y'}}
-               <i class="ion-cube"></i>
+               <i class="ion-cube" data-toggle="tooltip" title="RCU"></i>
             {{/ifCond}}
+
+            {{#ifCond pirStatus 'Y'}}
+               <i class="fa-user-plus" data-toggle="tooltip" title="PIR"></i>
+            {{/ifCond}}
+
            
             <!-- <span class="label label-danger"><i class="fa fa-fw fa-key"></i></span> -->
+          </td>
+          <td>
+            {{rcuTime}}
           </td>
          <!--  <td>
             <a href="javascript:void(0);">
@@ -125,6 +141,7 @@
             </a>
           </td> -->
         </tr> 
+        
       {{/each}}
     </tbody>
   </table>

@@ -131,15 +131,21 @@ public class RoomInfoProcess extends AbstractAPIProcess {
 			return serviceList;
 		}
 
-		for (RcuServiceInfoBean serviceEntity : serviceMap.get(roomNo)) {
-			if (serviceEntity.getKeycode().equals("SOS")) {
-				if (StringUtils.isBlank(serviceEntity.getStatus())) {
-					continue;
-				}
-				if (serviceEntity.getStatus().equals("1")) {
-					serviceList.add(serviceEntity);
-				}
+		for (final RcuServiceInfoBean serviceEntity : serviceMap.get(roomNo)) {
+			if (StringUtils.isBlank(serviceEntity.getStatus())) {
+				continue;
 			}
+			if (serviceEntity.getStatus().equals("1")) {
+				serviceList.add(serviceEntity);
+			}
+//			if (serviceEntity.getKeycode().equals("SOS")) {
+//				if (StringUtils.isBlank(serviceEntity.getStatus())) {
+//					continue;
+//				}
+//				if (serviceEntity.getStatus().equals("1")) {
+//					serviceList.add(serviceEntity);
+//				}
+//			}
 		}
 		return serviceList;
 	}
@@ -167,7 +173,7 @@ public class RoomInfoProcess extends AbstractAPIProcess {
 	}
 
 	private RcuRoomStatusBean rcuProcess(final HashMap<String, RcuRoomStatusBean> rcuMap, final String roomNo) {
-		if (rcuMap == null) {
+		if (rcuMap == null || rcuMap.isEmpty()) {
 			return null;
 		}
 		return rcuMap.get(roomNo);

@@ -23,7 +23,7 @@ public class SystemConfiguration {
 	public void initial() throws Exception {
 		
 		logger.info("SYSTEM_DEF_PATH:" + Env.SYSTEM_DEF_PATH);
-		logger.info("RMI_CONFIGUATION_PATH:" + Env.HMI_CONFIGUATION_PATH);
+		logger.info("HMI_CONFIGUATION_PATH:" + Env.HMI_CONFIGUATION_PATH);
 		
 		final WebsocketInitialBean websocketSetting = readWebSocketFile(
 				new File(Env.SYSTEM_DEF_PATH + Env.HMI_CONFIGUATION_PATH));

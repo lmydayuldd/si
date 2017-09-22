@@ -13,6 +13,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sidc.blackcore.api.sits.room.response.RoomCheckInInfoResponse;
+import com.sidc.blackcore.api.sits.room.response.RoomStatsListResponse;
 import com.sidc.dao.connection.ProxoolConnection;
 import com.sidc.dao.sits.bill.BillDao;
 import com.sidc.dao.sits.guest.GuestDao;
@@ -450,4 +451,33 @@ public class RoomManager {
 			}
 		}
 	}
+
+	/**
+	 * 取得所有check in room,check out room (有 STB IP為準)
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public RoomStatsListResponse listCheckInCheckOutRoom() throws SQLException {
+
+		RoomStatsListResponse entity = null;
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			List<String> checkOutRooms = RoomDao.getInstance().listCheckOutRooms(conn);
+
+			List<String> checkInRooms = RoomDao.getInstance().listRoomOfCheckIn(conn);
+
+			entity = new RoomStatsListResponse(checkInRooms, checkOutRooms);
+
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+		return entity;
+	}
+
 }

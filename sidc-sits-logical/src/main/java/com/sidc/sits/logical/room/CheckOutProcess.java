@@ -1,22 +1,31 @@
 package com.sidc.sits.logical.room;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.Gson;
 import com.sidc.blackcore.api.agent.request.CheckOutRequest;
 import com.sidc.common.framework.abs.AbstractAPIProcess;
+import com.sidc.configuration.common.key.CommonCatalogueRCUKey;
+import com.sidc.configuration.common.key.PMSKey;
 import com.sidc.configuration.conf.SidcUrlName;
 import com.sidc.dao.sits.manager.CheckInManager;
 import com.sidc.dao.sits.manager.CheckOutManager;
 import com.sidc.dao.sits.manager.StbListManager;
 import com.sidc.dao.sits.manager.SystemPropertiesManager;
+import com.sidc.rcu.connector.bean.receiver.PMSReceiver;
+import com.sidc.rcu.connector.bean.receiver.RCUReceiverInfo;
 import com.sidc.sits.logical.parameter.PageList;
 import com.sidc.sits.logical.parameter.SiTSPropertiesInfo;
 import com.sidc.sits.logical.utils.HttpClientUtils;
 import com.sidc.sits.logical.utils.UrlUtils;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
+import com.sidc.utils.net.UDPClientBroadcast;
+import com.sidc.utils.net.UDPConnection;
 import com.sidc.utils.status.APIStatus;
 
 /**
@@ -81,7 +90,27 @@ public class CheckOutProcess extends AbstractAPIProcess {
 			LogAction.getInstance().debug("Reboot STB:" + e);
 		}
 
+		List<Serializable> objs = new ArrayList<Serializable>();
+		objs.add(new PMSReceiver(PMSKey.CHECKOUT));
+
+		final RCUReceiverInfo receiver = new RCUReceiverInfo(LogAction.getInstance().getUUID(), this.enity.getRoomno(),
+				CommonCatalogueRCUKey.PMS, objs);
+
+		broadcastPMS(8026, receiver);
+
+		LogAction.getInstance().debug("Step 4/" + STEP + " broadcast check out success.");
+
 		return null;
+	}
+
+	private void broadcastPMS(final int target, final RCUReceiverInfo receiver) throws SiDCException {
+		UDPClientBroadcast broadcast = null;
+		try {
+			broadcast = new UDPClientBroadcast(new UDPConnection());
+			broadcast.send(new Gson().toJson(receiver).getBytes(), target);
+		} finally {
+			broadcast.close();
+		}
 	}
 
 	@Override

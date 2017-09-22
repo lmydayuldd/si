@@ -341,11 +341,17 @@
           
           <td>
             <a href="#modify/{{id}}">
-              <i class="fa fa-fw fa-gear"></i>
+              <i class="fa fa-fw fa-gear" data-toggle="tooltip" title="mode setting"></i>
             </a>
             <a href="#modify-device/{{id}}">
-              <i class="fa fa-fw fa-gear"></i>
+              <i class="fa fa-fw fa-gears" data-toggle="tooltip" title="device setting"></i>
             </a>
+            {{#ifCond status '0'}}
+              <a href="javascript:void(0)" class="delete" value="{{id}}">
+                <i class="fa fa-fw fa-trash-o"></i>
+              </a>
+            {{/ifCond}}
+            
           </td>
         </tr> 
       {{/each}}

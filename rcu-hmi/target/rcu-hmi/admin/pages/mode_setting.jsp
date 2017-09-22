@@ -68,10 +68,14 @@
       <form class="form-horizontal" id="myForm">
         <div class="box box-info">
           <div class="box-header with-border">
+            <input type="hidden" id="mode_id" value="{{modeId}}" />
+            <strong>{{modeName}}</strong>
           </div>
           <div class="box-body">
             <!-- Mode -->
             <div class="form-group" id="mode_group">
+
+              <!--
               <label class="col-sm-2 control-label">Mode</label>
               <div class="col-sm-4">
                 <div class="btn-group">
@@ -88,6 +92,7 @@
                   </ul>
                 </div>
               </div>
+              -->
             </div> 
             <!-- 房型 -->
             <div class="form-group">
@@ -183,7 +188,7 @@
         <div class="form-group">
           <label class="col-sm-2 text-center">Power</label>
           <div class="col-sm-10">
-            <input class="form-control btn-switch" id="hvac_power" type="checkbox" keycode="{{keycode}}" {{#ifCond isPower 1}}checked="checked" {{/ifCond}} >
+            <input class="form-control btn-switch" id="hvac_power" type="checkbox" keycode="{{keycode}}" {{#ifCond power 1}}checked="checked" {{/ifCond}} >
           </div>
         </div>
 
@@ -321,11 +326,11 @@
 </script>
 <!-- 首頁list -->
 <script type="text/template" id="tpl_mode_list">
-  <table class="table table-bordered table-hover">
+  <table id="data-table" class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
-        <th>房型</th>
+        
         <th></th>
       </tr>
     </thead>
@@ -333,18 +338,74 @@
       {{#each arr}}
         <tr>
           <td>{{keyname}}</td>
-          <td></td>
+          
           <td>
-            <a href="#add/{{id}}">
-              <i class="fa fa-fw fa-gear"></i>
+            <a href="#modify/{{id}}">
+              <i class="fa fa-fw fa-gear" data-toggle="tooltip" title="mode setting"></i>
             </a>
+            <a href="#modify-device/{{id}}">
+              <i class="fa fa-fw fa-gears" data-toggle="tooltip" title="device setting"></i>
+            </a>
+            {{#ifCond status '0'}}
+              <a href="javascript:void(0)" class="delete" value="{{id}}">
+                <i class="fa fa-fw fa-trash-o"></i>
+              </a>
+            {{/ifCond}}
+            
           </td>
         </tr> 
       {{/each}}
     </tbody>
   </table>
 </script>
+<!-- 新增device頁面 -->
+<script type="text/template" id="tpl_device_add">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-horizontal" id="myForm">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <input type="hidden" id="operation-type" value="{{operationType}}"/>
+            <strong>{{modeName}}</strong>
+          </div>
+          <div class="box-body">
+            <div class="form-group" id="div-mode-name">
+              <label class="col-sm-2 control-label" style="text-align:center">Mode Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="mode_name" placeholder="Mode Name" required/>
+              </div>
+            </div>
+            <!--  -->
+            <div class="form-group">
+              <div class="col-sm-5" id="multiple-select">
+                
+              </div>
+            </div> 
+            <div class="box-footer">
+              <button type="button" class="btn btn-info pull-left" id="submit-add">Submit</button>
+            </div> 
+          </div>
+          <div class="box-footer">
 
+          </div>
+        </div>
+        <div id="body-model">
+
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+<!-- 左右拉表單 -->
+<script type="text/template" id="tpl_multiple_select">
+  <select multiple="multiple" size="5" id="multiple_select" data-id="{{modeId}}">
+    {{#each selectArr}}
+      <option value="{{rcuDeviceId}}" {{#ifCond selected 'Y'}}selected="selected"{{/ifCond}}>
+        ({{gouprName}})&nbsp;{{device}}
+      </option>
+    {{/each}}
+  </select>
+</script>
 <%@include file="/admin/pages/include/initial_script.jsp" %> 
 <script src="<%=request.getContextPath() %>/admin/plugins/jquery-validate/jquery.validate.min.js"></script>
 <script src="<%=request.getContextPath() %>/admin/js/mode_setting.js"></script>

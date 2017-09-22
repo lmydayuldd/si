@@ -44,7 +44,7 @@
     </li>
     <li>
       <a href="<%=request.getContextPath() %>/admin/pages/mode_setting.jsp">
-        <i class="fa fa-gear"></i> <span>Mode Setting</span>
+        <i class="fa fa-cogs"></i> <span>Mode Setting</span>
       </a>
     </li>
    <!--  <li>
@@ -58,14 +58,14 @@
         <i class="fa fa-gear"></i> <span>房型設定</span>
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a href="<%=request.getContextPath() %>/admin/pages/hvac_center_control.jsp">
         <i class="fa fa-gear"></i> <span>中央空調控制</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a href="<%=request.getContextPath() %>/admin/pages/hvac_control.jsp">
-        <i class="fa fa-gear"></i> <span>冷氣控制</span>
+        <i class="fa fa-asterisk"></i> <span>冷氣控制</span>
       </a>
     </li>
     <li>

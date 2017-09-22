@@ -487,6 +487,26 @@ public class RoomDao {
 		return response;
 	}
 
+	public List<String> listCheckOutRooms(final Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		List<String> list = new ArrayList<String>();
+		try {
+			psmt = conn.prepareStatement(LIST_CHECKOUT_ROOM);
+			ResultSet rs = psmt.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString("no"));
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return list;
+	}
+
 	private final static String SELECT_PAYSERVICE = "SELECT pay_service,adult_warning FROM room WHERE no = ? ";
 
 	public PayServiceBean selectPayServiceInfo(final Connection conn, final String roomNo) throws SQLException {

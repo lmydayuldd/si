@@ -50,6 +50,12 @@ public class IndexServiceWebsoketBean implements Serializable {
 		this.time = time;
 	}
 
+	public IndexServiceWebsoketBean(String keycode, String status) {
+		super();
+		this.keycode = keycode;
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

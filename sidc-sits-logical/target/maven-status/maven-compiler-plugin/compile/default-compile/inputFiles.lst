@@ -65,11 +65,11 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\sho
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\PrinterUtils.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\spare\SpareCategoryProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\account\SystemUserLoginProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\rcu\mode\RoomModeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryReturnTypeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\pay\PostProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingOrderStatusProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidcsits\logical\rcu\mode\RoomModeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\spare\SpareOrderStatusProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\movie\MoviePlayProcess.java

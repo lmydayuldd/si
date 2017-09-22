@@ -26,6 +26,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobi
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\response\ActivityResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\bean\ActivitySignUpDetailBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\bean\ActivityLangBean.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuDeviceServiceSettingBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\spare\request\SpareBackendOrderListRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryOrderCreateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\response\RcuModeSettingDevicesEntity.java
@@ -39,8 +40,8 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\r
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\raudp\bean\PositionBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\command\bean\RcuCommanderBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\movie\request\MoviePlayRequest.java
-D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\response\ScheduleInfoResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\spare\bean\SpareOrderLineAmountBean.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\response\ScheduleInfoResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroupdevice\request\RcuGroupDeviceListRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\response\ShoppingResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\message\bean\ChatMettingHistoricalMessageBean.java
@@ -63,6 +64,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\agent\request\RoomChangeRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\MiddlewareUpdateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\response\ActivitySignUpDetailResponse.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\request\RcuModeDeleteRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\response\ActivityFeeResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\bean\RoomServiceSetCategoryBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\rcu\connector\bean\receiver\HeartBeatReceiver.java
@@ -101,8 +103,8 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\reques
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\rcu\RcuScheduleCheckOutUpdateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightStatsBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\response\ShoppingItemResponse.java
-D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\ScheduleStatusRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\request\ActivityFeeUpdateRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\ScheduleStatusRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\bean\ActivityRepeatInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\dao\rcu\command\response\RcuModelDevice.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\roominfo\bean\RcuConditionEntity.java
@@ -150,6 +152,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\SystemUserLogin.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\request\ShoppingVendorUpdateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryClassInsertRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroupdevice\bean\RcuGroupInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\bean\TypeToShopBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\rcu\connector\bean\receiver\RCUReceiverInfo.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroup\request\RcuGroupNewRoomEnity.java
@@ -175,6 +178,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\bean\RoomServiceOrderLineInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\raudp\bean\BlubDeviceBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\ScheduleCommandRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroup\request\RcuGroupDeleteRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\message\request\GuestMessageRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\bean\LaundryOrderLineBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\StbRebootRequest.java
@@ -218,9 +222,9 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\r
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryBackendOrderListRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryWashTypeRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\token\request\MobilePrivateTokenInsertRequest.java
-D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroupdevice\response\RcuGroupDeviceResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\movie\response\MovieListResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryWashTypeInsertRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcugroup\request\RcuGroupInsertRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\response\MiddlewareVersionResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\reponse\RoomServiceCategoryResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\movie\bean\MovieConsBean.java
@@ -244,6 +248,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\r
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightStatsAirportInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\dao\rcu\command\response\RcuModelCondition.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\StbRemoteControlRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuKeyCodeBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\message\bean\FcmResultsBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\request\RoomServiceCategoryInsertRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\response\ShoppingBackendOrderResponse.java
@@ -254,6 +259,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobi
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\raudp\bean\BlubBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightAwareTimeBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\bean\ActivityPhotoBean.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuDeviceBulbSettingBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\spare\request\SpareCategoryInsertRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\RoomListStbIPRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\response\ActivityTypeResponse.java
@@ -267,6 +273,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobi
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\response\RcuAgentBehaviorEntity.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\token\bean\TokenInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryClassUpdateRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\request\RcuGroupModeUpdateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\bean\ShopItemInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightAwareFlightInfoBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\response\RcuModeResponse.java
@@ -274,9 +281,11 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\bean\LaundryWashTypeBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\bean\RoomServiceSetItemListBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\userauthorization\bean\AuthorizationFunctionInfoBean.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuDeviceHvacSettingBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\request\RoomModuleRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\bean\LaundryOrderItemBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\request\ShoppingItemUpdateRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuGroupModuleBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\response\ChannelFileListResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\request\ShoppingVendorRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightStatsCommonDateBean.java
@@ -313,10 +322,12 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\rcu\connector\bean
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryClassRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\request\ActivityPaymentStatusUpdateRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\token\request\TokenSelectRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\request\RcuGroupModeInsertRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\response\ScheduleStatusResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\flight\bean\FlightStatsFlightStatusBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\bean\RoomServiceItemCategoryBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\CheckOutRoomScheduleListRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuModeBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\request\ShoppingDeleteRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\bean\LaundryItemBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\response\LaundryReturnTypeResponse.java
@@ -330,6 +341,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\reques
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\message\bean\FcmNewslettersObjectBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\bean\LaundryWashTypeStatusBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\dao\rcu\command\response\RcuModelCatalogue.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuDeviceBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\response\STBStatusInfo.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\activity\bean\ActivitySignUpBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\StbPropertySettingRequest.java
@@ -349,9 +361,11 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobi
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\response\RcuDefaultModeResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\dao\ra\response\DeviceEnity.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\mobile\laundry\request\LaundryOrderReceiveRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\bean\RcuCatalogueBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\token\request\MobilePublicTokenInsertRequest.java
-D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\reponse\RoomServiceItemResponse.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\request\RcuModeInsertRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\request\ScheduleListRequest.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\roomservice\reponse\RoomServiceItemResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\response\ChannelListResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\shop\bean\ShopLangBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\request\StbWakeupRequest.java
@@ -370,6 +384,7 @@ D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\spare\response\SpareCategoryResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\raudp\bean\CardBean.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\movie\bean\MovieBean.java
+D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\ra\rcumodesetting\request\RcuGroupModeRequest.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\quartz\api\command\key\QuartzCommand.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\derex\cm\stb\api\response\RoomListStbIPResponse.java
 D:\workspace\blackcore\sits-api-module\src\main\java\com\sidc\blackcore\api\sits\weather\bean\OpenWeatherMapBean.java

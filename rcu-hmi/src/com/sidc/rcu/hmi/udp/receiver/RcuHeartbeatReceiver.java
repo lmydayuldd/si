@@ -44,21 +44,12 @@ public class RcuHeartbeatReceiver extends AbstractUDPReceiver {
 		HashMap<String, RcuRoomStatusBean> roomMap = (HashMap<String, RcuRoomStatusBean>) DataCenter.getInstance()
 				.get(CommonDataKey.RCU_ROOM_STATUS);
 
-		// LogAction.getInstance().debug("Step 1/3 get map from DataCenter
-		// success.");
-
 		if (roomMap == null || roomMap.isEmpty()) {
 			roomMap = new HashMap<String, RcuRoomStatusBean>();
 		}
 
-		// LogAction.getInstance().debug("Step 2/3 check map(null or empty)
-		// success.");
-
 		roomMap.put(entity.getRoomNo(), new RcuRoomStatusBean(entity.getRoomNo()));
 		DataCenter.getInstance().put(CommonDataKey.RCU_ROOM_STATUS, roomMap);
-
-		// LogAction.getInstance().debug("Step 3/3 put map to DataCenter
-		// success.");
 
 		return null;
 	}

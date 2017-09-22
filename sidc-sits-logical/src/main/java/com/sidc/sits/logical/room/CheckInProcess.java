@@ -1,14 +1,9 @@
 package com.sidc.sits.logical.room;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,8 +38,8 @@ public class CheckInProcess extends AbstractAPIProcess {
 	private final CheckInRequest enity;
 
 	private final int STEP = 5;
-	private final int max = 9;
-	private final int min = 0;
+	// private final int max = 9;
+	// private final int min = 0;
 
 	public CheckInProcess(final CheckInRequest enity) {
 		this.enity = enity;
@@ -201,16 +196,15 @@ public class CheckInProcess extends AbstractAPIProcess {
 		}
 	}
 
-	private String getRandomString() {
-		String pinCode = "";
-
-		Random rand = new Random();
-
-		for (int i = 0; i < 6; i++) {
-			pinCode += String.valueOf(rand.nextInt((max - min) + 1) + min);
-		}
-
-		return pinCode;
-	}
+	/*
+	 * private String getRandomString() { String pinCode = "";
+	 * 
+	 * Random rand = new Random();
+	 * 
+	 * for (int i = 0; i < 6; i++) { pinCode += String.valueOf(rand.nextInt((max
+	 * - min) + 1) + min); }
+	 * 
+	 * return pinCode; }
+	 */
 
 }

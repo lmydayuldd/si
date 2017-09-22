@@ -132,4 +132,25 @@ public class RcuGroupModeDao {
 			}
 		}
 	}
+
+	private final static String DELETE = "DELETE FROM rcu_group_mode WHERE rcu_mode_id = ?;";
+
+	public void delete(final Connection conn, final int modeId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE);
+
+			int i = 0;
+			psmt.setInt(++i, modeId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
 }

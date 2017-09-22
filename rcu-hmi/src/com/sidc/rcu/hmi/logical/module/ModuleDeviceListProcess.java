@@ -12,7 +12,7 @@ import com.sidc.rcu.hmi.modeledevicesetting.response.ModuleDeviceSettingListResp
 import com.sidc.rcu.hmi.moduledevicesetting.request.ModuleDeviceRequest;
 import com.sidc.rcu.hmi.modulesetting.bean.ModuleDeviceListBean;
 import com.sidc.rcu.hmi.modulesetting.bean.RcuDeviceBean;
-import com.sidc.sdk.blackcore.rcumodulesetting.RcuModuleDeviceListClient;
+import com.sidc.sdk.blackcore.rcumodule.RcuModuleDeviceListClient;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.status.APIStatus;
 

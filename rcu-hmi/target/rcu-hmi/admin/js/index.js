@@ -48,6 +48,7 @@ function sendMsg(){
         // {"keycode":"MUR"}
     ];
 
+
 	websocket.onopen = function() {
 		console.log('onopen');
 		keepAlive();
@@ -66,56 +67,76 @@ function sendMsg(){
     });
 }
 function keepAlive() {
-	console.log('keepAlive');
-    var timeout = 60000;  
+    var timeout = 120000; 
 
-    var obj = [
-        
-    ];
+    var obj = "logopen";
 
     if (websocket.readyState == websocket.OPEN) {  
-        websocket.send(JSON.stringify(obj)); 
+    	console.log('keepAlive-OPEN '+ new Date());
+        // websocket.send(JSON.stringify(obj)); 
+        websocket.send(obj); 
+
+	 	var timerId = setTimeout(keepAlive, timeout);  
+
+	    while (timerId--) {
+			window.clearTimeout(timerId); 
+		}
     }else{
-    	console.log('websocket.fail'+ new Date());
-    	reconnect();
+    	console.log('websocket.fail '+ new Date());
+
+    	waitForSocketConnection(websocket, function(){
+	    	sendMsg();
+	    });
     }	
-    timerId = setTimeout(keepAlive, timeout);  
+   
 } 
-function reconnect (){
-	console.log('reconnect');
-    websocket = new WebSocket($.websocketurl + "/socketindexinfo" );
-    sendMsg();
-}
+// function reconnect (){
+// 	console.log('reconnect');
+//     websocket = new WebSocket($.websocketurl + "/socketindexinfo" );
+//     sendMsg();
+// }
 function waitForSocketConnection(socket, callback){
 	connectionCount++;
 
-    if(connectionCount>=1000){
-    	var timeout_id = setTimeout(function() {}, 0);
-		while (timeout_id--) {
-		    clearTimeout(timeout_id); 
-		}
-
-		var interval_id = setInterval(function() {}, 0);
-		while (interval_id--) {
-		    clearInterval(interval_id); 
-		}
+    if(connectionCount>=30000){
+    	cleanSetTimeOut();
     	// clearInterval(myVar);
     	alert('Websocket time out!!');
+    	location.reload();
     	return false;
     }
 
 	setTimeout(function () {
 	    if (socket.readyState === 1) {
 	        connectionCount = 0;
+
+	        cleanSetTimeOut();
+
+	       	websocket = socket;
+
+	       	keepAlive();
+
 	        if(callback != null){
 	            callback();
 	        }
 	        return;
 	    } else {
 	        console.log("wait for connection...");
+	        socket = new WebSocket($.websocketurl + "/socketindexinfo" );
 	        waitForSocketConnection(socket, callback);
 	    }
 	}, 10); 
+}
+function cleanSetTimeOut(){
+	var timeoutId = setTimeout(function() {}, 0);
+	while (timeoutId--) {
+	    clearTimeout(timeoutId); 
+	}
+
+	var intervalId = setInterval(function() {}, 0);
+	while (intervalId--) {
+	    clearInterval(intervalId); 
+	}
 }
 function getSOSData(){
 	var arr = [];

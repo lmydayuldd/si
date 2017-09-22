@@ -11,6 +11,8 @@ function showMainContent(){
 	
 	showDataList();
 	setBindMain();
+
+	// console.log($('#main-content').css('min-height'));
 }
 function showDataList(){	
 	var obj = {
@@ -18,24 +20,71 @@ function showDataList(){
 	};
 
 	buildTemplate('tpl_mode_list',obj,'table_list');
+
+	$("[data-toggle='tooltip']").tooltip();
+
+	$('#data-table').DataTable({
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": false,
+		"info": false,
+		"autoWidth": true,
+		"displayLength": 10
+    });
+}
+function showAdd(){
+	var roomModuleArr = getRoomModuleData();
+	
+	var obj = {
+		'roomModuleArr' : roomModuleArr
+	}
+
+	$('#main-content').empty();
+
+	// buildTemplate('tpl_page_add',obj,'main-content');
+	buildTemplate('tpl_device_add',null,'main-content');
+
+	
+	// buildTemplate('tpl_mode_add',obj,'mode_group');
+	// buildTemplate('tpl_hvac',obj,'body-model');
+
+	updateSelect();
+
+	setBindAdd();
+
+	$("#myForm").validate();
+
 }
 function showModify(_id){
 	var roomModuleArr = getRoomModuleData();
 	var modeArr = getModeDate();
+
+	var modeName = '';
+
+	for(var i=0;i<modeArr.length;i++){
+		if(modeArr[i].id == _id){
+			modeName = modeArr[i].keyname;
+			break;
+		}
+	}
 	
 	var obj = {
 		'roomModuleArr' : roomModuleArr,
-		'modeArr' : modeArr
+		'modeId' : _id,
+		'modeName' : modeName,
+		'operationType' : 'add'
 	}
 
 	$('#main-content').empty();
 
 	buildTemplate('tpl_page_add',obj,'main-content');
-	buildTemplate('tpl_mode_add',obj,'mode_group');
+	// buildTemplate('tpl_mode_add',obj,'mode_group');
 	buildTemplate('tpl_hvac',obj,'body-model');
 
-	if(modeArr.length>0 && roomModuleArr.length){
-		changeEvent(modeArr[0].id,roomModuleArr[0].id);
+
+	if(roomModuleArr.length){
+		changeEvent(_id,roomModuleArr[0].id);
 	}
 
 	$('.slider').slider();
@@ -48,12 +97,41 @@ function showModify(_id){
 
 	$("#myForm").validate();
 }
+function showModifyDevice(_id){
+	var modeArr = getModeDate();
+
+	var modeName = '';
+
+	for(var i=0;i<modeArr.length;i++){
+		if(modeArr[i].id == _id){
+			modeName = modeArr[i].keyname;
+			break;
+		}
+	}
+	
+	$('#main-content').empty();
+
+	var obj = {		
+		'modeName' : modeName,
+		'operationType' : 'modify'
+	}
+
+	buildTemplate('tpl_device_add',obj,'main-content');
+
+	updateSelect(_id);
+
+	$('#div-mode-name').remove();
+
+	setBindAdd();
+	
+}
 function setBindMain(){
 	//index delete button
 	$("#table_list").unbind("click.delete");
     $("#table_list").on("click.delete", ".delete", function(event){ 
         if(confirm('Are you sure?')){
-        	showMainContent();
+        	var id = $(this).attr('value');
+        	doSubmitDelete(id);
         	return;
         }
     });
@@ -69,17 +147,12 @@ function setBindAdd(){
     	$("#display-time").text(event.value);
     });
 
-	//Type change
-	$("#main-content").unbind("click.type-mode");
-	$("#main-content").on("click.type-mode", ".type-mode", function(event){ 
-    	$('#mode').text($(this).text());
-    	changeEvent($(this).attr('data-code'),1);
-    });
-
     //module change
 	$("#main-content").unbind("click.room-module");
 	$("#main-content").on("click.room-module", ".room-module", function(event){ 
     	$('#module').text($(this).text());
+    	$('#module').attr('data-code',$(this).attr('data-code'));
+    	changeEvent($('#mode_id').val(),$(this).attr('data-code'));
     });
 
     //submit
@@ -89,11 +162,25 @@ function setBindAdd(){
 			submitProcess();
 		}
     });
+
+    //submit
+	$("#main-content").unbind("click.submit-add");
+	$("#main-content").on("click.submit-add", "#submit-add", function(event){ 
+		if($("#myForm").valid()){
+			var operationType = $('#operation-type').val();
+			if(operationType=="modify"){
+				submitModifyDeviceProcess();			
+			}else{
+				submitAddProcess();
+			}
+		}
+    });
 }
 function setRouter(){
 	var routes = {
-		'add': showModify,
-		'add/:_id': showModify,
+		'add': showAdd,
+		'modify/:_id': showModify,
+		'modify-device/:_id': showModifyDevice,
 		'':showMainContent()
 	};
 
@@ -118,7 +205,25 @@ function buildTemplateMultipleHtml(tpl_code,_obj,pageId){
 	$('#' + pageId).html(html);
 }
 function changeEvent(_modeId,_groupId){
-	var data = getModeSettingData(_modeId,_groupId);
+
+	//房型對應到模式 應該要設定甚麼
+	var data = getModeSettingData(_groupId);
+
+	//mode 底下 可用 device
+	var modeDevceData = getModeDeviceData(_modeId);
+
+	if(_.isUndefined(data)){
+		alert('This mode does not hava device info.');
+		// window.history.replaceState(null,null,'#');
+		// showMainContent();
+		var obj = {};
+		buildTemplateMultipleHtml('',obj,'body-model');
+		return false;
+	}
+
+	//已經設定過的資料
+	var settingData = getGruopModeSettingData(_modeId,_groupId);
+	
 	var tpl_code = '';
 
 	var hvacArr = [];
@@ -126,24 +231,100 @@ function changeEvent(_modeId,_groupId){
 	var curtainArr = [];
 
 	for(var i=0;i<data.length;i++){
+		
 		var catalogue = data[i].catalogue;
 		switch(catalogue){
 			case 'AIR-CONDITION':
-				//function 1冷,2熱,3風
-				//temperature 16~30
-				//speed 0自動 1高 2中 3低
-				//timer 分鐘
-				hvacArr.push(data[i].devices[0].condition);
-				tpl_code += $('#tpl_hvac').html();
+				var deviceData = [];
+
+				if(!_.isUndefined(settingData)){
+					deviceData = $.grep(settingData.mode, function(obj) {
+					    return obj.catalogue === "AIR-CONDITION";
+					});
+
+					deviceData = deviceData[0].devices;
+				}
+
+				for(var u=0;u<data[i].devices.length;u++){
+
+					//有屬於這個模式的Devcie才可以用
+					var isPass = false;
+					for(var h=0;h<modeDevceData.length;h++){
+						if(data[i].devices[u].device == modeDevceData[h].device){
+							isPass = true;
+							break;
+						}
+					}
+
+					if(!isPass){
+						continue;
+					}
+
+					for(var j=0;j<deviceData.length;j++){
+						if(deviceData[j].keycode == data[i].devices[u].device){
+							data[i].devices[0].condition = deviceData[j].condition;
+						}
+					}
+
+					//function 1冷,2熱,3風
+					//temperature 16~30
+					//speed 0自動 1高 2中 3低
+					//timer 分鐘
+					if(_.isUndefined(data[i].devices[0].condition)){
+						data[i].devices[0].condition = {
+							function : 1,
+							temperature : 25,
+							power : 0,
+							speed : 0
+						}
+					}
+					hvacArr.push(data[i].devices[0].condition);
+					tpl_code += $('#tpl_hvac').html();
+				}
+				
 			break;
 			case 'BULB':
+				var deviceData = [];
+
+				if(!_.isUndefined(settingData)){
+					deviceData = $.grep(settingData.mode, function(obj) {
+					    return obj.catalogue === "BULB";
+					});
+					deviceData = deviceData[0].devices;
+				}
+
 				for(var x=0;x<data[i].devices.length;x++){
+					
 					var bublData = data[i].devices[x];
+
+					//有屬於這個模式的Devcie才可以用
+					var isPass = false;
+					for(var h=0;h<modeDevceData.length;h++){
+						if(bublData.device == modeDevceData[h].device){
+							isPass = true;
+							break;
+						}
+					}
+
+					if(!isPass){
+						continue;
+					}
+
+					bublData.condition = {
+						status : 0
+					};
+
+					//如果有設定的資料 就帶入
+					for(var j=0;j<deviceData.length;j++){
+						if(deviceData[j].keycode === bublData.device){
+							bublData.condition.status = deviceData[j].condition.status;
+						}
+					}
 				
 					var newObj = {
-						bulbName : bublData.keycode,
+						bulbName : bublData.device,
 						catalogue : catalogue,
-						keycode : bublData.keycode,
+						keycode : bublData.device,
 						status : bublData.condition.status
 					}
 					bulbArr.push(newObj);
@@ -151,24 +332,45 @@ function changeEvent(_modeId,_groupId){
 				
 				tpl_code += $('#tpl_bulb').html();
 			break;
+			/*
 			case 'SERVICE':
+				var deviceData = [];
+				if(settingData.length>0){
+					deviceData = $.grep(settingData.mode, function(obj) {
+					    return obj.catalogue === "SERVICE";
+					});
+
+					deviceData = deviceData[0].devices;
+				}
+				
+
 				for(var x=0;x<data[i].devices.length;x++){
+					
 					var serviceData = data[i].devices[x];
-					
-					if(serviceData.keycode!="BLIND")
-						continue;
-					
+
+					serviceData.condition = {
+						status : 0
+					};
+
+					//如果有設定的資料 就帶入
+					for(var j=0;j<deviceData.length;j++){
+						if(deviceData[j].keycode === serviceData.device){
+							serviceData.condition.status = deviceData[j].condition.status;
+						}
+					}
+				
 					var newObj = {
-						curtainName : serviceData.keycode,
+						bulbName : serviceData.device,
 						catalogue : catalogue,
-						keycode : serviceData.keycode,
+						keycode : serviceData.device,
 						status : serviceData.condition.status
 					}
-					curtainArr.push(newObj);
+					bulbArr.push(newObj);
 				}
 				
 				tpl_code += $('#tpl_curtain').html();
 			break;
+			*/
 		}
 	}
 
@@ -185,89 +387,6 @@ function changeEvent(_modeId,_groupId){
 	$('.clockpicker').clockpicker();
 	setBindAdd();
 }
-function changeModel(_model){
-	
-	var tpl_code = null;
-	var bulbArr = null;
-	var curtainArr = null;
-	var roomModuleArr = null;
-
-	switch(_model){
-		case '1':
-			tpl_code = $('#tpl_hvac').html();
-			break;
-		case '2':
-			tpl_code = $('#tpl_hvac').html() + $('#tpl_bulb').html() + $('#tpl_curtain').html();
-			curtainArr = curtainDataProcess();
-			bulbArr = bulbDataProcess();
-			break;
-		case 'checkinnon':
-			tpl_code = $('#tpl_hvac').html() + $('#tpl_bulb').html() + $('#tpl_curtain').html();
-			curtainArr = curtainDataProcess();
-			bulbArr = bulbDataProcess();
-			break;
-		case 'welcome':
-			tpl_code = $('#tpl_hvac').html() + $('#tpl_bulb').html() 
-				+ $('#tpl_curtain').html();
-			curtainArr = curtainDataProcess();
-			bulbArr = bulbDataProcess();
-		
-			break;
-		case 'psi':
-			tpl_code = $('#tpl_hvac').html();
-			break;
-		case 'humidity':
-			tpl_code = $('#tpl_hvac').html();
-			break;
-	}
-
-	var obj = {
-		'bulbArr' : bulbArr,
-		'curtainArr' : curtainArr
-	}
-		
-
-	buildTemplateMultipleHtml(tpl_code,obj,'body-model');
-	
-	$('.slider').slider();
-	$('.input-curtain').bootstrapSwitch();
-	$('.input-light').bootstrapSwitch();
-	$('.input-aircon').bootstrapSwitch();
-	$('.clockpicker').clockpicker();
-	setBindAdd();
-}
-function bulbDataProcess(){
-	var arr = [];
-
-	var obj = {
-		'bulbName' : '浴室燈'
-	}
-
-	arr.push(obj);
-
-	obj = {
-		'bulbName' : '歡迎燈'
-	}
-	arr.push(obj);
-
-	return arr;
-}
-function curtainDataProcess(){
-	var arr = [];
-
-	var obj = {
-		'curtainName' : '窗簾A'
-	}
-
-	arr.push(obj);
-
-	obj = {
-		'curtainName' : '落地窗'
-	}
-	arr.push(obj);
-
-	return arr;
-}
 //取得房型資料
 function getRoomModuleData(){
 	var data = null;
@@ -275,27 +394,6 @@ function getRoomModuleData(){
 		type: "POST",
 		async: false,
 		url: $.serverurl + '/listrcugroup',
-		// data: 'data',
-		success: function(obj){
-			data = obj.data;
-		},
-		failure: function(errMsg) {
-			data = null;
-			alert(errMsg);
-		},
-		contentType: "application/json; charset=utf-8",
-		dataType: "json"
-	});
-
-	return sortById(data);
-}
-//取得Agent資料
-function getAgentBehaviorData(){
-	var data = null;
-	$.ajax({
-		type: "POST",
-		async: false,
-		url: $.serverurl + '/listagentbehavior',
 		// data: 'data',
 		success: function(obj){
 			data = obj.data;
@@ -341,15 +439,58 @@ function getModeDate(){
 	});
 	return data;
 }
-function getModeSettingData(_modeId,_groupId){
+function getModeDeviceData(_modeId){
+	
 	var data = null;
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: $.serverurl + '/listmodesetting',
+		url: $.serverurl + '/listrcumodedevice',
 		data: JSON.stringify({
-			"modeId" : _modeId,
-			"groupId" : _groupId
+			"modeid" : _modeId
+		}),
+		success: function(obj){
+			data = obj.data;
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+	return data;
+}
+function getModeSettingData(_groupId){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/group/mode',
+		data: JSON.stringify({
+			"groupid" : _groupId
+		}),
+		success: function(obj){
+			data = obj.data;
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+	return data;
+}
+function getGruopModeSettingData(_modeId,_groupId){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/group/mode/setting',
+		data: JSON.stringify({
+			"groupid" : _groupId,
+			"modeid" : _modeId
 		}),
 		success: function(obj){
 			data = obj.data;
@@ -364,16 +505,16 @@ function getModeSettingData(_modeId,_groupId){
 	return data;
 }
 function submitProcess(){
-
-	var modeId = $('#mode').attr('data-code');
+	var modeId = $('#mode_id').val();
+	// var modeId = $('#mode').attr('data-code');
 	var groupId = $('#module').attr('data-code');
 	var arr = [];
 
 	if($('#hvac-body').length>=1)
-		arr.push(getHvacObjProcess());
+		arr = getHvacObjProcess(arr);
 
 	if($('#bulb-body').length>=1)
-		arr.push(getBlubObjProcess());
+		arr = getBlubObjProcess(arr);
 
 	if(arr.length<=0){
 		alert('DATA ILLEGAL!!');
@@ -381,15 +522,48 @@ function submitProcess(){
 	}
 
 	var obj = {
-		// "modeId": modeId,
-		"modeName": $('#mode_name').val(),
-		"groupId": groupId,
-		"mode": arr
+		"modeid": modeId,
+		// "modeName": $('#mode_name').val(),
+		"groupid": groupId,
+		"devices": arr
     }
 
     doSubmit(obj);
 }
-function getHvacObjProcess(){
+function submitAddProcess(){
+	var modeName = $('#mode_name').val();
+	var deviceArr = [];
+	$('select[name="_helper2"] option').each(function() {
+	    deviceArr.push($(this).val());
+	});
+
+	var obj = {
+		"modename": modeName,
+		"devices": deviceArr
+    }
+
+    doSubmitAdd(obj);
+}
+function submitModifyDeviceProcess(){
+	var deviceArr = [];
+
+	var modeId = $('#multiple_select').attr('data-id');
+
+	$('select[name="_helper2"] option').each(function() {
+		var data = {
+			deviceId :$(this).val()
+		}
+	    deviceArr.push(data);
+	});
+
+	var obj = {
+		list : deviceArr,
+		modeId : modeId
+	};
+
+	doSubmitDevice(obj);
+}
+function getHvacObjProcess(arr){
 	var power = $('#hvac-body #hvac_power').bootstrapSwitch('state')
 
 	var _function = $('#hvac-body .function .active').children('input[name="function"]').val();
@@ -397,34 +571,35 @@ function getHvacObjProcess(){
 
 	var temperature = $("#display-temperature").text();
 	// var _time = $("#display-time").text();
-
-	var obj = {
-		catalogue:"AIR-CONDITION",
-		devices:[{
+	
+	arr.push(
+		{
 			"keycode":"HVAC-ALL",
-			"condition":{
-				"isPower": power,
+			"data":{
+				"power": power,
 				"function": _function,
 				"temperature": temperature,
+				"address" : 8,
 				"speed": speed
 				// "timer": _time
 			}
-		}]
-	}
-	return obj;
+		}
+	);
+	
+	return arr;
 }	
-function getBlubObjProcess(){
+function getBlubObjProcess(arr){
 	var deviceArr = [];
 
 	$('.BULB').each(function(index) {
 		var bulbObj = {
 			keycode : $(this).attr('keycode'),
-			condition : {
+			data : {
 				status : $(this).bootstrapSwitch('state')?'1':'0'
 			}
 		};
 
-  		deviceArr.push(bulbObj);
+  		arr.push(bulbObj);
 	});
 
 	var obj = {
@@ -432,13 +607,13 @@ function getBlubObjProcess(){
 		devices : deviceArr
 	};
 
-	return obj;
+	return arr;
 }
 function doSubmit(data){
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: $.serverurl + '/insertmodesetting',
+		url: $.serverurl + '/mode/update',
 		data: JSON.stringify(data),
 		success: function(obj){
 			if(obj.status!=0){
@@ -456,4 +631,184 @@ function doSubmit(data){
 		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	});
+}
+function doSubmitAdd(data){
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/rcu/mode/insert',
+		data: JSON.stringify(data),
+		success: function(obj){
+			if(obj.status!=0){
+				alert(obj.message);
+				return false;
+			}
+			alert('success');
+			window.history.replaceState(null,null,'#');
+			showMainContent();
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+}
+function doSubmitDevice(data){
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/insertrcumodedevice',
+		data: JSON.stringify(data),
+		success: function(obj){
+			if(obj.status!=0){
+				alert(obj.message);
+				return false;
+			}
+			alert('success');
+			window.history.replaceState(null,null,'#');
+			showMainContent();
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+}
+function doSubmitDelete(_id){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/rcu/mode/delete',
+		data: JSON.stringify({"modeid":_id}),
+		success: function(obj){
+			if(obj.status!=0){
+				alert(obj.message);
+				return false;
+			}
+			alert('success');
+			window.history.replaceState(null,null,'#');
+			showMainContent();
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+
+	return data;
+}
+function getAllDeviceData(){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/listmodelsettingdevice',
+		// data: JSON.stringify({"modeId":_id}),
+		success: function(obj){
+			data = obj.data;
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+
+	return data;
+}
+function getDeviceData(_id){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/listmodedevicesetting',
+		data: JSON.stringify({"modeid":_id}),
+		success: function(obj){
+			data = obj.data;
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+
+	return data;
+}
+function updateSelect(_id){
+	
+	var selectArr = [];
+	if(!_.isUndefined(_id)){
+		selectArr = selectionDeviceProcess(_id);
+	}else{
+		selectArr = selectionAllDeviceProcess();
+	}
+
+	var obj = {
+		'modeId' : _id,
+		'selectArr' : selectArr
+	};
+
+	buildTemplate('tpl_multiple_select',obj,'multiple-select');
+
+	$('#multiple_select').bootstrapDualListbox({
+		nonSelectedListLabel: 'Non-selected',
+		selectedListLabel: 'Selected',
+		preserveSelectionOnMove: 'moved',
+		moveOnSelect: false ,
+		showFilterInputs :false
+	});
+}
+function selectionAllDeviceProcess(){
+	var deviceData = getAllDeviceData();
+	var selectArr = [];
+
+	for(var x=0;x<deviceData.length;x++){
+		var newJson = {
+			rcuDeviceId : deviceData[x].id,
+			device : deviceData[x].device,
+			selected : "N",
+			gouprName : deviceData[x].gouprName
+		}
+		selectArr.push(newJson);
+	}
+
+	return selectArr;
+}
+function selectionDeviceProcess(_id){
+	var deviceData = getDeviceData(_id);
+
+	var allDeviceArr = deviceData.allDeviceList;
+	var modeDeviceArr = deviceData.modeDeviceList;
+
+	var selectArr = [];
+
+	for(var x=0;x<allDeviceArr.length;x++){
+		var selected = "N";
+		for(var i=0;i<modeDeviceArr.length;i++){
+			if(modeDeviceArr[i].rcuDeviceId == allDeviceArr[x].id){
+				selected = "Y";
+				break;
+			}
+		}
+		var newJson = {
+			rcuDeviceId : allDeviceArr[x].id,
+			device : allDeviceArr[x].device,
+			selected : selected,
+			gouprName : allDeviceArr[x].gouprName
+		}
+		selectArr.push(newJson);
+	}
+
+
+	return selectArr;
 }

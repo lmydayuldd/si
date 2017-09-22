@@ -95,6 +95,7 @@
         </div>
           
         <!-- 客房服務 -->   
+        <!-- 
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-blue">
             <div class="inner" id="index_bulters">
@@ -103,11 +104,12 @@
             <div class="icon">
               <i class="fa fa-user-plus"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="javascript:void(0)" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
+         -->
       </div>
       <!-- 飯店狀態 -->
       <div class="row" >

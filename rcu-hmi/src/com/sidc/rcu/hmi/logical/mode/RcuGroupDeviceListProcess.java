@@ -12,7 +12,7 @@ import com.sidc.rcu.hmi.common.DataCenter;
 import com.sidc.rcu.hmi.framework.abs.AbstractAPIProcess;
 import com.sidc.rcu.hmi.modulesetting.bean.RcuDeviceBean;
 import com.sidc.rcu.hmi.systeminitial.bean.BlackcoreInitialBean;
-import com.sidc.sdk.blackcore.rcumodesetting.RcuDeviceListByGroupClient;
+import com.sidc.sdk.blackcore.rcu.mode.RcuDeviceListByGroupClient;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;

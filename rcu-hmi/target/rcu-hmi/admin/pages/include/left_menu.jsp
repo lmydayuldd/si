@@ -42,22 +42,23 @@
         <i class="fa fa-home"></i> <span>Room</span>
       </a>
     </li>
-    <!-- <li>
+    <li>
       <a href="<%=request.getContextPath() %>/admin/pages/mode_setting.jsp">
         <i class="fa fa-gear"></i> <span>Mode Setting</span>
       </a>
     </li>
-    <li>
+   <!--  <li>
       <a href="<%=request.getContextPath() %>/admin/pages/mode_device_setting.jsp">
         <i class="fa fa-gear"></i> <span>Mode Device Setting</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a href="<%=request.getContextPath() %>/admin/pages/roommodule_device_setting.jsp">
-        <i class="fa fa-gear"></i> <span>Room Module Device</span>
+        <!-- <i class="fa fa-gear"></i> <span>Room Module Device</span> -->
+        <i class="fa fa-gear"></i> <span>房型設定</span>
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a href="<%=request.getContextPath() %>/admin/pages/hvac_center_control.jsp">
         <i class="fa fa-gear"></i> <span>中央空調控制</span>
       </a>

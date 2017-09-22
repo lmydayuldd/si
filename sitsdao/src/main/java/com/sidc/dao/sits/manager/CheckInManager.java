@@ -104,13 +104,13 @@ public class CheckInManager {
 			// 電影觀看權限
 			String adultWarning = Room.UNWARN;
 			Short payService = Room.PAY_ON;
-			if (enity.getTvright().equals(Room.TVRIGHT_TM)) {
-				adultWarning = Room.WARNED;
-				payService = Room.PAY_OFF;
-			}
-			if (enity.getTvright().equals(Room.TVRIGHT_TX)) {
-				adultWarning = Room.WARNED;
-			}
+//			if (enity.getTvright().equals(Room.TVRIGHT_TM)) {
+//				adultWarning = Room.WARNED;
+//				payService = Room.PAY_OFF;
+//			}
+//			if (enity.getTvright().equals(Room.TVRIGHT_TX)) {
+//				adultWarning = Room.WARNED;
+//			}
 
 			RoomDao.getInstance().updateWithCheckIn(conn, enity.getRoomno(), billNo, adultWarning, payService);
 

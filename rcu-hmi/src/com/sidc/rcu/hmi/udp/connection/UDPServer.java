@@ -16,11 +16,13 @@ import org.slf4j.LoggerFactory;
 import com.sidc.rcu.hmi.api.parser.UDPParser;
 import com.sidc.rcu.hmi.common.CommonDataKey;
 import com.sidc.rcu.hmi.common.DataCenter;
+import com.sidc.rcu.hmi.conf.RcuCommonCatalogueKey;
 import com.sidc.rcu.hmi.receiver.bean.UdpRreceiveBean;
 import com.sidc.rcu.hmi.systeminitial.bean.WebsocketInitialBean;
 import com.sidc.rcu.hmi.systeminitial.bean.WebsocketInitialServiceBean;
 import com.sidc.rcu.hmi.udp.intf.UDPProtocolIntf;
 import com.sidc.rcu.hmi.udp.intf.WebSocketIntf;
+import com.sidc.rcu.hmi.udp.receiver.PmsReceiver;
 import com.sidc.rcu.hmi.udp.receiver.RcuBulbInfoReceiver;
 import com.sidc.rcu.hmi.udp.receiver.RcuCardReceiver;
 import com.sidc.rcu.hmi.udp.receiver.RcuHeartbeatReceiver;
@@ -207,17 +209,20 @@ public class UDPServer extends Thread implements UDPProtocolIntf {
 		RcuReceiverLog.getInstance().setCatalogue(entity.getCatalogue());
 		try {
 			switch (entity.getCatalogue()) {
-			case "BULB":
+			case RcuCommonCatalogueKey.BULB:
 				new RcuBulbInfoReceiver(entity.getRoomNo(), entity.getData()).execute();
 				break;
-			case "AIR-CONDITION":
+			case RcuCommonCatalogueKey.AIR_CONDITION:
 				new RcuHvacReceiver(entity.getRoomNo(), entity.getData()).execute();
 				break;
-			case "SERVICE":
+			case RcuCommonCatalogueKey.SERVICE:
 				new RcuServiceInfoReceiver(entity.getRoomNo(), entity.getData()).execute();
 				break;
-			case "CARD":
+			case RcuCommonCatalogueKey.CARD:
 				new RcuCardReceiver(entity.getRoomNo(), entity.getData()).execute();
+				break;
+			case RcuCommonCatalogueKey.PMS:
+				new PmsReceiver(entity.getRoomNo(), entity.getData()).execute();
 				break;
 			}
 		} finally {

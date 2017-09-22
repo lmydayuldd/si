@@ -10,6 +10,8 @@ import com.sidc.dao.connection.ProxoolConnection;
 import com.sidc.dao.ra.RcuGroupModeDao;
 import com.sidc.dao.ra.RcuModeDao;
 import com.sidc.dao.ra.RcuModeDeviceDao;
+import com.sidc.utils.exception.SiDCException;
+import com.sidc.utils.status.APIStatus;
 
 /**
  * 
@@ -216,6 +218,36 @@ public class RcuModeManager {
 			}
 		}
 		return id;
+	}
+
+	public void deleteMode(final int modeId) throws SQLException, SiDCException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			if (RcuModeDao.getInstance().isDefault(conn, modeId)) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "default mode cant not delete.");
+			}
+
+			RcuModeDeviceDao.getInstance().delete(conn, modeId);
+
+			RcuGroupModeDao.getInstance().delete(conn, modeId);
+
+			RcuModeDao.getInstance().delete(conn, modeId);
+
+			conn.commit();
+		} catch (SiDCException ex) {
+			conn.rollback();
+			throw new SiDCException(ex.getErrorCode(), ex.getMessage());
+		} catch (Exception ex) {
+			conn.rollback();
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
 	}
 
 }

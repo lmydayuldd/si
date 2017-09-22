@@ -35,6 +35,7 @@ com\sidc\sits\logical\roomservice\RoomServiceCategoryInsertProcess.class
 com\sidc\sits\logical\spare\SpareItemUpdateProcess.class
 com\sidc\sits\logical\roomservice\RoomServiceCancelProcess.class
 com\sidc\sits\logical\utils\Broadcast.class
+com\sidc\sits\logical\rcu\mode\RoomModeProcess.class
 com\sidc\sits\logical\shopping\ShoppingVendorProcess.class
 com\sidc\sits\logical\roomservice\RoomServiceListProcess.class
 com\sidc\sits\logical\utils\PrinterUtils.class
@@ -66,7 +67,6 @@ com\sidc\sits\logical\laundryservice\LaundryItemUpdateProcess.class
 com\sidc\sits\logical\room\RoomNoListProcess.class
 com\sidc\sits\logical\pay\PostProcess.class
 com\sidc\sits\logical\room\RoomChangeProcess.class
-com\sidcsits\logical\rcu\mode\RoomModeProcess.class
 com\sidc\sits\logical\account\SystemUserLoginProcess.class
 com\sidc\sits\logical\activity\ActivityFeeUpdateProcess.class
 com\sidc\sits\logical\room\HandlerTransferProcess.class

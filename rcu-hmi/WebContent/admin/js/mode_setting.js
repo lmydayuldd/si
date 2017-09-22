@@ -21,6 +21,8 @@ function showDataList(){
 
 	buildTemplate('tpl_mode_list',obj,'table_list');
 
+	$("[data-toggle='tooltip']").tooltip();
+
 	$('#data-table').DataTable({
 		"paging": true,
 		"lengthChange": false,
@@ -128,7 +130,8 @@ function setBindMain(){
 	$("#table_list").unbind("click.delete");
     $("#table_list").on("click.delete", ".delete", function(event){ 
         if(confirm('Are you sure?')){
-        	showMainContent();
+        	var id = $(this).attr('value');
+        	doSubmitDelete(id);
         	return;
         }
     });
@@ -202,8 +205,12 @@ function buildTemplateMultipleHtml(tpl_code,_obj,pageId){
 	$('#' + pageId).html(html);
 }
 function changeEvent(_modeId,_groupId){
+
 	//房型對應到模式 應該要設定甚麼
 	var data = getModeSettingData(_groupId);
+
+	//mode 底下 可用 device
+	var modeDevceData = getModeDeviceData(_modeId);
 
 	if(_.isUndefined(data)){
 		alert('This mode does not hava device info.');
@@ -224,6 +231,7 @@ function changeEvent(_modeId,_groupId){
 	var curtainArr = [];
 
 	for(var i=0;i<data.length;i++){
+		
 		var catalogue = data[i].catalogue;
 		switch(catalogue){
 			case 'AIR-CONDITION':
@@ -238,28 +246,42 @@ function changeEvent(_modeId,_groupId){
 				}
 
 				for(var u=0;u<data[i].devices.length;u++){
+
+					//有屬於這個模式的Devcie才可以用
+					var isPass = false;
+					for(var h=0;h<modeDevceData.length;h++){
+						if(data[i].devices[u].device == modeDevceData[h].device){
+							isPass = true;
+							break;
+						}
+					}
+
+					if(!isPass){
+						continue;
+					}
+
 					for(var j=0;j<deviceData.length;j++){
 						if(deviceData[j].keycode == data[i].devices[u].device){
 							data[i].devices[0].condition = deviceData[j].condition;
 						}
 					}
-				}
 
-				
-				//function 1冷,2熱,3風
-				//temperature 16~30
-				//speed 0自動 1高 2中 3低
-				//timer 分鐘
-				if(_.isUndefined(data[i].devices[0].condition)){
-					data[i].devices[0].condition = {
-						function : 1,
-						temperature : 25,
-						power : 0,
-						speed : 0
+					//function 1冷,2熱,3風
+					//temperature 16~30
+					//speed 0自動 1高 2中 3低
+					//timer 分鐘
+					if(_.isUndefined(data[i].devices[0].condition)){
+						data[i].devices[0].condition = {
+							function : 1,
+							temperature : 25,
+							power : 0,
+							speed : 0
+						}
 					}
+					hvacArr.push(data[i].devices[0].condition);
+					tpl_code += $('#tpl_hvac').html();
 				}
-				hvacArr.push(data[i].devices[0].condition);
-				tpl_code += $('#tpl_hvac').html();
+				
 			break;
 			case 'BULB':
 				var deviceData = [];
@@ -268,13 +290,25 @@ function changeEvent(_modeId,_groupId){
 					deviceData = $.grep(settingData.mode, function(obj) {
 					    return obj.catalogue === "BULB";
 					});
-
 					deviceData = deviceData[0].devices;
 				}
 
 				for(var x=0;x<data[i].devices.length;x++){
 					
 					var bublData = data[i].devices[x];
+
+					//有屬於這個模式的Devcie才可以用
+					var isPass = false;
+					for(var h=0;h<modeDevceData.length;h++){
+						if(bublData.device == modeDevceData[h].device){
+							isPass = true;
+							break;
+						}
+					}
+
+					if(!isPass){
+						continue;
+					}
 
 					bublData.condition = {
 						status : 0
@@ -393,6 +427,28 @@ function getModeDate(){
 		async: false,
 		url: $.serverurl + '/listmode',
 		// data: 'data',
+		success: function(obj){
+			data = obj.data;
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+	return data;
+}
+function getModeDeviceData(_modeId){
+	
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/listrcumodedevice',
+		data: JSON.stringify({
+			"modeid" : _modeId
+		}),
 		success: function(obj){
 			data = obj.data;
 		},
@@ -621,6 +677,32 @@ function doSubmitDevice(data){
 		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	});
+}
+function doSubmitDelete(_id){
+	var data = null;
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: $.serverurl + '/rcu/mode/delete',
+		data: JSON.stringify({"modeid":_id}),
+		success: function(obj){
+			if(obj.status!=0){
+				alert(obj.message);
+				return false;
+			}
+			alert('success');
+			window.history.replaceState(null,null,'#');
+			showMainContent();
+		},
+		failure: function(errMsg) {
+			data = null;
+			alert(errMsg);
+		},
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+	});
+
+	return data;
 }
 function getAllDeviceData(){
 	var data = null;
