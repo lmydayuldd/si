@@ -16,16 +16,18 @@ public class RoomModuleBean implements Serializable {
 	private int id;
 	private String name;
 	private List<RCUModule> rcu;
+	private List<String> rooms;
 
 	public RoomModuleBean() {
 		super();
 	}
 
-	public RoomModuleBean(int id, String name, List<RCUModule> rcu) {
+	public RoomModuleBean(int id, String name, List<RCUModule> rcu, List<String> rooms) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.rcu = rcu;
+		this.rooms = rooms;
 	}
 
 	public int getId() {
@@ -52,15 +54,21 @@ public class RoomModuleBean implements Serializable {
 		this.rcu = rcu;
 	}
 
+	public List<String> getRooms() {
+		return rooms;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RoomModuleBean [\n\tid=");
+		builder.append("RoomModuleBean [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append(", rcu=");
 		builder.append(rcu);
+		builder.append(", rooms=");
+		builder.append(rooms);
 		builder.append("]");
 		return builder.toString();
 	}

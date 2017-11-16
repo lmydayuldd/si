@@ -2,14 +2,15 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\sho
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingCategoryUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\parameter\SiTSPropertiesInfo.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceCategoryUpdateProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\room\RoomStatusListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\message\GuestMessageProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\room\CheckInProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\UrlUtils.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryBackendOrderListProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryTypeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\spare\SpareCategoryUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\token\ChatTokenInsertProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryTypeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\message\MessageUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceOrderCreateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\account\GuestInfoProcess.java
@@ -44,8 +45,8 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\lau
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\movie\MovieListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\activity\ActivityInsertProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\message\HotelMessageProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceBackendOrderListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\DateTimeUtils.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceBackendOrderListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryItemUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\account\SystemUserInsertProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceCategoryProcess.java
@@ -65,11 +66,11 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\sho
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\PrinterUtils.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\spare\SpareCategoryProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\account\SystemUserLoginProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\rcu\mode\RoomModeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryReturnTypeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\pay\PostProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingOrderStatusProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidcsits\logical\rcu\mode\RoomModeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\spare\SpareOrderStatusProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\movie\MoviePlayProcess.java
@@ -80,8 +81,8 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\abs
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\activity\ActivityTypeProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryItemInsertProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingItemUpdateProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\activity\ActivityStatusUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingVendorProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\activity\ActivityStatusUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceItemProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\FcmUtils.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\bill\BillReviewProcess.java
@@ -103,6 +104,7 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\act
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\utils\HttpClientUtils.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\activity\ActivityTypeUpdateProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingOrderCreateProcess.java
+D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\room\printTest.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shopping\ShoppingItemProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\parameter\Env.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryWashTypeInsertProcess.java
@@ -116,7 +118,6 @@ D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\tvc
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\roomservice\RoomServiceOrderStatusProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\room\RoomNoListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\token\MobileTokenSelectProcess.java
-D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\shop\ShopListProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryTypeInsertProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\room\CheckOutProcess.java
 D:\workspace\blackcore\sidc-sits-logical\src\main\java\com\sidc\sits\logical\laundryservice\LaundryReturnTypeUpdateProcess.java

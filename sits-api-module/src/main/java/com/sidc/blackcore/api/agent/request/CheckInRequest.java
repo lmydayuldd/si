@@ -20,9 +20,10 @@ public class CheckInRequest implements Serializable {
 	private String langcode;
 	private String billno;
 	private String tvright;
+	private String guestreturn;
 
-	public CheckInRequest(String roomno, String checkindate, List<GuestRequest> guests, String langcode,
-			String billno, String tvright) {
+	public CheckInRequest(String roomno, String checkindate, List<GuestRequest> guests, String langcode, String billno,
+			String tvright, String guestreturn) {
 		super();
 		this.roomno = roomno;
 		this.checkindate = checkindate;
@@ -30,6 +31,7 @@ public class CheckInRequest implements Serializable {
 		this.langcode = langcode;
 		this.billno = billno;
 		this.tvright = tvright;
+		this.guestreturn = guestreturn;
 	}
 
 	public String getRoomno() {
@@ -51,6 +53,10 @@ public class CheckInRequest implements Serializable {
 	public String getTvright() {
 		return tvright;
 	}
+	
+	public String getGuestReturn() {
+		return guestreturn;
+	}
 
 	public List<GuestRequest> getGuests() {
 		return guests;
@@ -58,6 +64,14 @@ public class CheckInRequest implements Serializable {
 
 	public void setGuests(List<GuestRequest> guests) {
 		this.guests = guests;
+	}
+
+	public void setTvright(String tvright) {
+		this.tvright = tvright;
+	}
+	
+	public void setGuestreturn(String guestreturn) {
+		this.guestreturn = guestreturn;
 	}
 
 	@Override
@@ -75,6 +89,8 @@ public class CheckInRequest implements Serializable {
 		builder.append(billno);
 		builder.append(", tvright=\n");
 		builder.append(tvright);
+		builder.append(", guestreturn=\n");
+		builder.append(guestreturn);
 		builder.append("]");
 		return builder.toString();
 	}

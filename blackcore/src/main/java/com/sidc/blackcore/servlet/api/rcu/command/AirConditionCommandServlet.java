@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.sidc.blackcore.api.parser.APIParser;
 import com.sidc.blackcore.api.parser.APIServlet;
 import com.sidc.blackcore.api.sits.rcu.request.HvacCommandRequest;
-import com.sidc.blackcore.servlet.api.rcu.mode.RcuModeServlet;
 import com.sidc.ra.logical.api.rcu.command.RCUAirConditionCommandProcess;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
@@ -31,8 +30,9 @@ public class AirConditionCommandServlet extends APIServlet {
 	@Override
 	protected Object execute(String apiRequest, HttpServletRequest req) throws SiDCException, Exception {
 		// TODO Auto-generated method stub
-		HvacCommandRequest request = (HvacCommandRequest) APIParser.getInstance().parse(apiRequest, HvacCommandRequest.class);
-		
+		HvacCommandRequest request = (HvacCommandRequest) APIParser.getInstance().parse(apiRequest,
+				HvacCommandRequest.class);
+
 		return new RCUAirConditionCommandProcess(request).execute();
 	}
 

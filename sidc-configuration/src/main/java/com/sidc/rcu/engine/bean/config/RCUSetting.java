@@ -14,6 +14,7 @@ public class RCUSetting implements java.io.Serializable {
 	private String modulePath;
 	private List<RCUService> services;
 	private String description;
+	private String modePath;
 
 	@XmlElement(name = "room-module")
 	public void setModulePath(String modulePath) {
@@ -43,13 +44,26 @@ public class RCUSetting implements java.io.Serializable {
 		return description;
 	}
 
+	@XmlElement(name = "mode")
+	public void setModePath(String modePath) {
+		this.modePath = modePath;
+	}
+
+	public String getModePath() {
+		return modePath;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ZhongshanSetting [\n\tmodulePath=");
+		builder.append("RCUSetting [modulePath=");
 		builder.append(modulePath);
-		builder.append(", server=");
+		builder.append(", services=");
 		builder.append(services);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", modePath=");
+		builder.append(modePath);
 		builder.append("]");
 		return builder.toString();
 	}

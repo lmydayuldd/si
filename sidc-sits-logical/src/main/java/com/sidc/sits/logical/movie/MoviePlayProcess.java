@@ -8,11 +8,11 @@ import com.derex.cm.stb.api.request.StbMoviePlayRequest;
 import com.sidc.blackcore.api.sits.movie.bean.MoviePlayBean;
 import com.sidc.blackcore.api.sits.movie.bean.VideoServerInfoBean;
 import com.sidc.blackcore.api.sits.movie.request.MoviePlayRequest;
-import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.configuration.conf.SidcUrlName;
 import com.sidc.dao.sits.manager.MovieManager;
 import com.sidc.dao.sits.manager.StbListManager;
 import com.sidc.dao.sits.manager.SystemPropertiesManager;
+import com.sidc.sits.logical.abs.AbstractAuthAPIProcess;
 import com.sidc.sits.logical.parameter.PageList;
 import com.sidc.sits.logical.utils.HttpClientUtils;
 import com.sidc.sits.logical.utils.UrlUtils;
@@ -20,12 +20,12 @@ import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;
 
-public class MoviePlayProcess extends AbstractAPIProcess {
+public class MoviePlayProcess extends AbstractAuthAPIProcess {
 	private final MoviePlayRequest entity;
 	private final String STEP = "6";
 
 	public MoviePlayProcess(final MoviePlayRequest entity) {
-		// TODO Auto-generated constructor stub
+		super(entity.getPublickey(), entity.getPrivatekey(), entity.getRoomno());
 		this.entity = entity;
 	}
 

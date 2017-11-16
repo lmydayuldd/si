@@ -1,5 +1,7 @@
 package com.sidc.quartz.command;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
@@ -37,10 +39,11 @@ public class StartJob extends AbstractAPIProcess {
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			Trigger trigger = scheduler.getTriggersOfJob(jobKey).get(0);
 			Trigger triggerTemp = scheduler.getTriggersOfJob(jobKey).get(0).getTriggerBuilder()
-					.withIdentity(trigger.getKey()).startNow().build();
+					.startAt(new Date())
+					.withIdentity(trigger.getKey()).build();
 			JobDetail jobDetail = scheduler.getJobDetail(jobKey);
 
-			new PauseJob(this.enity);
+			new PauseJob(this.enity).execute();
 			
 			scheduler.unscheduleJob(TriggerKey.triggerKey(this.enity.getJobname(), this.enity.getGroupname()));
 			scheduler.deleteJob(jobKey);

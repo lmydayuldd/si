@@ -99,6 +99,8 @@ public class RCUGroupDao {
 
 			if (rs.next()) {
 				id = rs.getInt("id");
+			} else {
+				id = 0;
 			}
 
 		} finally {
@@ -108,6 +110,33 @@ public class RCUGroupDao {
 		}
 
 		return id;
+	}
+
+	private final static String IS_EXIT = "SELECT id FROM rcu_group WHERE id = ?;";
+
+	public boolean isExist(final Connection conn, final int id) throws SQLException {
+
+		boolean isExist = false;
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(IS_EXIT);
+
+			int i = 0;
+			psmt.setInt(++i, id);
+
+			ResultSet rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return isExist;
 	}
 
 	private final static String DELETE = "DELETE FROM rcu_group WHERE id = ?;";

@@ -1,5 +1,8 @@
 package com.sidc.quartz.command;
 
+import java.io.File;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
@@ -9,10 +12,13 @@ import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 
 import com.sidc.common.framework.abs.AbstractAPIProcess;
+import com.sidc.configuration.Configuration;
+import com.sidc.configuration.blackcore.SidcUrlsConfiguration;
+import com.sidc.configuration.blackcore.SidcUrlsLink;
+import com.sidc.configuration.conf.Env;
 import com.sidc.corejob.common.Tool;
 import com.sidc.quartz.api.request.ScheduleCommandRequest;
-import com.sidc.quartz.api.request.ScheduleUpdateInfoRequest;
-import com.sidc.quartz.logical.parameter.Env;
+import com.sidc.quartz.api.request.ScheduleUpdateDataRequest;
 import com.sidc.quartz.sdk.ScheduleUpdateClient;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
@@ -37,16 +43,26 @@ public class ReScheduleJob extends AbstractAPIProcess {
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 		try {
+			ScheduleUpdateDataRequest request = new ScheduleUpdateDataRequest(this.enity.getJobname(),
+					this.enity.getCronstring(), this.enity.getDescription());
+			SidcUrlsConfiguration sidcConfigure = Configuration
+					.readSidcUrlsConfiguration(new File(Env.SYSTEM_DEF_PATH + Env.SIDC_URL_PATH));
+			List<SidcUrlsLink> list = sidcConfigure.getUrls();
+			SidcUrlsLink sidcUrlsLink = new SidcUrlsLink();
+			for (SidcUrlsLink link : list) {
+				if (link.getName().equals("quartz")) {
+					sidcUrlsLink.setName(link.getName());
+					sidcUrlsLink.setUrl(link.getUrl());
+				}
+			}
+			new ScheduleUpdateClient<Object>(sidcUrlsLink.getUrl(), request).execute();
+
+			new PauseJob(this.enity).execute();
+			
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			JobDetail jobDetail = scheduler.getJobDetail(jobKey);
-
 			Trigger trigger = Tool.getCronTrigger(null, this.enity.getCronstring(), this.enity.getDescription());
-			ScheduleUpdateInfoRequest request = new ScheduleUpdateInfoRequest(this.enity.getJobname(),
-					this.enity.getCronstring(), this.enity.getDescription());
-			new ScheduleUpdateClient<Object>(Env.SCHEDULE_HOST, request).execute();
-			new PauseJob(this.enity);
-
 			scheduler.unscheduleJob(TriggerKey.triggerKey(this.enity.getJobname(), this.enity.getGroupname()));
 			scheduler.deleteJob(jobKey);
 			scheduler.scheduleJob(jobDetail, trigger);

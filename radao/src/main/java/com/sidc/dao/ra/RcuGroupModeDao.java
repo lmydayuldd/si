@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RcuGroupModeDao {
 
@@ -18,48 +20,11 @@ public class RcuGroupModeDao {
 		return LazyHolder.INSTANCE;
 	}
 
-	private final static String SEARCH_WITH_RCUGROUP = "SELECT rgm.rcu_mode_id FROM rcu_group_mode rgm LEFT JOIN rcu_mode_agent rma ON rgm.rcu_mode_id = rma.rcu_mode_id WHERE rgm.rcu_group_id = ? AND rma.rcu_agent_behavior_id = ?;";
-
-	/**
-	 * 
-	 * @param conn
-	 * @param groupId
-	 * @param behaviorId
-	 *            模式 EX check in,check out
-	 * @return
-	 * @throws SQLException
-	 */
-	public int searchWithRcuGroup(final Connection conn, final int groupId, final int behaviorId) throws SQLException {
-
-		Integer id = 0;
-
-		PreparedStatement psmt = null;
-		try {
-			psmt = conn.prepareStatement(SEARCH_WITH_RCUGROUP);
-			int i = 0;
-			psmt.setInt(++i, groupId);
-			psmt.setInt(++i, behaviorId);
-			final ResultSet rs = psmt.executeQuery();
-
-			while (rs.next()) {
-				id = rs.getInt("rcu_mode_id");
-			}
-
-			conn.commit();
-		} finally {
-			if (psmt != null && !psmt.isClosed()) {
-				psmt.close();
-			}
-		}
-
-		return id;
-	}
-
 	private final static String SELECT_CONTENT = "SELECT content FROM rcu_group_mode WHERE rcu_group_id = ? AND rcu_mode_id = ?;";
 
 	public String findContent(final Connection conn, final int groupId, final int modeId) throws SQLException {
 
-		String content = null;
+		String content = "";
 
 		PreparedStatement psmt = null;
 		try {
@@ -74,13 +39,11 @@ public class RcuGroupModeDao {
 			if (rs.next()) {
 				content = rs.getString("content");
 			}
-
 		} finally {
 			if (psmt != null && !psmt.isClosed()) {
 				psmt.close();
 			}
 		}
-
 		return content;
 	}
 
@@ -106,5 +69,163 @@ public class RcuGroupModeDao {
 				psmt.close();
 			}
 		}
+	}
+
+	private final static String UPDATE = "UPDATE rcu_group_mode SET content = ? "
+			+ "WHERE rcu_group_id = ? AND rcu_mode_id = ?;";
+
+	public void update(final Connection conn, final int groupId, final int modeId, final String content)
+			throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(UPDATE);
+
+			int i = 0;
+			psmt.setString(++i, content);
+			psmt.setInt(++i, groupId);
+			psmt.setInt(++i, modeId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE = "DELETE FROM rcu_group_mode WHERE rcu_mode_id = ?;";
+
+	public void delete(final Connection conn, final int modeId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE);
+
+			int i = 0;
+			psmt.setInt(++i, modeId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE_NOT_DEFAULT = "DELETE FROM rcu_group_mode WHERE rcu_mode_id in (SELECT id FROM rcu_mode WHERE status != 1)";
+
+	public void deleteByNotDefault(final Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE_NOT_DEFAULT);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE_ALL = "DELETE FROM rcu_group_mode;";
+
+	public void deleteAll(final Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE_ALL);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE_GROUPID = "DELETE FROM rcu_group_mode WHERE rcu_group_id = ?;";
+
+	public void deleteByGroupId(final Connection conn, final int groupId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE_GROUPID);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+
+			psmt.addBatch();
+			psmt.executeBatch();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String IS_EXIST = "SELECT id FROM rcu_group_mode WHERE rcu_group_id = ? AND rcu_mode_id = ?;";
+
+	public boolean isExist(final Connection conn, final int groupId, final int modeId) throws SQLException {
+
+		boolean isExist = false;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(IS_EXIST);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+			psmt.setInt(++i, modeId);
+
+			ResultSet rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return isExist;
+	}
+
+	private final static String SELECT_MODE_ID = "SELECT rcu_mode_id FROM rcu_group_mode WHERE rcu_group_id = ?;";
+
+	public List<Integer> findModeId(final Connection conn, final int groupId) throws SQLException {
+
+		List<Integer> modeIds = new ArrayList<Integer>();
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SELECT_MODE_ID);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+
+			ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				modeIds.add(rs.getInt("rcu_mode_id"));
+			}
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return modeIds;
 	}
 }

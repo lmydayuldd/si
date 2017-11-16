@@ -23,7 +23,7 @@ public class ChannelFrequencyListDao {
 			+ "(SELECT tl.introduction FROM tv_language tl WHERE tv.tv_id = tl.tv_id AND tl.lang_code = ?) as name "
 			+ ",tv.price FROM type_to_tv ttt LEFT JOIN tv ON ttt.tv_id = tv.tv_id "
 			+ "LEFT JOIN channel_frequency_list cfl ON tv.channel_id = cfl.channel_id WHERE ttt.type_id = ? "
-			+ "ORDER BY tv.price";
+			+ "AND cfl.open_status = 'Y' ORDER BY tv.price";
 
 	public List<TvChannelBean> selectByType(final Connection conn, final String langCode, final String typeId)
 			throws SQLException {

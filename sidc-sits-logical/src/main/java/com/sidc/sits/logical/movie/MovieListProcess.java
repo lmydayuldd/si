@@ -39,7 +39,8 @@ public class MovieListProcess extends AbstractAuthAPIProcess {
 	@Override
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
-		final String[] systemKeys = { "S21_URL", "PREVIEW_DIR", "CURRENCY" };
+		final String[] systemKeys = { "S21_URL", "PREVIEW_DIR", "CURRENCY", "upload.movie.type.path",
+				"upload.movie.path" };
 
 		final Map<String, String> propertiesMap = SystemPropertiesManager.getInstance()
 				.findPropertiesMessage(systemKeys);
@@ -47,16 +48,22 @@ public class MovieListProcess extends AbstractAuthAPIProcess {
 		final String movieUrl = propertiesMap.get("S21_URL");
 		final String previewUrl = propertiesMap.get("PREVIEW_DIR");
 		final String currency = propertiesMap.get("CURRENCY");
-		final String imgUrl = UrlUtils.getUrl(SidcUrlName.MOVIEIMAGE.toString()) + "/";
-		LogAction.getInstance()
-				.debug("step 1/" + step + ":movieUrl=" + movieUrl + "|previewUrl=" + previewUrl + "|imgUrl=" + imgUrl);
+		final String categoryImageUrl = UrlUtils.getUrl(SidcUrlName.IMAGEURL.toString())
+				+ propertiesMap.get("upload.movie.type.path") + entity.getLangcode() + "/";
+
+		final String movieImageUrl = UrlUtils.getUrl(SidcUrlName.IMAGEURL.toString())
+				+ propertiesMap.get("upload.movie.path");
+		LogAction.getInstance().debug("step 1/" + step + ":movie url=" + movieUrl + "|preview url=" + previewUrl
+				+ "|image url=" + movieImageUrl + "|category image url=" + categoryImageUrl);
 
 		List<MoviesCatalogueBean> list = MovieManager.getInstance().select(entity.getLangcode(), entity.getRoomno());
 		LogAction.getInstance().debug("step 2/" + step + ":get movie list success(MovieManager|select).");
 
 		for (final MoviesCatalogueBean catEntity : list) {
+			catEntity.setImage(categoryImageUrl + catEntity.getImage());
+
 			for (final MovieListBean movieEntity : catEntity.getMovieslist()) {
-				movieEntity.setImage(imgUrl + movieEntity.getImage());
+				movieEntity.setImage(movieImageUrl + movieEntity.getImage());
 			}
 		}
 		LogAction.getInstance().debug("step 3/" + step + ":update full image link success.");

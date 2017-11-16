@@ -25,7 +25,7 @@ public class TvChannelChangeServlet extends APIServlet {
 		final TvChannelChangeRequest enity = (TvChannelChangeRequest) APIParser.getInstance().parse(apiRequest,
 				TvChannelChangeRequest.class);
 
-		return new TvChannelChangeProcess(enity).execute();
+		return new TvChannelChangeProcess(enity).executeWithMobileToken();
 	}
 
 	@Override

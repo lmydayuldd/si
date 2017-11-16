@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sidc.blackcore.api.ra.response.RcuDeviceEnity;
 import com.sidc.rcu.hmi.groupdevice.bean.GroupDeviceBean;
+import com.sidc.rcu.hmi.modeledevicesetting.bean.RcuDeviceEnity;
 
 public class GroupDeviceResponse implements Serializable {
 	private static final long serialVersionUID = 4089862886692982153L;

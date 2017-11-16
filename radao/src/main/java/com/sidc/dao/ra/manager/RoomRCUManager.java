@@ -8,12 +8,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.sidc.blackcore.api.ra.response.RoomInfoEnity;
-import com.sidc.dao.bean.RoomModuelDevice;
 import com.sidc.dao.connection.ProxoolConnection;
-import com.sidc.dao.ra.RCUGroupDao;
-import com.sidc.dao.ra.RCUGroupDeviceDao;
 import com.sidc.dao.ra.RoomRcuDao;
-import com.sidc.dao.ra.response.RoomRcuEnity;
+import com.sidc.dao.ra.room.RcuGroupDao;
 
 /**
  * @author Nandin
@@ -53,4 +50,28 @@ public class RoomRCUManager {
 
 		return result;
 	}
+
+	public void update(final int groupId, final List<String> rooms) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RoomRcuDao.getInstance().delete(conn, groupId);
+
+			for (final String roomNo : rooms) {
+				RcuGroupDao.getInstance().insert(conn, roomNo, groupId);
+			}
+
+			conn.commit();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+	}
+
 }

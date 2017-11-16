@@ -105,18 +105,30 @@ public class CheckInManager {
 			String adultWarning = Room.UNWARN;
 			Short payService = Room.PAY_ON;
 			if (StringUtils.isNotBlank(enity.getTvright())) {
-				// 全部不可看
-				if (enity.getTvright().equals("TM")) {
+				switch (enity.getTvright()) {
+				case Room.TVRIGHT_TM:
 					adultWarning = Room.WARNED;
 					payService = Room.PAY_OFF;
-				}
-				// 限制級不可看
-				if (enity.getTvright().equals("TX")) {
+					break;
+				case Room.TVRIGHT_TX:
 					adultWarning = Room.WARNED;
+					break;
 				}
 			}
 
-			RoomDao.getInstance().updateWithCheckIn(conn, enity.getRoomno(), billNo, adultWarning, payService);
+			short welcomeMsg = Room.WELCOME_FIRST_TIME;
+			if (StringUtils.isNoneBlank(enity.getGuestReturn())) {
+				switch (enity.getGuestReturn()) {
+				case "1":
+					welcomeMsg = Room.WELCOME_RETURN_GUEST;
+					break;
+				default:
+					break;
+				}
+			}
+
+			RoomDao.getInstance().updateWithCheckIn(conn, enity.getRoomno(), billNo, adultWarning, payService,
+					welcomeMsg);
 
 			for (GuestRequest guestEntity : enity.getGuests()) {
 				final List<String> guestList = GuestDao.getInstance().searchByGuestNo(conn, guestEntity.getGuestno());
@@ -135,14 +147,13 @@ public class CheckInManager {
 				// 2017/06/28 新增 預計 check out 需求
 				if (guestList.isEmpty()) {
 					GuestDao.getInstance().insertWithCheckIn(conn, enity.getRoomno(), billNo, guestEntity.getGuestno(),
-							guestEntity.getFirstname(), guestEntity.getLastname(), month, day,
-							guestEntity.getDepdate(), enity.getLangcode(),
-							guestEntity.getGender());
+							guestEntity.getFirstname(), guestEntity.getLastname(), month, day, guestEntity.getDepdate(),
+							enity.getLangcode(), guestEntity.getGroupid(), guestEntity.getSalutation());
 				} else {
 					for (String guestID : guestList) {
 						GuestDao.getInstance().updateWithCheckIn(conn, billNo, guestID, enity.getRoomno(),
 								guestEntity.getFirstname(), guestEntity.getLastname(), month, day, enity.getLangcode(),
-								guestEntity.getGender(), guestEntity.getDepdate());
+								guestEntity.getGroupid(), guestEntity.getSalutation(), guestEntity.getDepdate());
 					}
 				}
 			}
@@ -205,7 +216,7 @@ public class CheckInManager {
 		try {
 			conn = ProxoolConnection.getInstance().connectSiTS();
 			conn.setAutoCommit(false);
-			isPass = RoomDao.getInstance().findRoomNoByRoomNo(conn, roomNo);
+			isPass = RoomDao.getInstance().isExist(conn, roomNo);
 
 		} finally {
 			if (conn != null && !conn.isClosed()) {

@@ -4,7 +4,7 @@
 	<groupId>sidc-api</groupId>
 	<artifactId>blackcore</artifactId>
 	<packaging>war</packaging>
-	<version>0.4.5.1</version>
+	<version>1.0.0.Test</version>
 
 	<name>sidc-service Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -72,18 +72,6 @@
 		<dependency>
 			<groupId>sidc-api</groupId>
 			<artifactId>sidc-sits-logical</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>sidc-api</groupId>
-			<artifactId>sidc-quartz-logcial</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>sidc-api</groupId>
-			<artifactId>sidc-configuration</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 

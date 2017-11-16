@@ -60,7 +60,6 @@ public class SystemPropertiesManager {
 			for (final String key : keys) {
 				map.put(key, SystemPropertiesDao.getInstance().findPropertiesValue(conn, key));
 			}
-			conn.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
 			throw new SQLException(e);

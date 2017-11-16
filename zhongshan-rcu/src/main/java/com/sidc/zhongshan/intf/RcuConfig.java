@@ -7,7 +7,7 @@ package com.sidc.zhongshan.intf;
  */
 public interface RcuConfig {
 	
-	public static final int BYTES = 1024;
+	public static final int BYTES = 2048;
 	
 	public static final String HEARTBEAT = "A0";
 	

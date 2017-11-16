@@ -10,6 +10,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.sidc.rcu.engine.bean.config.EngineSystemConfigure;
 import com.sidc.rcu.engine.bean.config.RCURmiServiceConfigure;
+import com.sidc.rcu.engine.bean.config.RCURoomModuleConfiguration;
 import com.sidc.rcu.engine.bean.config.RCUSetting;
 import com.sidc.rcu.engine.bean.config.RcuManagerConfiguration;
 import com.sidc.rcu.engine.bean.config.RcuSystem;
@@ -43,26 +44,27 @@ public class SystemConfiguration {
 			}
 		}
 
-		File file2 = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\rmi\\rcu-receiver.xml");
-//		 read RMI setting
-//		File file = new File(Env.SYSTEM_DEF_PATH + main_configuration.getRmi());
-		RCURmiServiceConfigure resource = readRMIService(file2);
+		// read RMI setting
+		File file = new File(Env.SYSTEM_DEF_PATH + main_configuration.getRmi());
+		RCURmiServiceConfigure resource = readRMIService(file);
 		if (resource != null) {
 			DataCenter.getInstance().put(RCUManagerKey.RCU_RMI_REC, resource);
 		}
 
-		File file3 = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\initial\\blackcore.xml");
 		// read Blackcore setting
-//		File sidc_service_file = new File(Env.SYSTEM_DEF_PATH + main_configuration.getSidcService());
-		SiDCServiceConfigure sidc_server_config = readSiDCService(file3);
+		File sidc_service_file = new File(Env.SYSTEM_DEF_PATH + main_configuration.getSidcService());
+		SiDCServiceConfigure sidc_server_config = readSiDCService(sidc_service_file);
 		DataCenter.getInstance().put(RCUManagerKey.CONFIG_SIDC_SERVER, sidc_server_config);
 
-		
-		File file4 = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\engine\\system-config.xml");
 		// read Engine System setting
-//		File rcu_system_setting = new File(Env.SYSTEM_DEF_PATH + main_configuration.getEngine());
-		EngineSystemConfigure rcu_system_config = readEnginSystemSetting(file4);
+		File rcu_system_setting = new File(Env.SYSTEM_DEF_PATH + main_configuration.getEngine());
+		EngineSystemConfigure rcu_system_config = readEnginSystemSetting(rcu_system_setting);
 		DataCenter.getInstance().put(RCUManagerKey.ENGINE_SYSTEM_CONFIGURE, rcu_system_config);
+
+		// read RCU room module setting
+		File rcu_room_module_setting = new File(Env.SYSTEM_DEF_PATH + main_configuration.getRoomModule());
+		RCURoomModuleConfiguration rcu_room_module_config = readRCURoomModuleFile(rcu_room_module_setting);
+		DataCenter.getInstance().put(RCUManagerKey.RCU_ROOM_MODULE, rcu_room_module_config);
 
 	}
 
@@ -86,7 +88,7 @@ public class SystemConfiguration {
 
 		return config;
 	}
-	
+
 	private EngineSystemConfigure readEnginSystemSetting(File file) throws Exception {
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(EngineSystemConfigure.class);
@@ -98,22 +100,33 @@ public class SystemConfiguration {
 	}
 
 	private RcuManagerConfiguration readRCU(File file) throws Exception {
-		File file2 = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\configure-initial.xml");
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(RcuManagerConfiguration.class);
 
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		RcuManagerConfiguration config = (RcuManagerConfiguration) jaxbUnmarshaller.unmarshal(file2);
+		RcuManagerConfiguration config = (RcuManagerConfiguration) jaxbUnmarshaller.unmarshal(file);
 
 		return config;
 
 	}
 
 	private RCUSetting readRCUFile(File file) throws Exception {
-		File file2 = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\zhongshan\\initial.xml");
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(RCUSetting.class);
 
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		RCUSetting config = (RCUSetting) jaxbUnmarshaller.unmarshal(file2);
+		RCUSetting config = (RCUSetting) jaxbUnmarshaller.unmarshal(file);
+
+		return config;
+
+	}
+
+	private RCURoomModuleConfiguration readRCURoomModuleFile(File file) throws Exception {
+
+		JAXBContext jaxbContext = JAXBContext.newInstance(RCURoomModuleConfiguration.class);
+
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		RCURoomModuleConfiguration config = (RCURoomModuleConfiguration) jaxbUnmarshaller.unmarshal(file);
 
 		return config;
 

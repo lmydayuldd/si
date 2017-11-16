@@ -295,6 +295,26 @@ public class RoomServiceManager {
 		return isPass;
 	}
 
+	public boolean isExistByMobileDevice(final String deviceId) throws SQLException {
+
+		Connection conn = null;
+		boolean isExist = false;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			if (MobileInfoDao.getInstance().getId(conn, deviceId) > 0) {
+				isExist = true;
+			}
+
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+		return isExist;
+	}
+
 	public int insertItem(final int categoryId, final int status, final int sequence, final float price,
 			final String type, final List<RoomServiceLangBean> langList, final List<RoomServiceSetBean> setList)
 			throws SQLException {

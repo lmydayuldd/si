@@ -2,7 +2,8 @@
 
 <configuration>
 
-	<room-module>/rcu-manager/zhongshan/room-module-tester.json</room-module>
+	<room-module>/rcu-manager/zhongshan/room-module-us.json</room-module>
+	<mode>/rcu-manager/zhongshan/mode.json</mode>
 	<servers>
 		<server name="rcu" noticeHostTimer="2"
 			description="Zhongshan UDP Service. The mainport receives RCU data. The target send data to RCU Server">

@@ -26,7 +26,7 @@ public class CheckOutRoomScheduleListRequest implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CheckOutScheduleListRequest [list=");
+		builder.append("CheckOutRoomScheduleListRequest [list=");
 		builder.append(list);
 		builder.append("]");
 		return builder.toString();

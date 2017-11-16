@@ -29,7 +29,7 @@ public class PhotoUploadTest {
 	public void test() throws Exception {
 
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:8080/sits/sits/api/photoupload.json");
+		HttpPost httppost = new HttpPost("http://10.60.1.38:8080/sits/sits/api/photoupload.json");
 
 		APIRequest enity = new APIRequest(null);
 		Gson gson = new Gson();

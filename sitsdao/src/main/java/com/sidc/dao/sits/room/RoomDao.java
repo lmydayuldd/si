@@ -66,7 +66,7 @@ public class RoomDao {
 			+ "message_light = ?, block_code = ? WHERE no = ?";
 
 	public void updateWithCheckIn(final Connection conn, final String roomNo, final String billNo,
-			final String adultWarning, final Short payService) throws SQLException {
+			final String adultWarning, final Short payService, final Short welcomeMsg) throws SQLException {
 
 		PreparedStatement psmt = null;
 		try {
@@ -75,7 +75,7 @@ public class RoomDao {
 			int i = 0;
 			psmt.setString(++i, billNo);
 			psmt.setString(++i, "");
-			psmt.setShort(++i, room.getWelcomeMsg());
+			psmt.setShort(++i, welcomeMsg);
 			psmt.setShort(++i, room.getParentControl());
 			psmt.setString(++i, "");
 			psmt.setString(++i, adultWarning);
@@ -186,7 +186,7 @@ public class RoomDao {
 	}
 
 	private final static String SEARCH_WITH_CHECKIN_INFO = "SELECT R.no, R.bill_no, "
-			+ "DATE_FORMAT(B.chki_time, '%Y/%m/%d') AS chki_time, national "
+			+ "DATE_FORMAT(B.chki_time, '%Y/%m/%d') AS chki_time, national, welcome_msg "
 			+ "FROM room R LEFT JOIN bill B ON R.bill_no = B.bill_no AND B.chko_time IS NULL "
 			+ "LEFT JOIN guest G ON R.no = G.room_no AND B.bill_no = G.bill_no WHERE R.no = ?";
 
@@ -203,7 +203,7 @@ public class RoomDao {
 			ResultSet rs = psmt.executeQuery();
 			if (rs.next()) {
 				entity = new CheckInRequest(newRoomNo, rs.getString("chki_time"), null, rs.getString("national"),
-						rs.getString("bill_no"), null);
+						rs.getString("bill_no"), null, rs.getString("welcome_msg"));
 			}
 
 		} finally {
@@ -212,32 +212,6 @@ public class RoomDao {
 			}
 		}
 		return entity;
-	}
-
-	private final static String FIND_ROOMNO_BY_ROOMNO = "SELECT no FROM room WHERE no = ? ";
-
-	public boolean findRoomNoByRoomNo(final Connection conn, final String roomNo) throws SQLException {
-		boolean isPass = false;
-
-		PreparedStatement psmt = null;
-		try {
-			psmt = conn.prepareStatement(FIND_ROOMNO_BY_ROOMNO);
-
-			int i = 0;
-			psmt.setString(++i, roomNo);
-
-			ResultSet rs = psmt.executeQuery();
-			if (rs.next()) {
-				isPass = true;
-			}
-
-		} finally {
-			// TODO: handle finally clause
-			if (psmt != null && !psmt.isClosed()) {
-				psmt.close();
-			}
-		}
-		return isPass;
 	}
 
 	private final static String FIND_WITH_CHECKOUT_STATUS = "SELECT chko_time FROM bill  WHERE room_no = ? "
@@ -437,6 +411,32 @@ public class RoomDao {
 		return isExist;
 	}
 
+	private final static String SELECT_ROOMNO_BILLNO = "SELECT no FROM room WHERE no = ? AND bill_no = ?";
+
+	public boolean isExist(final Connection conn, final String roomNo, final String billNo) throws SQLException {
+
+		boolean isExist = false;
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SELECT_ROOMNO_BILLNO);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+			psmt.setString(++i, billNo);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return isExist;
+	}
+
 	private final static String SELECT_BY_FLOOR = "SELECT no FROM room WHERE floor = ?;";
 
 	public List<String> selecrRoomNoByFloor(final Connection conn, final String floor) throws SQLException {
@@ -487,6 +487,26 @@ public class RoomDao {
 		return response;
 	}
 
+	public List<String> listCheckOutRooms(final Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		List<String> list = new ArrayList<String>();
+		try {
+			psmt = conn.prepareStatement(LIST_CHECKOUT_ROOM);
+			ResultSet rs = psmt.executeQuery();
+			while (rs.next()) {
+				list.add(rs.getString("no"));
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return list;
+	}
+
 	private final static String SELECT_PAYSERVICE = "SELECT pay_service,adult_warning FROM room WHERE no = ? ";
 
 	public PayServiceBean selectPayServiceInfo(final Connection conn, final String roomNo) throws SQLException {
@@ -515,4 +535,25 @@ public class RoomDao {
 		return entity;
 	}
 
+	private final static String UPDATE_TVRIGHT = "UPDATE room SET pay_service = ?, adult_warning = ? WHERE no = ?";
+
+	public void updateTvright(final Connection conn, final Short payService, final String adultWarning,
+			final String roomNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(UPDATE_TVRIGHT);
+
+			int i = 0;
+			psmt.setShort(++i, payService);
+			psmt.setString(++i, adultWarning);
+			psmt.setString(++i, roomNo);
+
+			psmt.executeUpdate();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
 }

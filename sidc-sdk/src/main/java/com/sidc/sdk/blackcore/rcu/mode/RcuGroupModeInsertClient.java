@@ -6,7 +6,7 @@ public class RcuGroupModeInsertClient<T> extends AbsHttpClient<T> {
 	private String request;
 
 	public RcuGroupModeInsertClient(final String host, final String request) {
-		super(host, "/rcu/mode/insert");
+		super(host, "/rcu/group/mode/insert");
 		this.request = request;
 	}
 

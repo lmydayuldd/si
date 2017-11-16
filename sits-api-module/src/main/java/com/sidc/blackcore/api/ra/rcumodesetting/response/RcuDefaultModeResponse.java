@@ -9,6 +9,7 @@ public class RcuDefaultModeResponse implements Serializable {
 	private String keyname;
 	private String content;
 	private int timer;
+	private int status;
 
 	public int getId() {
 		return id;
@@ -30,6 +31,10 @@ public class RcuDefaultModeResponse implements Serializable {
 		return timer;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -41,16 +46,19 @@ public class RcuDefaultModeResponse implements Serializable {
 		builder.append(content);
 		builder.append(", timer=");
 		builder.append(timer);
+		builder.append(", status=");
+		builder.append(status);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	public RcuDefaultModeResponse(int id, String keyname, String content, int timer) {
+	public RcuDefaultModeResponse(int id, String keyname, String content, int timer, int status) {
 		super();
 		this.id = id;
 		this.keyname = keyname;
 		this.content = content;
 		this.timer = timer;
+		this.status = status;
 	}
 
 }

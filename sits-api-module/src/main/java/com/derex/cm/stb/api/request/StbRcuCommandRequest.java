@@ -8,17 +8,17 @@ public class StbRcuCommandRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -483768338180933898L;
-	private String roomno;
+	private String stbip;
 	private String command;
 
-	public StbRcuCommandRequest(String roomno, String command) {
+	public StbRcuCommandRequest(String stbip, String command) {
 		super();
-		this.roomno = roomno;
+		this.stbip = stbip;
 		this.command = command;
 	}
 
-	public String getRoomno() {
-		return roomno;
+	public String getStbip() {
+		return stbip;
 	}
 
 	public String getCommand() {
@@ -28,8 +28,8 @@ public class StbRcuCommandRequest implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("StbRcuCommandRequest [roomno=");
-		builder.append(roomno);
+		builder.append("StbRcuCommandRequest [stbip=");
+		builder.append(stbip);
 		builder.append(", command=");
 		builder.append(command);
 		builder.append("]");

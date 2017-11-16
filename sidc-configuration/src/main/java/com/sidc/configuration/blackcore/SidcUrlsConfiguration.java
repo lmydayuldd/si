@@ -7,8 +7,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sidc.rcu.engine.bean.config.EngineSystemSetting;
-
 /**
  * 
  * @author Allen Huang

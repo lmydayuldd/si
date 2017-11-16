@@ -7,12 +7,14 @@ public interface Env {
 	public final static String SIDC_URL_PATH = "/blackcore/url/sidc-url.xml".replace("/", File.separator);
 
 	// 若環境建置於Linux時使用
-	public final static String SYSTEM_DEF_PATH = System.getProperty("sidc.config.path").replace("\\", File.separator)
-			.replace("/", File.separator);
+	 public final static String SYSTEM_DEF_PATH =
+	 System.getProperty("sidc.config.path").replace("\\", File.separator)
+	 .replace("/", File.separator);
 
 	// 若環境建置Windows時使用
-//	 public final static String SYSTEM_DEF_PATH = System.getProperty("user.dir")
-//	 + "/webapps/sidc/config".replace("/", File.separator);
+//	String WORKING_PATH = System.getProperty("user.dir");
+//	String PATH = new File(WORKING_PATH).getParent();
+//	public final static String SYSTEM_DEF_PATH = PATH + "/sidc/config".replace("/", File.separator);
 
 	public final static String DOMAINCONFIGURATION = "DOMAINCONFIGURATION";
 

@@ -24,7 +24,7 @@ public class MoviePlayServlet extends APIServlet {
 		final MoviePlayRequest enity = (MoviePlayRequest) APIParser.getInstance().parse(apiRequest,
 				MoviePlayRequest.class);
 
-		return new MoviePlayProcess(enity).execute();
+		return new MoviePlayProcess(enity).executeWithMobileToken();
 	}
 
 	@Override

@@ -33,7 +33,6 @@ public class TriggerJob extends AbstractAPIProcess {
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.triggerJob(jobKey);
-			new RefreshJob();
 		} catch (Exception e) {
 			LogAction.getInstance().error("TriggerJob Error:", e);
 		}

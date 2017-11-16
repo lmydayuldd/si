@@ -23,6 +23,13 @@ public class ScheduleCommandRequest implements Serializable {
 		this.description = description;
 	}
 	
+	public ScheduleCommandRequest(String command, String jobname, String groupname, String cronstring) {
+		this.command = command;
+		this.jobname = jobname;
+		this.groupname = groupname;
+		this.cronstring = cronstring;
+	}
+	
 	public ScheduleCommandRequest(String command, String jobname, String groupname) {
 		this.command = command;
 		this.jobname = jobname;

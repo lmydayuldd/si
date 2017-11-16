@@ -64,14 +64,20 @@ public class RCUReceiveConnector implements RcuConnector {
 		ExecutorService executor = Executors.newFixedThreadPool(this.threadPoolSize);
 
 		while (!this.socket.isClosed()) {
-			
+
 			byte[] receivePacket = new byte[RcuConfig.BYTES];
 			DatagramPacket packet = new DatagramPacket(receivePacket, receivePacket.length);
 
 			try {
 				this.socket.receive(packet);
 
-				logger.debug(packet.getAddress().getHostAddress() + "= receiver data...");
+				StringBuilder receiver = new StringBuilder();
+				for (int i = 0; i < packet.getLength(); i++) {
+					int hex = (int) packet.getData()[i] & 0xFF;
+					receiver.append(Integer.toHexString(hex).toUpperCase().toString());
+				}
+				logger.debug(packet.getAddress().getHostAddress() + " = " + receiver.toString() + " receiver length : "
+						+ packet.getLength());
 
 				executor.execute(new RCUReceiverHandlerThread(packet, stub));
 

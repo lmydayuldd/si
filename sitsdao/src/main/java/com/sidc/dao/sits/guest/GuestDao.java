@@ -52,12 +52,12 @@ public class GuestDao {
 	}
 
 	private final static String UPDATE_CHECK_INFO = "UPDATE guest SET bill_no = ?, room_no = ?, en_first_name = ?, "
-			+ "en_last_name = ?, `national` = ?, birth_month = ?, birth_day = ?, salutation = ?, departure_date = ?, "
-			+ "last_modify = now() WHERE id = ?";
+			+ "en_last_name = ?, `national` = ?, birth_month = ?, birth_day = ?, group_id = ?, salutation = ?, "
+			+ "departure_date = ?, last_modify = now() WHERE id = ?";
 
 	public void updateWithCheckIn(final Connection conn, final String billNo, final String guestID, final String roomNo,
 			final String fistName, final String lastName, final int birthMonth, final int birthDay, final String lang,
-			final String salutation, final String depDate) throws SQLException {
+			final String groupId, final String salutation, final String depDate) throws SQLException {
 
 		PreparedStatement psmt = null;
 		try {
@@ -71,6 +71,7 @@ public class GuestDao {
 			psmt.setString(++i, lang);
 			psmt.setInt(++i, birthMonth);
 			psmt.setInt(++i, birthDay);
+			psmt.setString(++i, groupId);
 			psmt.setString(++i, salutation);
 			psmt.setString(++i, depDate);
 			psmt.setString(++i, guestID);
@@ -86,12 +87,13 @@ public class GuestDao {
 	}
 
 	private final static String INSERT_WITH_CHECKIN = "INSERT INTO guest(id, guest_no, bill_no, room_no, en_first_name, "
-			+ "en_last_name, birth_month, birth_day, departure_date, national, salutation, last_modify) VALUES "
-			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
+			+ "en_last_name, birth_month, birth_day, departure_date, national, group_id, salutation, last_modify) VALUES "
+			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
 
 	public void insertWithCheckIn(final Connection conn, final String roomNo, final String billNo, final String guestNo,
 			final String firstName, final String lastName, final int birth_month, final int birth_day,
-			final String depDate, final String lang, final String salutation) throws SQLException {
+			final String depDate, final String lang, final String groupId, final String salutation)
+			throws SQLException {
 
 		PreparedStatement psmt = null;
 		try {
@@ -108,6 +110,7 @@ public class GuestDao {
 			psmt.setInt(++i, birth_day);
 			psmt.setString(++i, depDate);
 			psmt.setString(++i, lang);
+			psmt.setString(++i, groupId);
 			psmt.setString(++i, salutation);
 
 			psmt.addBatch();
@@ -170,7 +173,7 @@ public class GuestDao {
 
 	private final static String FIND_WITH_ROOMCHANGE = "SELECT guest_no, en_first_name, en_last_name,"
 			+ "Concat('1911/',birth_month,'/',birth_day) AS birthday, DATE_FORMAT(departure_date, '%Y/%m/%d') AS dep_date, "
-			+ "national, salutation FROM guest WHERE room_no = ?";
+			+ "national, group_id, salutation FROM guest WHERE room_no = ?";
 
 	public List<GuestRequest> findWithRoomChange(final Connection conn, final String roomNo) throws SQLException {
 
@@ -188,7 +191,7 @@ public class GuestDao {
 			while (rs.next()) {
 				GuestRequest guestEntity = new GuestRequest(rs.getString("guest_no"), rs.getString("en_first_name"),
 						rs.getString("en_last_name"), rs.getString("birthday"), rs.getString("dep_date"),
-						rs.getString("salutation"));
+						rs.getString("group_id"), rs.getString("salutation"));
 				guestList.add(guestEntity);
 			}
 		} finally {
@@ -225,8 +228,8 @@ public class GuestDao {
 		return list;
 	}
 
-	private final static String SELECT_GUESTINFO = "SELECT guest_no,en_first_name,en_last_name,"
-			+ "group_id,national,salutation FROM guest WHERE room_no = ?";
+	private final static String SELECT_GUESTINFO = "SELECT guest_no, en_first_name, en_last_name, group_id, national, salutation "
+			+ "FROM guest WHERE room_no = ?";
 
 	public List<GuestInfoBean> selectGuestInfo(final Connection conn, final String roomNo) throws SQLException {
 
@@ -307,6 +310,31 @@ public class GuestDao {
 			}
 		}
 		return isExist;
+	}
+
+	private final static String SELECT_BY_GUESTNO = "SELECT guest_no FROM guest WHERE room_no = ?";
+
+	public String selectByIdGuestNo(final Connection conn, final String roomNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		String guestNo = "";
+		try {
+			psmt = conn.prepareStatement(SELECT_BY_GUESTNO);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				guestNo = rs.getString("guest_no");
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return guestNo;
 	}
 
 	private final static String IS_OVER_DEPARTUREDATE = "SELECT CASE WHEN departure_date IS NULL THEN 0 WHEN DATE_FORMAT(?,"
@@ -390,5 +418,25 @@ public class GuestDao {
 			}
 		}
 		return result;
+	}
+
+	private final static String UPDATE_GUEST_INFO = "UPDATE guest SET setInfo, last_modify = now() WHERE guest_no = ?";
+
+	public void updateGuestInfo(final Connection conn, final String setInfo, final String guestNo) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			final String UPDATE_GUEST = UPDATE_GUEST_INFO.replaceFirst("setInfo", setInfo);
+			psmt = conn.prepareStatement(UPDATE_GUEST);
+
+			int i = 0;
+			psmt.setString(++i, guestNo);
+
+			psmt.executeBatch();
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
 	}
 }

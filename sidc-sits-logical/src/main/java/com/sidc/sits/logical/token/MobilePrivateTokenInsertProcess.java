@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.sidc.blackcore.api.sits.token.request.MobilePrivateTokenInsertRequest;
 import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.dao.sits.manager.CheckInManager;
+import com.sidc.dao.sits.manager.RoomManager;
 import com.sidc.dao.sits.manager.TokenManager;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
@@ -69,7 +70,7 @@ public class MobilePrivateTokenInsertProcess extends AbstractAPIProcess {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(operating system).");
 		}
 		if (StringUtils.isBlank(entity.getInfo().getDeviceid())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(pin code).");
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(device id).");
 		}
 		if (entity.getType() < 0) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(type).");
@@ -80,8 +81,8 @@ public class MobilePrivateTokenInsertProcess extends AbstractAPIProcess {
 		if (!CheckInManager.getInstance().findRoom(entity.getRoomno())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find room no.");
 		}
-		if (!StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(entity.getRoomno()))) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room is not check in.");
+		if (!RoomManager.getInstance().isCheckin(entity.getRoomno())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room no is not check in.");
 		}
 //		if (!StbListManager.getInstance().isExisted(entity.getRoomno(), entity.getIp())) {
 //			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find stb.");

@@ -206,7 +206,7 @@ public class MobileInfoDao {
 		}
 	}
 
-	private final static String SELECT_ID_BY_PUSHTOKEN = "SELECT mi_id FROM mobile_info WHERE mi_device = ?; ";
+	private final static String SELECT_ID_BY_DEVICE = "SELECT mi_id FROM mobile_info WHERE mi_device = ?; ";
 
 	public int getId(final Connection conn, final String device) throws SQLException {
 
@@ -215,7 +215,7 @@ public class MobileInfoDao {
 		int id = -1;
 
 		try {
-			psmt = conn.prepareStatement(SELECT_ID_BY_PUSHTOKEN);
+			psmt = conn.prepareStatement(SELECT_ID_BY_DEVICE);
 
 			int i = 0;
 			psmt.setString(++i, device);

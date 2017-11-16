@@ -61,18 +61,19 @@ public class RoomServiceOrderStatusProcess extends AbstractAuthAPIProcess {
 
 		if (entity.getStatus().equals("10")) {
 			RoomServiceManager.getInstance().updateOrderStatusCreateCons(entity.getOrderid(), entity.getStatus());
-			final String shopOrder = SystemPropertiesManager.getInstance()
-					.findPropertiesMessage("enable.shopping.order.printing");
-			LogAction.getInstance().debug("shop printing status: " + shopOrder + ".");
-
-			// sits後臺要設定
-			if (shopOrder.equals("Y")) {
-				try {
-					printerProcess();
-				} catch (IOException e) {
-					LogAction.getInstance().warn("send to pinter fial:" + e.getMessage());
-				}
-			}
+			/**
+			 * 2017/10/16 暫時先在 create order 上就產生
+			 * 
+			 * final String shopOrder = SystemPropertiesManager.getInstance()
+			 * .findPropertiesMessage("enable.shopping.order.printing");
+			 * LogAction.getInstance().debug("shop printing status: " +
+			 * shopOrder + ".");
+			 * 
+			 * // sits後臺要設定 if (shopOrder.equals("Y")) { try { printerProcess();
+			 * } catch (IOException e) { LogAction.getInstance().warn(
+			 * "send to pinter fial:" + e.getMessage()); } }
+			 * 
+			 */
 
 		} else if (entity.getStatus().equals("-10")) {
 			RoomServiceManager.getInstance().updateOrderStatusDeleteCons(entity.getOrderid(), entity.getStatus());
@@ -112,25 +113,21 @@ public class RoomServiceOrderStatusProcess extends AbstractAuthAPIProcess {
 	}
 
 	private void printerProcess() throws SQLException, SiDCException, IOException {
-		final String printStep = "4";
+		final String printStep = "3";
 		LogAction.getInstance().debug("start printer process.");
 		// 列印!!
 		final List<RoomServiceBackendOrderInfoBean> list = RoomServiceManager.getInstance().selectOrderWithBackend(null,
 				entity.getOrderid(), null, null, null, "en_US");
 		LogAction.getInstance().debug("print step 1/" + printStep + ":get data success.");
 
-		// 表單格式
-		String format = FileUtils.readFileToString(new File(Env.SYSTEM_DEF_PATH + Env.PRINT_FORMAT),
-				CharEncoding.UTF_8);
-		LogAction.getInstance().debug("print step 2/" + printStep + ":read format data.");
-
+		PrinterUtils printerUtils = new PrinterUtils();
 		// 套表
-		format = replace(format, list.get(0));
-		LogAction.getInstance().debug("print step 3/" + printStep + ":format data.");
+		String format = printerUtils.replaceTable(list.get(0));
+		LogAction.getInstance().debug("print step 2/" + printStep + ":format data.");
 
 		// 列印
-		new PrinterUtils().printer(format);
-		LogAction.getInstance().debug("print step 4/" + printStep + ":send to sits.");
+		printerUtils.printer(format);
+		LogAction.getInstance().debug("print step 3/" + printStep + ":send to sits.");
 	}
 
 	/**
@@ -157,55 +154,6 @@ public class RoomServiceOrderStatusProcess extends AbstractAuthAPIProcess {
 
 		new FcmUtils().sendFcmProcess(enity);
 		LogAction.getInstance().debug("fcm step 2/" + fcmStep + ":send fcm.");
-	}
-
-	/**
-	 * 套表....
-	 * 
-	 * @param formatStr
-	 * @param orderEntity
-	 * @return
-	 */
-	private String replace(String formatStr, final RoomServiceBackendOrderInfoBean orderEntity) {
-
-		// #{each} 代筆 item 先取出來
-		final String eachFormat = formatStr.substring(formatStr.indexOf("#{each}") + 8, formatStr.indexOf("#{/each}"));
-
-		// item 替換成 #{eachData} 下面code直接取代
-		formatStr = formatStr.replace(
-				formatStr.substring(formatStr.indexOf("#{each}"), formatStr.indexOf("#{/each}") + 8), "#{eachData}");
-		String eachData = "";
-
-		// format item資料
-		int i = 1;
-		for (final RoomServiceOrderLineInfoBean itemEntity : orderEntity.getItemlist()) {
-			String formatData = eachFormat;
-			formatData = formatData.replace("#{index}", String.valueOf(i++));
-			formatData = formatData.replace("#{itemName}",
-					StringUtils.isBlank(itemEntity.getItemname()) ? "" : itemEntity.getItemname());
-			formatData = formatData.replace("#{price}", String.valueOf(itemEntity.getAmount()));
-			formatData = formatData.replace("#{qty}", String.valueOf(itemEntity.getQty()));
-			formatData = formatData.replace("#{subTotal}",
-					String.valueOf(itemEntity.getQty() * itemEntity.getAmount()));
-			eachData += formatData;
-		}
-
-		final String guestFistName = StringUtils.isBlank(orderEntity.getGuestfirstname()) ? ""
-				: orderEntity.getGuestfirstname();
-
-		final String guestLastName = StringUtils.isBlank(orderEntity.getGuestlastname()) ? ""
-				: orderEntity.getGuestlastname();
-
-		// format 表頭
-		formatStr = formatStr.replace("#{hotelName}", "");
-		formatStr = formatStr.replace("#{orderId}", String.valueOf(orderEntity.getId()));
-		formatStr = formatStr.replace("#{roomNo}", orderEntity.getRoomno());
-		formatStr = formatStr.replace("#{guestName}", guestLastName + " " + guestFistName);
-		formatStr = formatStr.replace("#{total}", String.valueOf(orderEntity.getAmount()));
-		formatStr = formatStr.replace("#{creationTime}", orderEntity.getCreatetime());
-		formatStr = formatStr.replace("#{eachData}", eachData);
-
-		return formatStr;
 	}
 
 }

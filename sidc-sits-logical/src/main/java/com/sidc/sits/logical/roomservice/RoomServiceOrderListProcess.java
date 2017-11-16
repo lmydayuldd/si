@@ -79,6 +79,9 @@ public class RoomServiceOrderListProcess extends AbstractAPIProcess {
 						"illegal of request(registration time sequence error).");
 			}
 		}
+		if (!RoomServiceManager.getInstance().isExistByMobileDevice(entity.getDeviceid())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "request illegal(not find device id).");
+		}
 	}
 
 	/***

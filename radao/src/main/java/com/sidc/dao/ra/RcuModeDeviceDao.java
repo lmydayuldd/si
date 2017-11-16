@@ -33,7 +33,8 @@ public class RcuModeDeviceDao {
 			final ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RcuModeDeviceResponse(rs.getInt("mode_id"), rs.getInt("rcu_device_id"),rs.getString("device")));
+				list.add(new RcuModeDeviceResponse(rs.getInt("mode_id"), rs.getInt("rcu_device_id"),
+						rs.getString("device")));
 			}
 
 			conn.commit();
@@ -91,7 +92,7 @@ public class RcuModeDeviceDao {
 			}
 		}
 	}
-	
+
 	private final static String DELETE_BY_MODEID = "DELETE FROM rcu_mode_device WHERE mode_id = ?";
 
 	public void delete(Connection conn, final int modeId) throws SQLException {
@@ -113,5 +114,51 @@ public class RcuModeDeviceDao {
 				psmt.close();
 			}
 		}
+	}
+
+	private final static String DELETE_ALL = "DELETE FROM rcu_mode_device;";
+
+	public void delete(Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+
+			psmt = conn.prepareStatement(DELETE_ALL);
+
+			psmt.executeUpdate();
+
+		} catch (Exception ex) {
+			throw new SQLException(ex);
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String IS_EXIST = "SELECT id FROM rcu_mode_device WHERE mode_id = ? AND rcu_device_id = ?";
+
+	public boolean isExist(final Connection conn, final int modeId, final int deviceId) throws SQLException {
+		PreparedStatement psmt = null;
+		boolean isExist = false;
+		try {
+			psmt = conn.prepareStatement(IS_EXIST);
+
+			int i = 0;
+			psmt.setInt(++i, modeId);
+			psmt.setInt(++i, deviceId);
+
+			ResultSet rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return isExist;
 	}
 }

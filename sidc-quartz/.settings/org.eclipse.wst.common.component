@@ -17,9 +17,6 @@
         <dependent-module archiveName="sidc-configuration-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-configuration/sidc-configuration">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="sidc-quartz-logical-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-quartz-logcial/sidc-quartz-logcial">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="rcu-sdk-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/rcu-sdk/rcu-sdk">
             <dependency-type>uses</dependency-type>
         </dependent-module>

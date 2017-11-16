@@ -30,11 +30,9 @@ public class ResumeJob extends AbstractAPIProcess {
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 		try {
-
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.resumeJob(jobKey);
-
 		} catch (Exception e) {
 			LogAction.getInstance().error("ResumeJob Error:", e);
 		}

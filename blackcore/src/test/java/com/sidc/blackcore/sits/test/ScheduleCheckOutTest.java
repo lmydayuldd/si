@@ -20,7 +20,7 @@ public class ScheduleCheckOutTest {
 	public void test() throws Exception {
 
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:7056/blackcore/rcu/schedule/checkout");
+		HttpPost httppost = new HttpPost("http://10.60.1.38:7056/blackcore/rcu/schedule/checkout");
 
 		APIRequest enity = new APIRequest(null);
 		Gson gson = new Gson();

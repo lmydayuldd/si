@@ -207,4 +207,58 @@ public class RcuDeviceDao {
 
 		return list;
 	}
+
+	private final static String IS_EXIST = "SELECT id FROM rcu_device WHERE device = ?;";
+
+	public boolean isExist(final Connection conn, final String device) throws SQLException {
+
+		boolean isExist = false;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(IS_EXIST);
+
+			int i = 0;
+			psmt.setString(++i, device);
+
+			ResultSet rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return isExist;
+	}
+
+	private final static String SELECT_ID_BY_DEVICE = "SELECT id FROM rcu_device WHERE device= ?;";
+
+	public int findId(final Connection conn, final String device) throws SQLException {
+
+		int id = -9999;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SELECT_ID_BY_DEVICE);
+
+			int i = 0;
+			psmt.setString(++i, device);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt("id");
+			}
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return id;
+	}
 }

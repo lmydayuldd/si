@@ -30,7 +30,7 @@ public class RcuModeDeviceListProcess extends AbstractAPIProcess {
 
 		List<RcuModeDeviceResponse> list = new ArrayList<RcuModeDeviceResponse>();
 
-		list = RcuModeDeviceManager.getInstance().searchDevice(entity.getModeId());
+		list = RcuModeDeviceManager.getInstance().searchDevice(entity.getModeid());
 		LogAction.getInstance().debug("step 1/1: get device list success(RcuModeDeviceManager|searchDevice).");
 
 		return list;

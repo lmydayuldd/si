@@ -12,8 +12,8 @@ import com.sidc.quartz.command.QueryJob;
 import com.sidc.quartz.command.ReScheduleJob;
 import com.sidc.quartz.command.ResumeJob;
 import com.sidc.quartz.command.Shutdown;
-import com.sidc.quartz.command.Start;
 import com.sidc.quartz.command.StartJob;
+import com.sidc.quartz.command.StartUp;
 import com.sidc.quartz.command.TriggerJob;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
@@ -42,7 +42,7 @@ public class ScheduleCommandProcess extends AbstractAPIProcess {
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 
-		LogAction.getInstance().debug(this.enity.getCommand());
+		LogAction.getInstance().info(this.enity.getCommand());
 		switch (QuartzCommand.valueOf(this.enity.getCommand())) {
 		case QUERY:
 			return new QueryJob().execute();
@@ -56,10 +56,10 @@ public class ScheduleCommandProcess extends AbstractAPIProcess {
 			return new ReScheduleJob(this.enity).execute();
 		case DELETE:
 			return new DeleteJob(this.enity).execute();
-		case STARTJOB:
-			return new StartJob(this.enity).execute();
-		case START:
-			return new Start().execute();
+//		case STARTJOB:
+//			return new StartJob(this.enity).execute();
+		case STARTUP:
+			return new StartUp().execute();
 		case SHUTDOWN:
 			return new Shutdown().execute();
 		default:

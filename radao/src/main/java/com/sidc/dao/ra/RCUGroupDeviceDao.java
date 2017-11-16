@@ -126,6 +126,31 @@ public class RCUGroupDeviceDao {
 				psmt.close();
 			}
 		}
+	}
 
+	private final static String IS_EXIST = "SELECT id FROM rcu_group_device WHERE rcu_group_id = ? AND rcu_device_id = ?;";
+
+	public boolean isExist(final Connection conn, final int groupId, final int deviceId) throws SQLException {
+		boolean isExist = false;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(IS_EXIST);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+			psmt.setInt(++i, deviceId);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				isExist = true;
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+		return isExist;
 	}
 }

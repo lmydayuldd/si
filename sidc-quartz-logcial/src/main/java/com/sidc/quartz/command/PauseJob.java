@@ -32,7 +32,7 @@ public class PauseJob extends AbstractAPIProcess {
 		try {
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-			scheduler.pauseJob(jobKey);
+			scheduler.pauseJob(jobKey);			
 		} catch (Exception e) {
 			LogAction.getInstance().error("PauseJob Error:", e);
 		}

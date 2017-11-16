@@ -6,7 +6,7 @@ import org.quartz.JobExecutionException;
 
 import com.sidc.utils.exception.SiDCException;
 
-public abstract class JobsAction extends TasksAction implements Job {
+public abstract class JobsAction implements Job {
 
 	protected void doJob() throws SiDCException, Exception {
 		initial();
@@ -17,7 +17,7 @@ public abstract class JobsAction extends TasksAction implements Job {
 	@Override
 	public abstract void execute(JobExecutionContext context) throws JobExecutionException;
 	
-	protected abstract JobInfo setJobInfo() throws SiDCException, Exception;
+	public abstract JobInfo setJobInfo();
 
 	protected abstract void initial() throws SiDCException, Exception;
 }

@@ -6,7 +6,6 @@
 		<list name="allowDomainIp">
 			<value>10.60</value>
 			<value>10.80</value>
-			<value>-84.22</value>
 		</list>
 	</property>
 	

@@ -26,7 +26,7 @@ public class AirTest {
 	@Test
 	public void test() {
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:7056/blackcore/rcuhvac");
+		HttpPost httppost = new HttpPost("http://10.60.1.38:7056/blackcore/rcuhvac");
 
 		HvacCommandRequest request = new HvacCommandRequest("610", "10.60.6.10", true, 1, 0, 28);
 

@@ -34,23 +34,21 @@ public class RCUCommandProcess extends AbstractAPIProcess {
 	protected void init() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 		LogAction.getInstance().debug("Request:" + this.enity);
-		LogAction.getInstance().setUserId(this.enity.getRoomno());
-		LogAction.getInstance().setContent(this.enity.getKeycode());
 	}
 
 	@Override
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
+		LogAction.getInstance().setUserId(this.enity.getRoomno());
+		LogAction.getInstance().setContent(this.enity.getKeycode());
 
 		RCUSetting rcuSetting = (RCUSetting) DataCenter.getInstance().get(RCUManagerKey.CONFIG_RCU);
 		RCUService rcuService = ConfigurationLoader.getInstance().readConfig(SettingKeyword.RCU, rcuSetting.getService());
 
 		RcuConnector senderConnector = null;
 		try {
-
 			senderConnector = new RCUSendConnector(this.enity.getRoomno(), rcuService.getTarget());
 			senderConnector.init();
-
 			senderConnector.send(this.enity);
 		} catch (Exception ex) {
 			LogAction.getInstance().debug("Room No. " + this.enity.getRoomno() + " is not Command UDP connection.");

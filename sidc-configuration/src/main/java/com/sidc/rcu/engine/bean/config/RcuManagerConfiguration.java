@@ -24,6 +24,7 @@ public class RcuManagerConfiguration implements Serializable {
 	private String sidcService;
 	private String ignite;
 	private String allowLocalIPRange;
+	private String roomModule;
 
 	@XmlElementWrapper(name = "rcuSystem")
 	@XmlElement(name = "rcu")
@@ -56,6 +57,15 @@ public class RcuManagerConfiguration implements Serializable {
 		this.engine = engine;
 	}
 
+	public String getRoomModule() {
+		return roomModule;
+	}
+
+	@XmlElement(name = "roomModule")
+	public void setRoomModule(String roomModule) {
+		this.roomModule = roomModule;
+	}
+
 	public List<RcuSystem> getRcuSystems() {
 		return rcuSystems;
 	}
@@ -83,8 +93,10 @@ public class RcuManagerConfiguration implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RcuManagerConfiguration [\n\trcuSystems=");
+		builder.append("RcuManagerConfiguration [rcuSystems=");
 		builder.append(rcuSystems);
+		builder.append(", engine=");
+		builder.append(engine);
 		builder.append(", rmi=");
 		builder.append(rmi);
 		builder.append(", sidcService=");
@@ -93,6 +105,8 @@ public class RcuManagerConfiguration implements Serializable {
 		builder.append(ignite);
 		builder.append(", allowLocalIPRange=");
 		builder.append(allowLocalIPRange);
+		builder.append(", roomModule=");
+		builder.append(roomModule);
 		builder.append("]");
 		return builder.toString();
 	}

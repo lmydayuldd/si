@@ -62,7 +62,7 @@ public class MovieTypeDao {
 
 			while (rs.next()) {
 				list.add(new MoviesCatalogueBean(rs.getString("type_id"), rs.getString("type_desc"), rs.getInt("seq"),
-						rs.getString("protected_flag").equals("Y") ? true : false));
+						rs.getString("protected_flag").equals("Y") ? true : false, rs.getString("icon_url")));
 			}
 
 		} finally {

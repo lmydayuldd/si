@@ -20,12 +20,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.Ignition;
-import org.apache.ignite.configuration.CacheConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sidc.blackcore.api.ra.rcumode.request.ModeInitialRequest;
 import com.sidc.blackcore.api.ra.request.RoomModuleRequest;
 import com.sidc.blackcore.api.sits.room.response.RoomNoListResponse;
 import com.sidc.dao.ra.response.RoomRcuEnity;
@@ -33,6 +33,7 @@ import com.sidc.raudp.bean.RoomModuleBean;
 import com.sidc.rcu.connector.common.DataKey;
 import com.sidc.rcu.connector.rmi.intf.RCUReciverRemote;
 import com.sidc.rcu.engine.bean.config.RCURmiServiceConfigure;
+import com.sidc.rcu.engine.bean.config.RCURoomModuleConfiguration;
 import com.sidc.rcu.engine.bean.config.RCUService;
 import com.sidc.rcu.engine.bean.config.RCUSetting;
 import com.sidc.rcu.engine.bean.config.RcuManagerConfiguration;
@@ -47,6 +48,7 @@ import com.sidc.rcu.engine.conf.SettingKeyword;
 import com.sidc.rcu.engine.configure.SystemConfiguration;
 import com.sidc.rcu.engine.server.RCURemoteServer;
 import com.sidc.rcu.engine.utils.ConfigurationLoader;
+import com.sidc.sdk.sits.ModeInitialClient;
 import com.sidc.sdk.sits.RoomNoListClient;
 import com.sidc.sdk.sits.ZhongshanInitialClient;
 import com.sidc.utils.common.DataCenter;
@@ -106,9 +108,13 @@ public class SystemInitial {
 	}
 
 	private void startInitialRCUModule() throws IOException, SiDCException, Exception {
+
+		final RCURoomModuleConfiguration roomModuleSetting = (RCURoomModuleConfiguration) DataCenter.getInstance()
+				.get(RCUManagerKey.RCU_ROOM_MODULE);
+		LogAction.getInstance().info("initial Room Module setting:" + roomModuleSetting.isEnable());
+
 		RCUSetting zhongshanSetting = (RCUSetting) DataCenter.getInstance().get(RCUManagerKey.CONFIG_RCU);
-//		File file = new File(Env.SYSTEM_DEF_PATH + zhongshanSetting.getModulePath());
-		File file = new File("D:\\workspace\\blackcore\\rcu-engine\\rcu-manager\\zhongshan\\room-module-tester.json");
+		File file = new File(Env.SYSTEM_DEF_PATH + zhongshanSetting.getModulePath());
 		String json = FileUtils.readFileToString(file, CharEncoding.UTF_8);
 
 		List<RoomModuleBean> roomModuleBeans = new Gson().fromJson(json, new TypeToken<List<RoomModuleBean>>() {
@@ -118,14 +124,23 @@ public class SystemInitial {
 		/*
 		 * to initialization of RCU module to Blackcore
 		 */
-		RoomModuleRequest request = new RoomModuleRequest(roomModuleBeans);
+		RoomModuleRequest request = new RoomModuleRequest(roomModuleSetting.isEnable(), roomModuleBeans);
 		SiDCServiceConfigure siDCServiceConfigure = (SiDCServiceConfigure) DataCenter.getInstance()
 				.get(RCUManagerKey.CONFIG_SIDC_SERVER);
-		
-		Gson gson = new Gson ();
-		System.out.println(gson.toJsonTree(request));
 
-		new ZhongshanInitialClient<Object>("http://10.60.1.251:7056/blackcore", request).execute();
+		new ZhongshanInitialClient<Object>(siDCServiceConfigure.getServer(), request).execute();
+
+		if (!roomModuleSetting.isEnable()) {
+			return;
+		}
+		/*
+		 * initialization mode
+		 */
+		file = new File(Env.SYSTEM_DEF_PATH + zhongshanSetting.getModePath());
+		json = FileUtils.readFileToString(file, CharEncoding.UTF_8);
+		ModeInitialRequest modesRequest = new Gson().fromJson(json, ModeInitialRequest.class);
+
+		new ModeInitialClient<Object>(siDCServiceConfigure.getServer(), modesRequest).execute();
 
 	}
 

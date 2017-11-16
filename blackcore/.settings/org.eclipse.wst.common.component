@@ -8,6 +8,9 @@
         <dependent-module archiveName="sidc-ra-logical-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-ra-logical/sidc-ra-logical">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="sidc-configuration-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-configuration/sidc-configuration">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="common-framework-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-framework/common-framework">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -33,12 +36,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="sidc-authorization-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-authorization/sidc-authorization">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="quartz-sdk-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/quartz-sdk/quartz-sdk">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="sidc-configuration-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sidc-configuration/sidc-configuration">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/blackcore/target/classes"/>

@@ -14,10 +14,7 @@ import com.sidc.dao.sits.group_message_send.GroupMessageSendDao;
 import com.sidc.dao.sits.guest.GuestDao;
 import com.sidc.dao.sits.message.MessageDao;
 import com.sidc.dao.sits.moviebookmarkrecord.MovieBookMarkRecordDao;
-import com.sidc.dao.sits.pincode.PinCodeDao;
 import com.sidc.dao.sits.room.RoomDao;
-import com.sidc.dao.sits.tokenheader.TokenHeaderDao;
-import com.sidc.dao.sits.tokenkey.TokenKeyDao;
 import com.sidc.dao.sits.tokenroomdetail.TokenRoomDetailDao;
 import com.sidc.dao.sits.tvchargerecord.TvChargeRecordDao;
 import com.sidc.dao.sits.wakeup.WakeUpDao;
@@ -56,17 +53,7 @@ public class CheckOutManager {
 			TvChargeRecordDao.getInstance().deleteTvChargeRecord(conn, enity.getRoomno());
 			WakeUpDao.getInstance().deleteWakeUp(conn, enity.getRoomno());
 
-//			final List<String> tokenList = TokenRoomDetailDao.getInstance().selectTokenId(conn, enity.getRoomno());
-//
-//			TokenKeyDao.getInstance().deleteByRoom(conn, enity.getRoomno());
-//			TokenRoomDetailDao.getInstance().deleteByRoom(conn, enity.getRoomno());
-//
-//			for (final String id : tokenList) {
-//				TokenHeaderDao.getInstance().deleteById(conn, id);
-//			}
-//
-//			// 2017/05/25 新增 pin code需求 需刪除資料
-//			PinCodeDao.getInstance().delect(conn, enity.getRoomno());
+			TokenRoomDetailDao.getInstance().deleteTokenInfoByRoomNo(conn, enity.getRoomno());
 
 		} catch (Exception e) {
 			throw new SQLException(e);
@@ -87,17 +74,18 @@ public class CheckOutManager {
 			TvChargeRecordDao.getInstance().deleteTvChargeRecord(conn, enity.getRoomno());
 			WakeUpDao.getInstance().deleteWakeUp(conn, enity.getRoomno());
 
-//			final List<String> tokenList = TokenRoomDetailDao.getInstance().selectTokenId(conn, enity.getRoomno());
-//
-//			TokenKeyDao.getInstance().deleteByRoom(conn, enity.getRoomno());
-//			TokenRoomDetailDao.getInstance().deleteByRoom(conn, enity.getRoomno());
-//
-//			for (final String id : tokenList) {
-//				TokenHeaderDao.getInstance().deleteById(conn, id);
-//			}
-//
-//			// 2017/05/25 新增 pin code需求 需刪除資料
-//			PinCodeDao.getInstance().delect(conn, enity.getRoomno());
+			// final List<String> tokenList =
+			// TokenRoomDetailDao.getInstance().selectTokenId(conn,
+			// enity.getRoomno());
+			//
+			// TokenKeyDao.getInstance().deleteByRoom(conn, enity.getRoomno());
+			// TokenRoomDetailDao.getInstance().deleteByRoom(conn,
+			// enity.getRoomno());
+			//
+			// for (final String id : tokenList) {
+			// TokenHeaderDao.getInstance().deleteById(conn, id);
+			// }
+			//
 
 		} catch (Exception e) {
 			throw new SQLException(e);

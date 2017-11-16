@@ -7,8 +7,6 @@ import java.io.File;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 import org.logicalcobwebs.proxool.ProxoolException;
 import org.logicalcobwebs.proxool.configuration.JAXPConfigurator;
@@ -16,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sidc.blackcore.bean.configuration.BlackcoreConfiguration;
-import com.sidc.blackcore.conf.SETTING;
+import com.sidc.configuration.Configuration;
+import com.sidc.configuration.SETTING;
 import com.sidc.configuration.blackcore.AllowDomainConfiguration;
 import com.sidc.configuration.blackcore.AppFcmKeyConfiguration;
 import com.sidc.configuration.blackcore.SidcUrlsConfiguration;
@@ -67,16 +66,16 @@ public class SystemInitialListener implements ServletContextListener {
 		SidcUrlsConfiguration sidcConfigure = null;
 		AppFcmKeyConfiguration appFcmKeyConfigure = null;
 		try {
-			configure = readMainConfiguration(new File(Env.SYSTEM_DEF_PATH + MAIN_CONFIGUATION_PATH));
+			configure = Configuration.readMainConfiguration(new File(Env.SYSTEM_DEF_PATH + MAIN_CONFIGUATION_PATH));
 			DataCenter.getInstance().put(SETTING.CONFIGURATION, configure);
 
-			domainConfigure = readDomainConfiguration(new File(Env.SYSTEM_DEF_PATH + DOMAIN_CONFIGUATION_PATH));
+			domainConfigure = Configuration.readDomainConfiguration(new File(Env.SYSTEM_DEF_PATH + DOMAIN_CONFIGUATION_PATH));
 			DataCenter.getInstance().put(Env.DOMAINCONFIGURATION, domainConfigure);
 
-			sidcConfigure = readSidcUrlsConfiguration(new File(Env.SYSTEM_DEF_PATH + Env.SIDC_URL_PATH));
+			sidcConfigure = Configuration.readSidcUrlsConfiguration(new File(Env.SYSTEM_DEF_PATH + Env.SIDC_URL_PATH));
 			DataCenter.getInstance().put(SidcUrlName.SITS.toString(), sidcConfigure);
 
-			appFcmKeyConfigure = readAppFcmKeyConfiguration(
+			appFcmKeyConfigure = Configuration.readAppFcmKeyConfiguration(
 					new File(Env.SYSTEM_DEF_PATH + Env.APP_FCM_KEY_CONFIGUATION_PATH));
 			DataCenter.getInstance().put(Env.APP_FCM_KEY_CONFIGURATION, appFcmKeyConfigure);
 
@@ -92,47 +91,6 @@ public class SystemInitialListener implements ServletContextListener {
 			System.exit(0);
 		}
 
-	}
-
-	private BlackcoreConfiguration readMainConfiguration(File file) throws Exception {
-
-		JAXBContext jaxbContext = JAXBContext.newInstance(BlackcoreConfiguration.class);
-
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		BlackcoreConfiguration config = (BlackcoreConfiguration) jaxbUnmarshaller.unmarshal(file);
-
-		return config;
-
-	}
-
-	private AllowDomainConfiguration readDomainConfiguration(File file) throws Exception {
-
-		JAXBContext jaxbContext = JAXBContext.newInstance(AllowDomainConfiguration.class);
-
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		AllowDomainConfiguration config = (AllowDomainConfiguration) jaxbUnmarshaller.unmarshal(file);
-
-		return config;
-	}
-
-	private SidcUrlsConfiguration readSidcUrlsConfiguration(File file) throws Exception {
-
-		JAXBContext jaxbContext = JAXBContext.newInstance(SidcUrlsConfiguration.class);
-
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		SidcUrlsConfiguration config = (SidcUrlsConfiguration) jaxbUnmarshaller.unmarshal(file);
-
-		return config;
-	}
-
-	private AppFcmKeyConfiguration readAppFcmKeyConfiguration(File file) throws Exception {
-
-		JAXBContext jaxbContext = JAXBContext.newInstance(AppFcmKeyConfiguration.class);
-
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		AppFcmKeyConfiguration config = (AppFcmKeyConfiguration) jaxbUnmarshaller.unmarshal(file);
-
-		return config;
 	}
 
 }

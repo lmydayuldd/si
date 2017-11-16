@@ -25,7 +25,7 @@ public class ScheduleListRequest implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("QuartzListRequest [list=");
+		builder.append("ScheduleListRequest [list=");
 		builder.append(list);
 		builder.append("]");
 		return builder.toString();

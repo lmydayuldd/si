@@ -13,6 +13,7 @@ public class MoviesCatalogueBean implements Serializable {
 	private String catalogue;
 	private int sequence;
 	private boolean isprotected;
+	private String image;
 
 	private List<MovieListBean> movieslist = new ArrayList<MovieListBean>();
 
@@ -40,29 +41,21 @@ public class MoviesCatalogueBean implements Serializable {
 		this.movieslist = movieslist;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MoviesCatalogueBean [catalogueid=");
-		builder.append(catalogueid);
-		builder.append(", catalogue=");
-		builder.append(catalogue);
-		builder.append(", sequence=");
-		builder.append(sequence);
-		builder.append(", isprotected=");
-		builder.append(isprotected);
-		builder.append(", movieslist=");
-		builder.append(movieslist);
-		builder.append("]");
-		return builder.toString();
+	public String getImage() {
+		return image;
 	}
 
-	public MoviesCatalogueBean(String catalogueid, String catalogue, int sequence, boolean isprotected) {
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public MoviesCatalogueBean(String catalogueid, String catalogue, int sequence, boolean isprotected, String image) {
 		super();
 		this.catalogueid = catalogueid;
 		this.catalogue = catalogue;
 		this.sequence = sequence;
 		this.isprotected = isprotected;
+		this.image = image;
 	}
 
 }

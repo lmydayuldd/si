@@ -137,14 +137,12 @@ com\sidc\dao\sits\roomserviceitemtoset\RoomServiceItemToSetDao.class
 com\sidc\dao\sits\manager\PhotoManager$LazyHolder.class
 com\sidc\dao\sits\manager\AuthorizeManager.class
 com\sidc\dao\sits\typetoshop\TypeToShopDao$1.class
-com\sidc\dao\sits\manager\PinCodeManager$lazyHolder.class
 com\sidc\dao\sits\photo\PhotoDao.class
 com\sidc\dao\sits\shoplanguage\ShopLanguageDao$1.class
 com\sidc\dao\sits\laundrywashtypelang\LaundryWashTypeLangDao$lazyHolder.class
 com\sidc\dao\sits\movielanguage\MovieLanguageDao$LazyHolder.class
 com\sidc\dao\sits\manager\PhotoManager.class
 com\sidc\dao\sits\shopppingorderline\ShoppingOrderLineDao$LazyHolder.class
-com\sidc\dao\sits\manager\PinCodeManager$1.class
 com\sidc\dao\sits\activityheaderlang\ActivityHeaderLangDao.class
 com\sidc\dao\sits\manager\TokenManager.class
 com\sidc\dao\sits\roomserviceitem\RoomServiceItemDao$LazyHolder.class
@@ -176,7 +174,6 @@ com\sidc\dao\sits\manager\GuestManager.class
 com\sidc\dao\sits\roletofunction\RoleToFuntionDao$LazyHolder.class
 com\sidc\dao\sits\laundryreturntype\LaundryReturnTypeDao$lazyHolder.class
 com\sidc\dao\sits\spareorderheader\SpareOrderHeaderDao.class
-com\sidc\dao\sits\manager\PinCodeManager.class
 com\sidc\dao\sits\laundryreturntype\LaundryReturnTypeDao.class
 com\sidc\dao\sits\sparecategory\SpareCategoryDao$LazyHolder.class
 com\sidc\dao\sits\laundryitemlang\LaundryItemLangDao$lazyHolder.class

@@ -48,7 +48,7 @@ public abstract class TokenAuthorization implements RCUAuthorization {
 	public void MobileAuthorize() throws Exception {
 
 		if (!isAllowDomainCheck(InetAddress.getByName(this.address))) {
-			throw new SiDCException(APIStatus.FAIL_AUTHENTICATION, "The IP is not allowed");
+			throw new SiDCException(APIStatus.IP_NOT_ALLOWED, "The IP is not allowed(" + this.address + ")");
 		}
 
 		String token = null;
@@ -72,7 +72,7 @@ public abstract class TokenAuthorization implements RCUAuthorization {
 	public void authorize() throws SiDCException {
 		try {
 			if (!isAllowDomainCheck(InetAddress.getByName(this.address))) {
-				throw new SiDCException(APIStatus.FAIL_AUTHENTICATION, "The IP is not allowed");
+				throw new SiDCException(APIStatus.IP_NOT_ALLOWED, "The IP is not allowed(" + this.address + ")");
 			}
 			String token = null;
 			try {
@@ -96,7 +96,7 @@ public abstract class TokenAuthorization implements RCUAuthorization {
 
 		try {
 			if (!isAllowDomainCheck(InetAddress.getByName(this.address))) {
-				throw new SiDCException(APIStatus.FAIL_AUTHENTICATION, "The IP is not allowed");
+				throw new SiDCException(APIStatus.IP_NOT_ALLOWED, "The IP is not allowed(" + this.address + ")");
 			}
 
 		} catch (UnknownHostException e) {
@@ -120,9 +120,12 @@ public abstract class TokenAuthorization implements RCUAuthorization {
 					.get(Env.DOMAINCONFIGURATION);
 			List<AllowDomainIP> domainIPs = configuration.getList();
 			for (AllowDomainIP allowDomainIP : domainIPs) {
+
 				List<String> list = allowDomainIP.getValue();
-				if (list.contains(domain))
+				if (list.contains(domain) || list.contains("*")) {
 					isAllow = true;
+					break;
+				}
 			}
 		} else {
 			isAllow = true;

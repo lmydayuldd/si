@@ -6,6 +6,7 @@ import com.sidc.blackcore.api.sits.token.request.MobilePublicTokenInsertRequest;
 import com.sidc.blackcore.api.sits.token.request.TokenSelectRequest;
 import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.dao.sits.manager.CheckInManager;
+import com.sidc.dao.sits.manager.RoomManager;
 import com.sidc.dao.sits.manager.TokenManager;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
@@ -31,7 +32,7 @@ public class MobileTokenSelectProcess extends AbstractAPIProcess {
 
 		String token = TokenManager.getInstance().select(entity.getRoomno());
 		LogAction.getInstance().debug("step 1/1: insert success(TokenManager|select|" + token + ").");
-		
+
 		if (StringUtils.isBlank(token)) {
 			LogAction.getInstance().debug("token is empty.");
 			token = createPublicToken(entity.getRoomno());
@@ -49,12 +50,11 @@ public class MobileTokenSelectProcess extends AbstractAPIProcess {
 		if (StringUtils.isBlank(entity.getRoomno())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(room no).");
 		}
-
 		if (!CheckInManager.getInstance().findRoom(entity.getRoomno())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find room no.");
 		}
-		if (!StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(entity.getRoomno()))) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room is not check in.");
+		if (!RoomManager.getInstance().isCheckin(entity.getRoomno())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room no is not check in.");
 		}
 	}
 

@@ -1,0 +1,978 @@
+{
+  "modes": [
+    {
+      "id": 1,
+      "keyname": "checkin",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": true,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+           {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": true,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+           {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": true,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "Check in模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "Check in mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "keyname": "checkout",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "HVAC-ALL",
+              "status": 1,
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "Check out模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "Check out mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "keyname": "welcome",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "BEDSIDE",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BAR",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "BEDSIDE",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BAR",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "BEDSIDE",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BAR",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "歡迎模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "Welcome mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "keyname": "nobody",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "MASTER",
+              "status": 0
+            },
+            {
+              "keycode": "HVAC-ALL",
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "MASTER",
+              "status": 0
+            },
+            {
+              "keycode": "HVAC-ALL",
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "MASTER",
+              "status": 0
+            },
+            {
+              "keycode": "HVAC-ALL",
+              "power": false,
+              "function": 0,
+              "temperature": 24,
+              "speed": 0,
+              "timer": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "無人模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "nobody mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "keyname": "sleep",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "睡眠模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "sleep mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "keyname": "reading",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "閱讀模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "reading mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "keyname": "watchtv",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "看電視模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "watch tv mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "keyname": "bright",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "DESK",
+              "status": 1
+            },
+            {
+              "keycode": "WALL",
+              "status": 1
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "全亮模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "light on mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "keyname": "dark",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 0
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "全暗模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "light off mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "keyname": "saving",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "FOYER",
+              "status": 1
+            },
+            {
+              "keycode": "DESK",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 1
+            },
+            {
+              "keycode": "TOILET",
+              "status": 0
+            },
+            {
+              "keycode": "WALL",
+              "status": 0
+            },
+            {
+              "keycode": "BEDROOM",
+              "status": 1
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "節能模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "energy saving mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "keyname": "bathon",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 1
+            },
+            {
+              "keycode": "TOILET",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 1
+            },
+            {
+              "keycode": "TOILET",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 1
+            },
+            {
+              "keycode": "TOILET",
+              "status": 1
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "浴廁全亮模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "bath light on mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "keyname": "nighton",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 1
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 1
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "夜燈開模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "night light on mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "keyname": "bathoff",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 0
+            },
+            {
+              "keycode": "TOILET",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 0
+            },
+            {
+              "keycode": "TOILET",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "BATH",
+              "status": 0
+            },
+            {
+              "keycode": "TOILET",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "浴廁全關模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "bath light off mode",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "keyname": "nightoff",
+      "timer": 0,
+      "groups": [
+        {
+          "groupid": 1,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 2,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 0
+            }
+          ]
+        },
+        {
+          "groupid": 5,
+          "devices": [
+            {
+              "keycode": "NIGHT",
+              "status": 0
+            }
+          ]
+        }
+      ],
+      "langs": [
+        {
+          "lang": "zh_TW",
+          "name": "夜燈關模式",
+          "description": ""
+        },
+        {
+          "lang": "en_US",
+          "name": "night light off mode",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

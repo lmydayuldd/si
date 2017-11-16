@@ -15,6 +15,7 @@ com\sidc\rcu\engine\bean\config\RcuManagerConfiguration.class
 com\sidc\rcu\engine\bean\config\RCUSetting.class
 com\sidc\configuration\blackcore\AppFcmKey.class
 com\sidc\configuration\quartz\FlightConfiguration.class
+com\sidc\configuration\Configuration.class
 com\sidc\configuration\quartz\FlightSourceConfiguration.class
 com\sidc\configuration\blackcore\SidcUrlsLink.class
 com\sidc\configuration\blackcore\AppFcmKeyConfiguration.class
@@ -22,7 +23,9 @@ com\sidc\configuration\conf\Env.class
 com\sidc\rcu\engine\bean\config\RCURmiServiceConfigure.class
 com\sidc\configuration\blackcore\RCUServiceConfiguration.class
 com\sidc\rcu\engine\bean\config\RmiInterface.class
+com\sidc\configuration\SETTING.class
 com\sidc\configuration\blackcore\SidcUrlsConfiguration.class
+com\sidc\rcu\engine\bean\config\RCURoomModuleConfiguration.class
 com\sidc\configuration\quartz\FlightStatsKeys.class
 com\sidc\rcu\engine\bean\config\EngineSystemConfigure.class
 com\sidc\configuration\common\key\PMSKey.class

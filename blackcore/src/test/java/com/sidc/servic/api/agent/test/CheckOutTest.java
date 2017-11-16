@@ -26,7 +26,7 @@ public class CheckOutTest {
 	@Test
 	public void test() {
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:7056/blackcore/checkout");
+		HttpPost httppost = new HttpPost("http://10.60.1.38:7056/blackcore/checkout");
 		
 		// Request parameters and other properties.
 		APIRequest enity = new APIRequest(new CheckOutRequest("505"));

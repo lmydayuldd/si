@@ -10,7 +10,6 @@ import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.configuration.blackcore.SidcUrlsConfiguration;
 import com.sidc.configuration.blackcore.SidcUrlsLink;
 import com.sidc.configuration.common.key.CommonCatalogueRCUKey;
-import com.sidc.configuration.common.key.RCUMode;
 import com.sidc.configuration.conf.SidcUrlName;
 import com.sidc.dao.ra.manager.RcuModeManager;
 import com.sidc.dao.rcu.command.response.RcuModel;
@@ -35,7 +34,8 @@ import com.sidc.utils.status.APIStatus;
  */
 public class RCUModeProcess extends AbstractAPIProcess {
 
-	private RcuRoomMode enity;
+	private final RcuRoomMode enity;
+	private final String step = "2";
 
 	public RCUModeProcess(RcuRoomMode enity) {
 		// TODO Auto-generated constructor stub
@@ -54,22 +54,23 @@ public class RCUModeProcess extends AbstractAPIProcess {
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 
-		Gson gson = new Gson();
-		StringBuilder builder = new StringBuilder();
-		if (this.enity.getMode().toUpperCase().equals(RCUMode.CHECKIN)
-				|| this.enity.getMode().toUpperCase().equals(RCUMode.CHECKOUT)) {
-			builder = RcuModeManager.getInstance().selectMode(this.enity.getRoomno(), this.enity.getMode());
-		} else {
-			builder = RcuModeManager.getInstance().selectCommonMode(this.enity.getMode());
-		}
-		RcuModel model = gson.fromJson(builder.toString(), RcuModel.class);
+		final Gson gson = new Gson();
 
-		for (RcuModelCatalogue catalogues : model.getList()) {
-			String catalogue = catalogues.getCatalogue();
-			List<RcuModelDevice> devices = catalogues.getDevices();
+		StringBuilder builder = new StringBuilder(
+				RcuModeManager.getInstance().selectModeCentent(this.enity.getMode(), this.enity.getRoomno()));
+
+		if (StringUtils.isBlank(builder)) {
+			throw new SiDCException(APIStatus.DATA_DOES_NOT_EXIST, "not find group mode.");
+		}
+
+		final RcuModel model = gson.fromJson(builder.toString(), RcuModel.class);
+
+		for (final RcuModelCatalogue catalogues : model.getList()) {
+			final String catalogue = catalogues.getCatalogue();
+			final List<RcuModelDevice> devices = catalogues.getDevices();
 
 			RCUCommander commander = null;
-			for (RcuModelDevice device : devices) {
+			for (final RcuModelDevice device : devices) {
 				RcuModelCondition condition = device.getCondition();
 				if (catalogue.equals(CommonCatalogueRCUKey.AIR_CONDITION)) {
 					AirConditionCommander hvac = new AirConditionCommander(condition.getAddress());
@@ -95,6 +96,7 @@ public class RCUModeProcess extends AbstractAPIProcess {
 				new RCUCommandClient<Object>(configure(SidcUrlName.RCUENGINE.toString()), commander).execute();
 			}
 		}
+		LogAction.getInstance().debug("step 2/" + step + ":send command success.");
 		return null;
 	}
 
@@ -104,9 +106,11 @@ public class RCUModeProcess extends AbstractAPIProcess {
 		if (this.enity == null) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Rquest is illegal");
 		}
-
 		if (StringUtils.isBlank(this.enity.getRoomno())) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "RoomNo is empty");
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Rquest is illegal(roomNo)");
+		}
+		if (StringUtils.isBlank(this.enity.getMode())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Rquest is illegal(mode)");
 		}
 	}
 
@@ -116,7 +120,7 @@ public class RCUModeProcess extends AbstractAPIProcess {
 		List<SidcUrlsLink> urlsLinks = sidcConfigure.getUrls();
 		String url = null;
 		for (SidcUrlsLink sidcUrlsLink : urlsLinks) {
-			if (sidcUrlsLink.getName().equalsIgnoreCase(serverName)) 
+			if (sidcUrlsLink.getName().equalsIgnoreCase(serverName))
 				url = sidcUrlsLink.getUrl();
 		}
 		return url;

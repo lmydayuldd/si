@@ -15,5 +15,7 @@
 
 	<engine>/rcu-manager/engine/system-config.xml</engine>
 
+	<roomModule>/rcu-manager/initial/room-module-config.xml</roomModule>
+
 </configuration>
 

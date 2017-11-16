@@ -27,6 +27,8 @@ public interface APIStatus {
 
 	public final static int FAIL_OPERATE_PERMISSION = 108;
 
+	public final static int IP_NOT_ALLOWED = 109;
+
 	public final static int STB_TIMEOUT = 1001;
 
 	public final static int STB_NOT_EXIST = 1002;

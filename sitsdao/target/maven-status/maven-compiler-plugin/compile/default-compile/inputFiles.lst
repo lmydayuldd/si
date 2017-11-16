@@ -100,7 +100,6 @@ D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\shoporder\ShopOrd
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\tokenstaffdetail\TokenStaffDetailDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\laundryreturntypelang\LaundryReturnTypeLangDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\sparecategorylang\SpareCategoryLangDao.java
-D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\manager\PinCodeManager.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\connection\ProxoolConnection.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\manager\RoomServiceManager.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\tvpetotv\TypeToTvDao.java
@@ -112,8 +111,8 @@ D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\manager\GuestMana
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\roomservicecategoryitemlimit\RoomServiceCategoryItemLimitDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\movietype\MovieTypeDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\tokenkey\TokenKeyDao.java
-D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\moviebookmarkrecord\MovieBookMarkRecordDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\shopppingorderheader\ShoppingOrderHeaderDao.java
+D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\moviebookmarkrecord\MovieBookMarkRecordDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\group_message_send\GroupMessageSendDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\laundryitemlang\LaundryItemLangDao.java
 D:\workspace\blackcore\sitsdao\src\main\java\com\sidc\dao\sits\shopppingorderline\ShoppingOrderLineDao.java

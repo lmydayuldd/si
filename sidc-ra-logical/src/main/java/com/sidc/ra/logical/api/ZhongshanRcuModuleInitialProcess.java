@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.Ignition;
 
+import com.sidc.blackcore.api.ra.rcugroup.bean.RoomRcuInsertBean;
 import com.sidc.blackcore.api.ra.request.RoomModuleRequest;
 import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.dao.bean.RoomModuelDevice;
@@ -33,7 +35,7 @@ import com.sidc.utils.status.APIStatus;
  *
  */
 public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
-
+	private final String step = "4";
 	private RoomModuleRequest enity;
 
 	public ZhongshanRcuModuleInitialProcess(RoomModuleRequest enity) {
@@ -47,6 +49,7 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 	 */
 	@Override
 	protected void init() throws SiDCException, Exception {
+		LogAction.getInstance().debug("Request:" + enity);
 	}
 
 	/*
@@ -57,13 +60,20 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 	@Override
 	protected Object process() throws SiDCException, Exception {
 
-		handleRcuData(this.enity.getModules());
+		if (enity.isInitial()) {
+			handleRcuData(this.enity.getModules());
+		}
+		LogAction.getInstance()
+				.debug("Step 1/" + step + ":insert rcu data success(initial enable:" + enity.isInitial() + ").");
 
 		List<RoomRcuEnity> roomRcuEnities = RCUManager.getInstance().listRoomRCU();
+		LogAction.getInstance().debug("Step 2/" + step + ":get room rcu data success.");
 
 		initial(roomRcuEnities);
+		LogAction.getInstance().debug("Step 3/" + step + ":data format success.");
 
 		storeToMemory(roomRcuEnities);
+		LogAction.getInstance().debug("Step 4/" + step + ":store to memory success.");
 
 		return null;
 	}
@@ -74,7 +84,7 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 			for (DeviceCatalogue cat : cats) {
 				List<DeviceEnity> devices = cat.getDevices();
 				for (DeviceEnity device : devices) {
-					append(this.enity.getModules(), enity.getRoomType() ,device, cat);
+					append(this.enity.getModules(), enity.getRoomType(), device, cat);
 				}
 			}
 		}
@@ -86,9 +96,12 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 		roomRCUStatusCache.clear();
 
 		for (RoomRcuEnity enity : roomRcuEnities) {
+			if (StringUtils.isBlank(enity.getRoomno())) {
+				LogAction.getInstance().warn("RoomRcuEnity is null.");
+				continue;
+			}
 			roomRCUStatusCache.put(enity.getRoomno(), enity);
 		}
-
 	}
 
 	private void append(List<RoomModuleBean> sources, String roomType, DeviceEnity target, DeviceCatalogue targetCat) {
@@ -115,11 +128,40 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 	@Override
 	protected void check() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
+		if (enity == null) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request.");
+		}
+		if (enity.getModules() == null || enity.getModules().isEmpty()) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(modules).");
+		}
+
+		List<String> rooms = new ArrayList<String>();
+		for (final RoomModuleBean moduleEntity : enity.getModules()) {
+			if (moduleEntity.getId() <= 0) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(id).");
+			}
+			if (StringUtils.isBlank(moduleEntity.getName())) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(name).");
+			}
+			if (moduleEntity.getRcu() == null || moduleEntity.getRcu().isEmpty()) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(rcu).");
+			}
+			if (moduleEntity.getRooms() == null) {
+				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(rooms).");
+			}
+			for (final String roomNo : moduleEntity.getRooms()) {
+				if (rooms.contains(roomNo)) {
+					throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "illegal of request(roomno repeat).");
+				}
+				rooms.add(roomNo);
+			}
+		}
 
 	}
 
 	private void handleRcuData(List<RoomModuleBean> roomModuleBeans) {
 		List<RoomModuelDevice> modules = new ArrayList<RoomModuelDevice>();
+		List<RoomRcuInsertBean> rcuRooms = new ArrayList<RoomRcuInsertBean>();
 		for (RoomModuleBean enity : roomModuleBeans) {
 
 			for (RCUModule module : enity.getRcu()) {
@@ -136,11 +178,12 @@ public class ZhongshanRcuModuleInitialProcess extends AbstractAPIProcess {
 					modules.add(new RoomModuelDevice(enity.getId(), enity.getName(), deviceId));
 				}
 			}
-
+			rcuRooms.add(new RoomRcuInsertBean(enity.getId(), enity.getRooms()));
 		}
 
 		try {
-			RCUManager.getInstance().insertRCU(modules);
+			// RCUManager.getInstance().insertRCU(modules);
+			RCUManager.getInstance().insertRCU(modules, rcuRooms);
 		} catch (SQLException e) {
 			LogAction.getInstance().error(e.getMessage(), e);
 		}

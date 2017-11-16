@@ -34,7 +34,7 @@ public class HvacCommandTest {
 				info);
 
 		HttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://10.60.1.39:7056/blackcore/mobile/token");
+		HttpPost httppost = new HttpPost("http://10.60.1.38:7056/blackcore/mobile/token");
 
 		APIRequest enity = new APIRequest(request);
 		Gson gson = new Gson();

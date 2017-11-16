@@ -52,7 +52,7 @@ public class Core implements ServletContextListener {
 				JobsAction jobsAction = (JobsAction) job.newInstance();
 				Class<? extends Job> jobClass = (Class<? extends Job>) job;
 				// 查詢此作業是否正在執行中，如果沒有被執行，或作業的執行完全被終止，則添加，否則跳過
-				boolean isRun = ReflectInterface.ckeckRunJob(jobsAction.setJobInfo().getJobName(),
+				boolean isRun = ReflectInterface.ckeckRunJob(scheduler, jobsAction.setJobInfo().getJobName(),
 						jobsAction.setJobInfo().getJobGroup());
 				if (isRun) {
 					continue;

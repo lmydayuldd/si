@@ -34,7 +34,7 @@ public class DeleteJob extends AbstractAPIProcess {
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			JobKey jobKey = JobKey.jobKey(this.enity.getJobname(), this.enity.getGroupname());
 			// scheduler.deleteJob(jobKey);
-			new PauseJob(this.enity);
+			new PauseJob(this.enity).execute();
 			scheduler.unscheduleJob(TriggerKey.triggerKey(this.enity.getJobname(), this.enity.getGroupname()));
 			scheduler.deleteJob(jobKey);
 		} catch (Exception e) {

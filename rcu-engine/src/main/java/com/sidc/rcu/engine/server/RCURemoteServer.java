@@ -127,10 +127,10 @@ public class RCURemoteServer extends UnicastRemoteObject implements RCUReciverRe
 					for (DeviceEnity device : cat.getDevices()) {
 						Serializable result = null;
 						String aircondition_address = null;
-//						if (CommonCatalogueRCUKey.AIR_CONIDITION.equals(cat.getCatalogue())) {
-//							PositionBean pos = (PositionBean) device.getAppender();
-//							aircondition_address = String.valueOf(pos.getAddress());
-//						}
+						if (CommonCatalogueRCUKey.AIR_CONDITION.equals(cat.getCatalogue())) {
+							PositionBean pos = (PositionBean) device.getAppender();
+							aircondition_address = String.valueOf(pos.getAddress());
+						}
 
 						result = readDevice(receiver, device.getKeycode(), aircondition_address);
 
@@ -152,7 +152,7 @@ public class RCURemoteServer extends UnicastRemoteObject implements RCUReciverRe
 	}
 
 	private Serializable readDevice(final RCUReceiverInfo receiver, final String keycode,
-			 String aircondition_address) {
+			final String aircondition_address) {
 
 		Serializable serializable = null;
 		final List<Serializable> rec_devices = receiver.getData();
@@ -166,16 +166,15 @@ public class RCURemoteServer extends UnicastRemoteObject implements RCUReciverRe
 					serializable = new RCUStatusBean(bulb.getStatus());
 					break;
 				}
-			} /*else if (CommonCatalogueRCUKey.AIR_CONIDITION.equals(receiver.getCatalogue())) {
+			} else if (CommonCatalogueRCUKey.AIR_CONDITION.equals(receiver.getCatalogue())) {
 				final AirConditionReceiver aircondition = (AirConditionReceiver) rec_device;
-				aircondition_address = "0";
 				if (String.valueOf(aircondition.getPosition()).equals(aircondition_address)) {
 					RMIReceiverLog.getInstance().setContent(gson.toJson(aircondition));
 					serializable = rec_device;
 					break;
 				}
 
-			} */else if (CommonCatalogueRCUKey.SERVICE.equals(receiver.getCatalogue())) {
+			} else if (CommonCatalogueRCUKey.SERVICE.equals(receiver.getCatalogue())) {
 				final RCUServiceReceiver service = (RCUServiceReceiver) rec_device;
 				if (!StringUtils.isBlank(service.getKeycode()) && service.getKeycode().equals(keycode)) {
 					RMIReceiverLog.getInstance().setContent(gson.toJson(rec_devices));

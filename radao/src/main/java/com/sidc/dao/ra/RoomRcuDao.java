@@ -40,7 +40,7 @@ public class RoomRcuDao {
 			+ " left join rcu_device_lang D1 ON (D.id = D1.rcu_deviceid) "
 			+ " left join rcu_device_group E ON (D.rcu_device_group_id = E.id)"
 			+ " left join rcu_device_group_lang F ON (E.id = F.rcu_device_group_id and F.lang = D1.lang)"
-			+ " order by A.roomno, E.name, D.device";
+			+ " where e.createdtime is not null order by A.roomno, E.name, D.device";
 
 	public List<RoomRcuEnity> listRoomRcuDevice(final Connection conn) throws SQLException {
 
@@ -161,7 +161,6 @@ public class RoomRcuDao {
 				list.add(new RoomInfoEnity(rs.getString("no"), rs.getString("floor"), isCheckin, rs.getString("name")));
 			}
 
-			conn.commit();
 		} finally {
 			if (psmt != null && !psmt.isClosed()) {
 				psmt.close();
@@ -170,4 +169,90 @@ public class RoomRcuDao {
 
 		return list;
 	}
+
+	private final static String SELECT_GROUPID = "SELECT rcu_group_id FROM room_rcu WHERE roomno = ?;";
+
+	public int findGroupId(final Connection conn, final String roomNo) throws SQLException {
+
+		int groupId = -9999;
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(SELECT_GROUPID);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+
+			ResultSet rs = psmt.executeQuery();
+			if (rs.next()) {
+				groupId = rs.getInt("rcu_group_id");
+			}
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+
+		return groupId;
+	}
+
+	private final static String UPDATE_GROUP = "UPDATE room_rcu SET rcu_group_id = ? WHERE roomno = ?;";
+
+	public void updateGroupId(final Connection conn, final String roomNo, final int groupId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(UPDATE_GROUP);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+			psmt.setString(++i, roomNo);
+
+			psmt.executeUpdate();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE = "DELETE FROM room_rcu WHERE rcu_group_id = ?;";
+
+	public void delete(final Connection conn, final int groupId) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE);
+
+			int i = 0;
+			psmt.setInt(++i, groupId);
+
+			psmt.executeUpdate();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
+	private final static String DELETE_ALL = "DELETE FROM room_rcu;";
+
+	public void delete(final Connection conn) throws SQLException {
+
+		PreparedStatement psmt = null;
+		try {
+			psmt = conn.prepareStatement(DELETE_ALL);
+
+			psmt.executeUpdate();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
 }

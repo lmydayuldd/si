@@ -21,6 +21,8 @@ import com.sidc.dao.ra.RCUGroupDeviceDao;
 import com.sidc.dao.ra.RcuDeviceDao;
 import com.sidc.dao.ra.RcuDeviceGroupLangDao;
 import com.sidc.dao.ra.RcuDeviceLangDao;
+import com.sidc.dao.ra.RcuGroupModeDao;
+import com.sidc.dao.ra.RoomRcuDao;
 import com.sidc.dao.ra.room.RcuGroupDao;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.status.APIStatus;
@@ -59,7 +61,6 @@ public class RcuGroupManager {
 				conn.close();
 			}
 		}
-
 	}
 
 	public void update(final String roomno, final int rcu_group_id) throws SQLException {
@@ -294,6 +295,18 @@ public class RcuGroupManager {
 			conn = ProxoolConnection.getInstance().connectSiTS();
 			conn.setAutoCommit(false);
 
+			// final List<Integer> modeIds =
+			// RcuGroupModeDao.getInstance().findModeId(conn, groupId);
+			RcuGroupModeDao.getInstance().deleteByGroupId(conn, groupId);
+
+			// for (final int modeId : modeIds) {
+			// RcuModeDeviceDao.getInstance().delete(conn, modeId);
+			// RcuModeLangDao.getInstance().delete(conn, modeId);
+			// RcuModeDao.getInstance().delete(conn, modeId);
+			// }
+
+			RoomRcuDao.getInstance().delete(conn, groupId);
+
 			RCUGroupDeviceDao.getInstance().deleteByGrouId(conn, groupId);
 
 			RCUGroupDao.getInstance().delete(conn, groupId);
@@ -302,6 +315,26 @@ public class RcuGroupManager {
 
 		} catch (Exception ex) {
 			conn.rollback();
+			throw new SQLException(ex);
+		} finally {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		}
+	}
+
+	public void updateRoomGroup(final String roomNo, final int groupId) throws SQLException {
+
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getInstance().connectSiTS();
+			conn.setAutoCommit(false);
+
+			RoomRcuDao.getInstance().updateGroupId(conn, roomNo, groupId);
+
+			conn.commit();
+
+		} catch (Exception ex) {
 			throw new SQLException(ex);
 		} finally {
 			if (conn != null && !conn.isClosed()) {

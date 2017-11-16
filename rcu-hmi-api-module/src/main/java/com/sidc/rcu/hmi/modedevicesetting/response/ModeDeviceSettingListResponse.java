@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sidc.blackcore.api.ra.response.RcuDeviceEnity;
+import com.sidc.rcu.hmi.modeledevicesetting.bean.RcuDeviceEnity;
 import com.sidc.rcu.hmi.modesetting.bean.RcuModeDeviceListBean;
 
 public class ModeDeviceSettingListResponse implements Serializable {

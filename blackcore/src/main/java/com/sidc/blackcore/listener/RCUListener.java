@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ignite.Ignition;
@@ -19,7 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sidc.blackcore.bean.configuration.BlackcoreConfiguration;
-import com.sidc.blackcore.conf.SETTING;
+import com.sidc.configuration.Configuration;
+import com.sidc.configuration.SETTING;
 import com.sidc.configuration.blackcore.RCUServiceConfiguration;
 import com.sidc.configuration.conf.Env;
 import com.sidc.dao.ra.manager.RCUDeviceManager;
@@ -67,7 +66,7 @@ public class RCUListener implements ServletContextListener {
 		try {
 			BlackcoreConfiguration configure = (BlackcoreConfiguration) DataCenter.getInstance()
 					.get(SETTING.CONFIGURATION);
-			rcuConfig = readRCUServiceConfiguration(new File(Env.SYSTEM_DEF_PATH + configure.getRcu()));
+			rcuConfig = Configuration.readRCUServiceConfiguration(new File(Env.SYSTEM_DEF_PATH + configure.getRcu()));
 			DataCenter.getInstance().put(SETTING.RCU_SERVICE_CONFIG, rcuConfig);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -106,14 +105,5 @@ public class RCUListener implements ServletContextListener {
 		Ignition.start(Env.SYSTEM_DEF_PATH + config.getIgnite());
 
 	}
-
-	private RCUServiceConfiguration readRCUServiceConfiguration(File file) throws Exception {
-
-		JAXBContext jaxbContext = JAXBContext.newInstance(RCUServiceConfiguration.class);
-
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		RCUServiceConfiguration config = (RCUServiceConfiguration) jaxbUnmarshaller.unmarshal(file);
-
-		return config;
-	}
+	
 }

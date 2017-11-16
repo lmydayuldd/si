@@ -2,7 +2,7 @@
 
 <configuration>
 
-	<url description="Host of SiDC API Service">http://10.60.1.39:7056/blackcore</url>
+	<url description="Host of SiDC API Service">http://10.60.1.251:7056/blackcore</url>
 	<servers>
 		<server name="ra"
 			description="The mainport receives command to RCU Server. The target broadcast RCU data from command">

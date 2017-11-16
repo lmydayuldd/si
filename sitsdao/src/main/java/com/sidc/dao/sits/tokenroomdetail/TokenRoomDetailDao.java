@@ -304,4 +304,25 @@ public class TokenRoomDetailDao {
 		}
 	}
 
+	private final static String DELETE_TOKEN_INFO_BY_ROOM_NO = "DELETE TK.*,TRD.*,TH.* FROM token_room_detail TRD INNER JOIN token_key TK ON "
+			+ "TRD.trd_id = TK.tk_token_detail_id INNER JOIN token_header TH ON TRD.trd_token_header_id = TH.th_id WHERE TRD.trd_roomno = ?;";
+
+	public void deleteTokenInfoByRoomNo(final Connection conn, final String roomNo) throws SQLException {
+		PreparedStatement psmt = null;
+
+		try {
+			psmt = conn.prepareStatement(DELETE_TOKEN_INFO_BY_ROOM_NO);
+
+			int i = 0;
+			psmt.setString(++i, roomNo);
+
+			psmt.executeUpdate();
+
+		} finally {
+			if (psmt != null && !psmt.isClosed()) {
+				psmt.close();
+			}
+		}
+	}
+
 }

@@ -1,6 +1,4 @@
-com\sidc\quartz\sdk\ScheduleInfoClient.class
 com\sidc\quartz\sdk\ScheduleUpdateClient.class
-com\sidc\quartz\sdk\rcu\RcuScheduleCheckOutUpdateClient.class
 com\sidc\quartz\sdk\abs\AbsHttpClient.class
-com\sidc\quartz\sdk\ScheduleStatusClient.class
 com\sidc\quartz\sdk\command\ScheduleCommandClient.class
+com\sidc\quartz\sdk\ScheduleDataClient.class

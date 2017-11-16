@@ -10,6 +10,7 @@ public class DeviceSettingBean implements Serializable {
 	private String temperature;
 	private String time;
 	private String speed;
+	private String address;
 
 	public String getStatus() {
 		return status;
@@ -35,6 +36,10 @@ public class DeviceSettingBean implements Serializable {
 		return speed;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -50,12 +55,14 @@ public class DeviceSettingBean implements Serializable {
 		builder.append(time);
 		builder.append(", speed=");
 		builder.append(speed);
+		builder.append(", address=");
+		builder.append(address);
 		builder.append("]");
 		return builder.toString();
 	}
 
 	public DeviceSettingBean(String status, String power, String function, String temperature, String time,
-			String speed) {
+			String speed, String address) {
 		super();
 		this.status = status;
 		this.power = power;
@@ -63,6 +70,7 @@ public class DeviceSettingBean implements Serializable {
 		this.temperature = temperature;
 		this.time = time;
 		this.speed = speed;
+		this.address = address;
 	}
 
 }

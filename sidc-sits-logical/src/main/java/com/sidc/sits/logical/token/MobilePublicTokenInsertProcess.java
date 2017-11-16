@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.sidc.blackcore.api.sits.token.request.MobilePublicTokenInsertRequest;
 import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.dao.sits.manager.CheckInManager;
+import com.sidc.dao.sits.manager.RoomManager;
 import com.sidc.dao.sits.manager.TokenManager;
 import com.sidc.utils.encrypt.AesEncrypt;
 import com.sidc.utils.exception.SiDCException;
@@ -40,10 +41,10 @@ public class MobilePublicTokenInsertProcess extends AbstractAPIProcess {
 
 		LogAction.getInstance().debug("step 1/1: insert success(TokenManager|insertWithPublicKey|" + token + ").");
 
-		AesEncrypt encrypt = new AesEncrypt("sidc");
+//		AesEncrypt encrypt = new AesEncrypt("sidc");
 
-//		return encrypt.encrypt(token);
-		
+		// return encrypt.encrypt(token);
+
 		return token;
 	}
 
@@ -62,8 +63,8 @@ public class MobilePublicTokenInsertProcess extends AbstractAPIProcess {
 		if (!CheckInManager.getInstance().findRoom(entity.getRoomno())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "not find room no.");
 		}
-		if (!StringUtils.isBlank(CheckInManager.getInstance().findRoomCheckOutStatus(entity.getRoomno()))) {
-			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room is not check in.");
+		if (!RoomManager.getInstance().isCheckin(entity.getRoomno())) {
+			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "room no is not check in.");
 		}
 		if (!TokenManager.getInstance().checkExpired(entity.getType(), entity.getRoomno())) {
 			throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "token not yet expired.");

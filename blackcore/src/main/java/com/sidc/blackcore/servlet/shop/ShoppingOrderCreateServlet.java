@@ -25,7 +25,7 @@ public class ShoppingOrderCreateServlet extends APIServlet {
 		final ShoppingOrderCreateRequest request = (ShoppingOrderCreateRequest) APIParser.getInstance()
 				.parse(apiRequest, ShoppingOrderCreateRequest.class);
 
-		return new ShoppingOrderCreateProcess(request).executeWithStaffToken();
+		return new ShoppingOrderCreateProcess(request).executeWithMobileToken();
 	}
 
 	@Override

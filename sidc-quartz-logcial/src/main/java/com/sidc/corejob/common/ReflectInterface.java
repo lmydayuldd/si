@@ -12,7 +12,6 @@ import java.util.jar.JarFile;
 
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
-import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
 
 import com.sidc.dao.quartz.manager.ScheduleManager;
@@ -92,7 +91,7 @@ public class ReflectInterface {
 	        	String classname = file.replace('/', '.').substring(0, file.length() - 6);
 	        	Class<?> c = Class.forName(classname);
 	        	if (c.getSimpleName().equals("")) continue;
-	        	final ScheduleStatusResponse infoEntity = ScheduleManager.getInstance().enabled(c.getSimpleName());
+	        	final ScheduleStatusResponse infoEntity = ScheduleManager.getInstance().isEnabled(c.getSimpleName());
 				if (infoEntity.isEnabled()) {
 					classes.add(c);
 				}
@@ -109,9 +108,8 @@ public class ReflectInterface {
 	 * @param jobGroup
 	 * @return
 	 */
-	public static boolean ckeckRunJob(String jobName, String jobGroup) {
+	public static boolean ckeckRunJob(Scheduler scheduler, String jobName, String jobGroup) {
 		try {
-			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
 			Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
 

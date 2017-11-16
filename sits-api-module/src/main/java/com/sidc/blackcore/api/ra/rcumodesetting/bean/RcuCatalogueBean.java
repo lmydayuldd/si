@@ -12,6 +12,10 @@ public class RcuCatalogueBean implements java.io.Serializable {
 		return catalogue;
 	}
 
+	public void setDevices(List<RcuKeyCodeBean> devices) {
+		this.devices = devices;
+	}
+
 	public List<RcuKeyCodeBean> getDevices() {
 		return devices;
 	}

@@ -20,17 +20,19 @@ public class GuestRequest implements Serializable {
 	private String lastname;
 	private String birthd;
 	private String depdate;
-	private String gender;
+	private String groupid;
+	private String salutation;
 
 	public GuestRequest(String guestno, String firstname, String lastname, String birthd, String depdate,
-			String gender) {
+			String groupid, String salutation) {
 		super();
 		this.guestno = guestno;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.birthd = birthd;
 		this.depdate = depdate;
-		this.gender = gender;
+		this.groupid = groupid;
+		this.salutation = salutation;
 	}
 
 	public String getGuestno() {
@@ -53,8 +55,12 @@ public class GuestRequest implements Serializable {
 		return depdate;
 	}
 
-	public String getGender() {
-		return gender;
+	public String getGroupid() {
+		return groupid;
+	}
+
+	public String getSalutation() {
+		return salutation;
 	}
 
 	public void setDepdate(String depdate) {
@@ -74,8 +80,10 @@ public class GuestRequest implements Serializable {
 		builder.append(birthd);
 		builder.append(", depdate=\n");
 		builder.append(depdate);
-		builder.append(", gender=\n");
-		builder.append(gender);
+		builder.append(", groupid=\n");
+		builder.append(groupid);
+		builder.append(", salutation=\n");
+		builder.append(salutation);
 		builder.append("]");
 		return builder.toString();
 	}

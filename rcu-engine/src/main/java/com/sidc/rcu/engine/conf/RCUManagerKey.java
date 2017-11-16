@@ -4,10 +4,10 @@ public interface RCUManagerKey {
 
 	public final static String LOCAL_ADRESS = "LOCAL_ADDRESS";
 
-	//com.sidc.rcu.manager.server.RABroadcastUDPServer
+	// com.sidc.rcu.manager.server.RABroadcastUDPServer
 	public final static String RCU_UDP_SERVER = "RCU_UDP_SERVER";
 
-	//com.sidc.rcu.manager.bean.config.RCURmiServiceConfigure
+	// com.sidc.rcu.manager.bean.config.RCURmiServiceConfigure
 	public final static String RCU_RMI_REC = "RCU_RECEIVER";
 
 	// com.sidc.rcu.manager.bean.config.RcuManagerConfiguration
@@ -18,11 +18,13 @@ public interface RCUManagerKey {
 
 	// com.sidc.rcu.manager.bean.EngineSystemSetting
 	public final static String ENGINE_SYSTEM_CONFIGURE = "ENGINE_SYSTEM_CONFIG";
-		
+
 	// com.sidc.rcu.manager.bean.config.RCUSetting
 	public final static String CONFIG_RCU = "ZHONGSHAN";
 
 	// java.lang.Thread
 	public final static String CONFIG_RCU_RECE_SERVER_THREAD = "RCU_RECE_SERVER";
+
+	public final static String RCU_ROOM_MODULE = "RCU_ROOM_MODULE";
 
 }

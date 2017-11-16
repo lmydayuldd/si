@@ -4,16 +4,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sidc.common.framework.abs.AbstractAPIProcess;
 import com.sidc.dao.quartz.manager.ScheduleManager;
-import com.sidc.quartz.api.request.ScheduleUpdateInfoRequest;
+import com.sidc.quartz.api.request.ScheduleUpdateDataRequest;
 import com.sidc.utils.exception.SiDCException;
 import com.sidc.utils.log.LogAction;
 import com.sidc.utils.status.APIStatus;
 
 public class ScheduleUpdateProcess extends AbstractAPIProcess {
 	
-	private ScheduleUpdateInfoRequest enity;
+	private ScheduleUpdateDataRequest enity;
 	
-	public ScheduleUpdateProcess(ScheduleUpdateInfoRequest enity) {
+	public ScheduleUpdateProcess(ScheduleUpdateDataRequest enity) {
 		// TODO Auto-generated constructor stub
 		this.enity = enity;
 	}
@@ -28,14 +28,7 @@ public class ScheduleUpdateProcess extends AbstractAPIProcess {
 	protected Object process() throws SiDCException, Exception {
 		// TODO Auto-generated method stub
 		
-		if (StringUtils.isBlank(this.enity.getCommands())) {
-			ScheduleManager.getInstance().updateInfo(enity);
-		} else {
-			if (StringUtils.isBlank(this.enity.getCommands())) {
-				throw new SiDCException(APIStatus.ILLEGAL_ARGUMENT, "Schedule commands is empty");
-			}
-			ScheduleManager.getInstance().update(enity);
-		}
+		ScheduleManager.getInstance().update(enity);
 		
 		return null;
 	}
